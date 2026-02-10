@@ -187,37 +187,52 @@ interface Product {
       <!-- 8. Arrow Functions in Event Bindings -->
       <div class="example-section">
         <h3>8. Arrow Functions in Event Bindings (Live!)</h3>
-        <p class="syntax-block">
-          (click)="(event) =&gt; handleClick(event)"<br>
-          (click)="($event) =&gt; doSomething($event.target)"<br>
-          (input)="(e) =&gt; updateValue(e.target.value)"
+
+        <div class="warning-box">
+          <strong>⚠️ Important:</strong> Top-level arrow functions in event bindings are <strong>NO-OPs</strong>!<br>
+          <code>(click)="(event) =&gt; handleClick(event)"</code> creates a function but <strong>never invokes it</strong>.<br>
+          Angular produces a diagnostic: <em>"Arrow function will not be invoked in this event listener."</em>
+        </div>
+
+        <p class="note" style="background: #f0fdf4; border-left-color: #22c55e;">
+          <strong>Correct usage:</strong> Arrow functions work as <strong>callbacks</strong> to methods
+          like <code>signal.update(prev =&gt; prev + 1)</code>, array methods, etc.
         </p>
-        <p class="note">
-          Arrow functions can now be used directly in event bindings.
-          This enables inline event handling logic without defining
-          separate methods in the component class.
-        </p>
+
+        <h4 style="color: #dc2626; margin-top: 16px;">❌ Anti-patterns (NO-OP — never invoked)</h4>
+        <pre class="syntax-block" style="border-left: 3px solid #dc2626;">&lt;button (click)="(event) =&gt; handleClick(event)"&gt;  ← Creates function, discards it
+&lt;button (click)="() =&gt; doSomething()"&gt;             ← Same problem
+&lt;button (click)="(e) =&gt; e.preventDefault()"&gt;       ← Never runs</pre>
+
+        <h4 style="color: #16a34a; margin-top: 16px;">✅ Correct patterns (arrow as callback)</h4>
+        <pre class="syntax-block" style="border-left: 3px solid #16a34a;">&lt;button (click)="count.update(prev =&gt; prev + 1)"&gt;         ← Signal update
+&lt;button (click)="count.update(prev =&gt; $event.type + prev)"&gt; ← $event available!
+&lt;button (click)="items().filter(x =&gt; x.active)"&gt;           ← Array callback
+&lt;button (click)="list.reduce((...args) =&gt; args[0] + args[1])"&gt; ← Rest params</pre>
+
         <div class="event-demo">
+          <p style="font-weight: 600; margin-bottom: 8px;">Live demo — signal.update with arrow callback:</p>
           <button class="demo-btn" (click)="handleArrowClick($event)">
-            Click me (traditional)
+            Traditional: handleClick($event)
           </button>
-          <button class="demo-btn arrow-btn" (click)="arrowClickCount.set(arrowClickCount() + 1)">
-            Click me (inline arrow-style)
+          <button class="demo-btn arrow-btn" (click)="arrowClickCount.update(prev => prev + 1)">
+            Arrow callback: count.update(prev =&gt; prev + 1)
           </button>
           <div class="code-row">
             <span class="label">Arrow click count:</span>
             <span class="result">{{ arrowClickCount() }}</span>
           </div>
           <div class="code-row">
-            <span class="label">Last event type:</span>
+            <span class="label">Last event type (via $event):</span>
             <span class="result">{{ lastEventType() }}</span>
           </div>
         </div>
-        <div class="usage-examples">
-          <p><strong>Usage examples in template:</strong></p>
-          <pre class="syntax-block">&lt;button (click)="(e) =&gt; handleEvent(e)"&gt;Arrow handler&lt;/button&gt;
-&lt;input (input)="(e) =&gt; search(e.target.value)" /&gt;
-&lt;div (mouseover)="(e) =&gt; highlight(e.clientX, e.clientY)"&gt;&lt;/div&gt;</pre>
+
+        <div class="warning-box" style="background: #fefce8; border-left-color: #eab308; margin-top: 12px;">
+          <strong>Destructuring not supported:</strong>
+          <code>({{ '{' }}target{{ '}' }}) =&gt; handle(target)</code> won't parse.
+          The expression parser only accepts identifiers, <code>...rest</code>, and commas in arrow params.
+          Use <code>$event.target</code> directly instead.
         </div>
       </div>
 
@@ -341,6 +356,12 @@ interface Product {
       font-size: 14px; width: 300px; margin-bottom: 8px;
     }
     .demo-input:focus { border-color: #3b82f6; outline: none; }
+    .warning-box {
+      background: #fef2f2; border-left: 3px solid #dc2626;
+      padding: 12px 16px; border-radius: 4px; margin: 12px 0;
+      font-size: 13px; line-height: 1.6; color: #7f1d1d;
+    }
+    .warning-box code { background: #fecaca; color: #991b1b; }
   `],
 })
 export class TsFeaturesDemoComponent {
