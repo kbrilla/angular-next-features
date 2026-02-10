@@ -1,59 +1,51 @@
-# NewAngularFeaturesDemo
+# Angular New Features Demo
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.3.
+> **[Live Demo](https://kbrilla.github.io/nativeoptional_chaning_and_template_features_upgrade/)**
 
-## Development server
+Interactive demo showcasing two proposed Angular features:
 
-To start a local development server, run:
+## PR 1: Native Optional Chaining Semantics
 
-```bash
-ng serve
-```
+Angular's `?.` safe navigation operator has always returned `null` on short-circuit (legacy behavior). Native ECMAScript optional chaining returns `undefined`. This PR adds:
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- **Per-component override**: `optionalChainingSemantics: 'legacy' | 'native'` in `@Component`
+- **Project-wide setting**: `strictOptionalChainingSemantics: true` in tsconfig `angularCompilerOptions`
+- **Extended diagnostic**: `legacySafeNavigationUsage` warns about expressions affected by the change
+- **Migration schematic**: `ng generate @angular/core:optional-chaining-semantics-migration`
 
-## Code scaffolding
+### Demo Components
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- **Legacy User Card** — shows `?.` returning `null` when the user is nullish
+- **Native User Card** — shows `?.` returning `undefined` when the user is nullish
+- **Side-by-side comparison** — same data, different semantics, proving mix-and-match works
+- **Behavioral differences table** — strict equality, typeof, string concatenation
 
-```bash
-ng generate component component-name
-```
+## PR 2: TypeScript Features in Angular Templates
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Brings standard TypeScript/ECMAScript syntax to Angular templates:
 
-```bash
-ng generate --help
-```
+| Feature | Example | Live in Demo |
+|---------|---------|:---:|
+| `@let` destructuring | `@let { name, price } = product` | Yes |
+| Hex/Octal/Binary literals | `{{ 0xFF }}`, `{{ 0o77 }}`, `{{ 0b1010 }}` | Yes |
+| Computed property names | `{{ {['key']: value} }}` | Yes |
+| BigInt literals | `{{ 1n }}`, `{{ 100n + 200n }}` | Yes |
+| Arrow rest parameters | `items.reduce((...args) => args[0] + args[1])` | Yes |
+| Block comments | `{{ 5 /* ignored */ + 3 }}` = 8 | Yes |
 
-## Building
+## Built With
 
-To build the project run:
+This app uses a **custom Angular build** (21.2.0-next.2) from a combined branch that merges:
+- `main` (includes inlay hints)
+- `copilot/implement-optional-chaining`
+- `copilot/implement-ts-features-in-angular-templates`
 
-```bash
-ng build
-```
+Custom VSIX for the Angular Language Service extension is also built from this branch.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+## Development
 
 ```bash
-ng e2e
+pnpm install
+ng serve        # Runs on http://localhost:4200
+ng build        # Production build
 ```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
