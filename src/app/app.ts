@@ -1,12 +1,16 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { OptionalChainingLegacyDemoComponent } from './demos/optional-chaining-demo.component';
+import { TsFeaturesDemoComponent } from './demos/ts-features-demo.component';
+import { MixedChainingDemoComponent } from './demos/mixed-chaining-demo.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [
+    OptionalChainingLegacyDemoComponent,
+    TsFeaturesDemoComponent,
+    MixedChainingDemoComponent,
+  ],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
-export class App {
-  protected readonly title = signal('new_angular_features_demo');
-}
+export class App {}

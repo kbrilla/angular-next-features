@@ -8,24 +8,30 @@ importers:
 
   .:
     dependencies:
+      '@angular/animations':
+        specifier: file:/Users/krzbri/repos/angular/dist/new-features-tarballs/angular-animations-21.2.0-next.2+sha-5103983.tgz
+        version: file:../angular/dist/new-features-tarballs/angular-animations-21.2.0-next.2+sha-5103983.tgz(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-21.2.0-next.2+sha-5103983.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-21.2.0-next.2+sha-5103983.tgz)(rxjs@7.8.2))
       '@angular/common':
-        specifier: ^21.1.0
-        version: 21.1.3(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2))(rxjs@7.8.2)
+        specifier: file:/Users/krzbri/repos/angular/dist/new-features-tarballs/angular-common-21.2.0-next.2+sha-5103983.tgz
+        version: file:../angular/dist/new-features-tarballs/angular-common-21.2.0-next.2+sha-5103983.tgz(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-21.2.0-next.2+sha-5103983.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-21.2.0-next.2+sha-5103983.tgz)(rxjs@7.8.2))(rxjs@7.8.2)
       '@angular/compiler':
-        specifier: ^21.1.0
-        version: 21.1.3
+        specifier: file:/Users/krzbri/repos/angular/dist/new-features-tarballs/angular-compiler-21.2.0-next.2+sha-5103983.tgz
+        version: file:../angular/dist/new-features-tarballs/angular-compiler-21.2.0-next.2+sha-5103983.tgz
       '@angular/core':
-        specifier: ^21.1.0
-        version: 21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2)
+        specifier: file:/Users/krzbri/repos/angular/dist/new-features-tarballs/angular-core-21.2.0-next.2+sha-5103983.tgz
+        version: file:../angular/dist/new-features-tarballs/angular-core-21.2.0-next.2+sha-5103983.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-21.2.0-next.2+sha-5103983.tgz)(rxjs@7.8.2)
       '@angular/forms':
-        specifier: ^21.1.0
-        version: 21.1.3(@angular/common@21.1.3(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2))(@angular/platform-browser@21.1.3(@angular/common@21.1.3(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2)))(rxjs@7.8.2)
+        specifier: file:/Users/krzbri/repos/angular/dist/new-features-tarballs/angular-forms-21.2.0-next.2+sha-5103983.tgz
+        version: file:../angular/dist/new-features-tarballs/angular-forms-21.2.0-next.2+sha-5103983.tgz(5e13a4c9b15fb97c4c799a6ea92e1dce)
       '@angular/platform-browser':
-        specifier: ^21.1.0
-        version: 21.1.3(@angular/common@21.1.3(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2))
+        specifier: file:/Users/krzbri/repos/angular/dist/new-features-tarballs/angular-platform-browser-21.2.0-next.2+sha-5103983.tgz
+        version: file:../angular/dist/new-features-tarballs/angular-platform-browser-21.2.0-next.2+sha-5103983.tgz(@angular/animations@file:../angular/dist/new-features-tarballs/angular-animations-21.2.0-next.2+sha-5103983.tgz(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-21.2.0-next.2+sha-5103983.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-21.2.0-next.2+sha-5103983.tgz)(rxjs@7.8.2)))(@angular/common@file:../angular/dist/new-features-tarballs/angular-common-21.2.0-next.2+sha-5103983.tgz(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-21.2.0-next.2+sha-5103983.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-21.2.0-next.2+sha-5103983.tgz)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-21.2.0-next.2+sha-5103983.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-21.2.0-next.2+sha-5103983.tgz)(rxjs@7.8.2))
+      '@angular/platform-browser-dynamic':
+        specifier: file:/Users/krzbri/repos/angular/dist/new-features-tarballs/angular-platform-browser-dynamic-21.2.0-next.2+sha-5103983.tgz
+        version: file:../angular/dist/new-features-tarballs/angular-platform-browser-dynamic-21.2.0-next.2+sha-5103983.tgz(3d61b293570265a0015785e3622cbf11)
       '@angular/router':
-        specifier: ^21.1.0
-        version: 21.1.3(@angular/common@21.1.3(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2))(@angular/platform-browser@21.1.3(@angular/common@21.1.3(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2)))(rxjs@7.8.2)
+        specifier: file:/Users/krzbri/repos/angular/dist/new-features-tarballs/angular-router-21.2.0-next.2+sha-5103983.tgz
+        version: file:../angular/dist/new-features-tarballs/angular-router-21.2.0-next.2+sha-5103983.tgz(5e13a4c9b15fb97c4c799a6ea92e1dce)
       rxjs:
         specifier: ~7.8.0
         version: 7.8.2
@@ -35,13 +41,13 @@ importers:
     devDependencies:
       '@angular/build':
         specifier: ^21.1.3
-        version: 21.1.3(@angular/compiler-cli@21.1.3(@angular/compiler@21.1.3)(typescript@5.9.3))(@angular/compiler@21.1.3)(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2))(@angular/platform-browser@21.1.3(@angular/common@21.1.3(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2)))(chokidar@5.0.0)(postcss@8.5.6)(tslib@2.8.1)(typescript@5.9.3)(vitest@4.0.18(jsdom@27.4.0)(sass@1.97.1))
+        version: 21.1.3(3c6cd462bf4ef6dddfa648f793e4d3f3)
       '@angular/cli':
         specifier: ^21.1.3
         version: 21.1.3(chokidar@5.0.0)
       '@angular/compiler-cli':
-        specifier: ^21.1.0
-        version: 21.1.3(@angular/compiler@21.1.3)(typescript@5.9.3)
+        specifier: file:/Users/krzbri/repos/angular/dist/new-features-tarballs/angular-compiler-cli-21.2.0-next.2+sha-5103983.tgz
+        version: file:../angular/dist/new-features-tarballs/angular-compiler-cli-21.2.0-next.2+sha-5103983.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-21.2.0-next.2+sha-5103983.tgz)(typescript@5.9.3)
       jsdom:
         specifier: ^27.1.0
         version: 27.4.0
@@ -135,6 +141,13 @@ packages:
     resolution: {integrity: sha512-Ps7bRl5uOcM7WpNJHbSls/jz5/wAI0ldkTlKyiBFA7RtNeQIABAV+hvlw5DJuEb1Lo5hnK0hXj90AyZdOxzY+w==}
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0, npm: ^6.11.0 || ^7.5.6 || >=8.0.0, yarn: '>= 1.13.0'}
 
+  '@angular/animations@file:../angular/dist/new-features-tarballs/angular-animations-21.2.0-next.2+sha-5103983.tgz':
+    resolution: {integrity: sha512-jFrfikgoN8EZcoalcVODX+Sj05sHzzWvj+WS7Vowsy8nerIguv6xlXFbMjKEezeOhM7rEeEbxZfeubdFwQEm1w==, tarball: file:../angular/dist/new-features-tarballs/angular-animations-21.2.0-next.2+sha-5103983.tgz}
+    version: 21.2.0-next.2
+    engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
+    peerDependencies:
+      '@angular/core': 21.2.0-next.2+sha-5103983
+
   '@angular/build@21.1.3':
     resolution: {integrity: sha512-RXVRuamfrSPwsFCLJgsO2ucp+dwWDbGbhXrQnMrGXm0qdgYpI8bAsBMd8wOeUA6vn4fRmjaRFQZbL/rcIVrkzw==}
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0, npm: ^6.11.0 || ^7.5.6 || >=8.0.0, yarn: '>= 1.13.0'}
@@ -186,33 +199,37 @@ packages:
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0, npm: ^6.11.0 || ^7.5.6 || >=8.0.0, yarn: '>= 1.13.0'}
     hasBin: true
 
-  '@angular/common@21.1.3':
-    resolution: {integrity: sha512-Wdbln/UqZM5oVnpfIydRdhhL8A9x3bKZ9Zy1/mM0q+qFSftPvmFZIXhEpFqbDwNYbGUhGzx7t8iULC4sVVp/zA==}
+  '@angular/common@file:../angular/dist/new-features-tarballs/angular-common-21.2.0-next.2+sha-5103983.tgz':
+    resolution: {integrity: sha512-uj0nWV9Jw9tsOErfdeadd/TDEDp2ZCPLGsBQsH4beYbgpEsbW2ZILBYNWAmpRUWFjH9OuG5KmHTCCNB7nnQvAA==, tarball: file:../angular/dist/new-features-tarballs/angular-common-21.2.0-next.2+sha-5103983.tgz}
+    version: 21.2.0-next.2
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
     peerDependencies:
-      '@angular/core': 21.1.3
+      '@angular/core': 21.2.0-next.2+sha-5103983
       rxjs: ^6.5.3 || ^7.4.0
 
-  '@angular/compiler-cli@21.1.3':
-    resolution: {integrity: sha512-nKxoQ89W2B1WdonNQ9kgRnvLNS6DAxDrRHBslsKTlV+kbdv7h59M9PjT4ZZ2sp1M/M8LiofnUfa/s2jd/xYj5w==}
+  '@angular/compiler-cli@file:../angular/dist/new-features-tarballs/angular-compiler-cli-21.2.0-next.2+sha-5103983.tgz':
+    resolution: {integrity: sha512-m4T9p6lo52aODrx0TFObDhCp+Z3uWlKX3NN5htcthK1+W7xEhp9mVj6lJsfxhSwHb3ZgnOIImOg1Dp3V2vr+zA==, tarball: file:../angular/dist/new-features-tarballs/angular-compiler-cli-21.2.0-next.2+sha-5103983.tgz}
+    version: 21.2.0-next.2
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
     hasBin: true
     peerDependencies:
-      '@angular/compiler': 21.1.3
+      '@angular/compiler': 21.2.0-next.2+sha-5103983
       typescript: '>=5.9 <6.0'
     peerDependenciesMeta:
       typescript:
         optional: true
 
-  '@angular/compiler@21.1.3':
-    resolution: {integrity: sha512-gDNLh7MEf7Qf88ktZzS4LJQXCA5U8aQTfK9ak+0mi2ruZ0x4XSjQCro4H6OPKrrbq94+6GcnlSX5+oVIajEY3w==}
+  '@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-21.2.0-next.2+sha-5103983.tgz':
+    resolution: {integrity: sha512-kMgvV1fuZBXDf7jq21rjWfNspawBl5UWCvT7bS5vIaQLFGmiiB7tkePsO9jzFa1KTN4NvOY54p1D2S9A+x540A==, tarball: file:../angular/dist/new-features-tarballs/angular-compiler-21.2.0-next.2+sha-5103983.tgz}
+    version: 21.2.0-next.2
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
 
-  '@angular/core@21.1.3':
-    resolution: {integrity: sha512-TbhQxRC7Lb/3WBdm1n8KRsktmVEuGBBp0WRF5mq0Ze4s1YewIM6cULrSw9ACtcL5jdcq7c74ms+uKQsaP/gdcQ==}
+  '@angular/core@file:../angular/dist/new-features-tarballs/angular-core-21.2.0-next.2+sha-5103983.tgz':
+    resolution: {integrity: sha512-OECBFQ3JUIsJDWF5+wCC5m52D94mYq8CzZa7X1uCbLUfcn2wavFLgcY+fW8CVkYYjBmZM+2badOpg/oc4Pltbw==, tarball: file:../angular/dist/new-features-tarballs/angular-core-21.2.0-next.2+sha-5103983.tgz}
+    version: 21.2.0-next.2
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
     peerDependencies:
-      '@angular/compiler': 21.1.3
+      '@angular/compiler': 21.2.0-next.2+sha-5103983
       rxjs: ^6.5.3 || ^7.4.0
       zone.js: ~0.15.0 || ~0.16.0
     peerDependenciesMeta:
@@ -221,33 +238,46 @@ packages:
       zone.js:
         optional: true
 
-  '@angular/forms@21.1.3':
-    resolution: {integrity: sha512-YW/YdjM9suZUeJam9agHFXIEE3qQIhGYXMjnnX7xGjOe+CuR2R0qsWn1AR0yrKrNmFspb0lKgM7kTTJyzt8gZg==}
+  '@angular/forms@file:../angular/dist/new-features-tarballs/angular-forms-21.2.0-next.2+sha-5103983.tgz':
+    resolution: {integrity: sha512-kVdsLJ4bvHmkNdGVoQyEC8NXRyinfxx7en4IREE6k5a+8l6qvXj8SQD1imGXz1bsVGqZcJWGoJda7DoHutaLcw==, tarball: file:../angular/dist/new-features-tarballs/angular-forms-21.2.0-next.2+sha-5103983.tgz}
+    version: 21.2.0-next.2
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
     peerDependencies:
-      '@angular/common': 21.1.3
-      '@angular/core': 21.1.3
-      '@angular/platform-browser': 21.1.3
+      '@angular/common': 21.2.0-next.2+sha-5103983
+      '@angular/core': 21.2.0-next.2+sha-5103983
+      '@angular/platform-browser': 21.2.0-next.2+sha-5103983
       rxjs: ^6.5.3 || ^7.4.0
 
-  '@angular/platform-browser@21.1.3':
-    resolution: {integrity: sha512-W+ZMXAioaP7CsACafBCHsIxiiKrRTPOlQ+hcC7XNBwy+bn5mjGONoCgLreQs76M8HNWLtr/OAUAr6h26OguOuA==}
+  '@angular/platform-browser-dynamic@file:../angular/dist/new-features-tarballs/angular-platform-browser-dynamic-21.2.0-next.2+sha-5103983.tgz':
+    resolution: {integrity: sha512-qVN4TFfVM+RuXg/+xoE5fjEinxzoi6+7xt7lLTpi77vP1HlAX0LQcgl4LdDjs4CcN1tTSbYd7Y9FM0mai+1z0Q==, tarball: file:../angular/dist/new-features-tarballs/angular-platform-browser-dynamic-21.2.0-next.2+sha-5103983.tgz}
+    version: 21.2.0-next.2
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
     peerDependencies:
-      '@angular/animations': 21.1.3
-      '@angular/common': 21.1.3
-      '@angular/core': 21.1.3
+      '@angular/common': 21.2.0-next.2+sha-5103983
+      '@angular/compiler': 21.2.0-next.2+sha-5103983
+      '@angular/core': 21.2.0-next.2+sha-5103983
+      '@angular/platform-browser': 21.2.0-next.2+sha-5103983
+
+  '@angular/platform-browser@file:../angular/dist/new-features-tarballs/angular-platform-browser-21.2.0-next.2+sha-5103983.tgz':
+    resolution: {integrity: sha512-Acengn5wkbVe0wM89fDxYJelbWH076RZE1p0YN5PJ/2HPjSiL4hAXPKdpSpry68WNnYPtWELGkoYkhweOYSC+A==, tarball: file:../angular/dist/new-features-tarballs/angular-platform-browser-21.2.0-next.2+sha-5103983.tgz}
+    version: 21.2.0-next.2
+    engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
+    peerDependencies:
+      '@angular/animations': 21.2.0-next.2+sha-5103983
+      '@angular/common': 21.2.0-next.2+sha-5103983
+      '@angular/core': 21.2.0-next.2+sha-5103983
     peerDependenciesMeta:
       '@angular/animations':
         optional: true
 
-  '@angular/router@21.1.3':
-    resolution: {integrity: sha512-uAw4LAMHXAPCe4SywhlUEWjMYVbbLHwTxLyduSp1b+9aVwep0juy5O/Xttlxd/oigVe0NMnOyJG9y1Br/ubnrg==}
+  '@angular/router@file:../angular/dist/new-features-tarballs/angular-router-21.2.0-next.2+sha-5103983.tgz':
+    resolution: {integrity: sha512-JlNdzblosoHebUpX637ChztZMLZhNyCwbz+nmCfFmeoGm2RaeGheui94jO8o25sPZST6bVpl7N6jViWBrvM6Bw==, tarball: file:../angular/dist/new-features-tarballs/angular-router-21.2.0-next.2+sha-5103983.tgz}
+    version: 21.2.0-next.2
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
     peerDependencies:
-      '@angular/common': 21.1.3
-      '@angular/core': 21.1.3
-      '@angular/platform-browser': 21.1.3
+      '@angular/common': 21.2.0-next.2+sha-5103983
+      '@angular/core': 21.2.0-next.2+sha-5103983
+      '@angular/platform-browser': 21.2.0-next.2+sha-5103983
       rxjs: ^6.5.3 || ^7.4.0
 
   '@asamuzakjp/css-color@4.1.2':
@@ -269,6 +299,10 @@ packages:
 
   '@babel/core@7.28.5':
     resolution: {integrity: sha512-e7jT4DxYvIDLk1ZHmU/m/mB19rex9sv0c2ftBtjSBv+kVM/902eh0fINUzD7UwLLNR+jU585GxUJ8/EBfAM5fw==}
+    engines: {node: '>=6.9.0'}
+
+  '@babel/core@7.29.0':
+    resolution: {integrity: sha512-CGOfOJqWjg2qW/Mb6zNsDm+u5vFQ8DxXfbM09z69p5Z6+mE1ikP2jUXw+j42Pf1XTYED2Rni5f95npYeuwMDQA==}
     engines: {node: '>=6.9.0'}
 
   '@babel/generator@7.29.1':
@@ -2990,12 +3024,17 @@ snapshots:
     transitivePeerDependencies:
       - chokidar
 
-  '@angular/build@21.1.3(@angular/compiler-cli@21.1.3(@angular/compiler@21.1.3)(typescript@5.9.3))(@angular/compiler@21.1.3)(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2))(@angular/platform-browser@21.1.3(@angular/common@21.1.3(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2)))(chokidar@5.0.0)(postcss@8.5.6)(tslib@2.8.1)(typescript@5.9.3)(vitest@4.0.18(jsdom@27.4.0)(sass@1.97.1))':
+  '@angular/animations@file:../angular/dist/new-features-tarballs/angular-animations-21.2.0-next.2+sha-5103983.tgz(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-21.2.0-next.2+sha-5103983.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-21.2.0-next.2+sha-5103983.tgz)(rxjs@7.8.2))':
+    dependencies:
+      '@angular/core': file:../angular/dist/new-features-tarballs/angular-core-21.2.0-next.2+sha-5103983.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-21.2.0-next.2+sha-5103983.tgz)(rxjs@7.8.2)
+      tslib: 2.8.1
+
+  '@angular/build@21.1.3(3c6cd462bf4ef6dddfa648f793e4d3f3)':
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@angular-devkit/architect': 0.2101.3(chokidar@5.0.0)
-      '@angular/compiler': 21.1.3
-      '@angular/compiler-cli': 21.1.3(@angular/compiler@21.1.3)(typescript@5.9.3)
+      '@angular/compiler': file:../angular/dist/new-features-tarballs/angular-compiler-21.2.0-next.2+sha-5103983.tgz
+      '@angular/compiler-cli': file:../angular/dist/new-features-tarballs/angular-compiler-cli-21.2.0-next.2+sha-5103983.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-21.2.0-next.2+sha-5103983.tgz)(typescript@5.9.3)
       '@babel/core': 7.28.5
       '@babel/helper-annotate-as-pure': 7.27.3
       '@babel/helper-split-export-declaration': 7.24.7
@@ -3024,8 +3063,8 @@ snapshots:
       vite: 7.3.0(sass@1.97.1)
       watchpack: 2.5.0
     optionalDependencies:
-      '@angular/core': 21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2)
-      '@angular/platform-browser': 21.1.3(@angular/common@21.1.3(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2))
+      '@angular/core': file:../angular/dist/new-features-tarballs/angular-core-21.2.0-next.2+sha-5103983.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-21.2.0-next.2+sha-5103983.tgz)(rxjs@7.8.2)
+      '@angular/platform-browser': file:../angular/dist/new-features-tarballs/angular-platform-browser-21.2.0-next.2+sha-5103983.tgz(@angular/animations@file:../angular/dist/new-features-tarballs/angular-animations-21.2.0-next.2+sha-5103983.tgz(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-21.2.0-next.2+sha-5103983.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-21.2.0-next.2+sha-5103983.tgz)(rxjs@7.8.2)))(@angular/common@file:../angular/dist/new-features-tarballs/angular-common-21.2.0-next.2+sha-5103983.tgz(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-21.2.0-next.2+sha-5103983.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-21.2.0-next.2+sha-5103983.tgz)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-21.2.0-next.2+sha-5103983.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-21.2.0-next.2+sha-5103983.tgz)(rxjs@7.8.2))
       lmdb: 3.4.4
       postcss: 8.5.6
       vitest: 4.0.18(jsdom@27.4.0)(sass@1.97.1)
@@ -3069,16 +3108,16 @@ snapshots:
       - chokidar
       - supports-color
 
-  '@angular/common@21.1.3(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2))(rxjs@7.8.2)':
+  '@angular/common@file:../angular/dist/new-features-tarballs/angular-common-21.2.0-next.2+sha-5103983.tgz(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-21.2.0-next.2+sha-5103983.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-21.2.0-next.2+sha-5103983.tgz)(rxjs@7.8.2))(rxjs@7.8.2)':
     dependencies:
-      '@angular/core': 21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2)
+      '@angular/core': file:../angular/dist/new-features-tarballs/angular-core-21.2.0-next.2+sha-5103983.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-21.2.0-next.2+sha-5103983.tgz)(rxjs@7.8.2)
       rxjs: 7.8.2
       tslib: 2.8.1
 
-  '@angular/compiler-cli@21.1.3(@angular/compiler@21.1.3)(typescript@5.9.3)':
+  '@angular/compiler-cli@file:../angular/dist/new-features-tarballs/angular-compiler-cli-21.2.0-next.2+sha-5103983.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-21.2.0-next.2+sha-5103983.tgz)(typescript@5.9.3)':
     dependencies:
-      '@angular/compiler': 21.1.3
-      '@babel/core': 7.28.5
+      '@angular/compiler': file:../angular/dist/new-features-tarballs/angular-compiler-21.2.0-next.2+sha-5103983.tgz
+      '@babel/core': 7.29.0
       '@jridgewell/sourcemap-codec': 1.5.5
       chokidar: 5.0.0
       convert-source-map: 1.9.0
@@ -3091,37 +3130,47 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@angular/compiler@21.1.3':
+  '@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-21.2.0-next.2+sha-5103983.tgz':
     dependencies:
       tslib: 2.8.1
 
-  '@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2)':
+  '@angular/core@file:../angular/dist/new-features-tarballs/angular-core-21.2.0-next.2+sha-5103983.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-21.2.0-next.2+sha-5103983.tgz)(rxjs@7.8.2)':
     dependencies:
       rxjs: 7.8.2
       tslib: 2.8.1
     optionalDependencies:
-      '@angular/compiler': 21.1.3
+      '@angular/compiler': file:../angular/dist/new-features-tarballs/angular-compiler-21.2.0-next.2+sha-5103983.tgz
 
-  '@angular/forms@21.1.3(@angular/common@21.1.3(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2))(@angular/platform-browser@21.1.3(@angular/common@21.1.3(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2)))(rxjs@7.8.2)':
+  '@angular/forms@file:../angular/dist/new-features-tarballs/angular-forms-21.2.0-next.2+sha-5103983.tgz(5e13a4c9b15fb97c4c799a6ea92e1dce)':
     dependencies:
-      '@angular/common': 21.1.3(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2))(rxjs@7.8.2)
-      '@angular/core': 21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2)
-      '@angular/platform-browser': 21.1.3(@angular/common@21.1.3(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2))
+      '@angular/common': file:../angular/dist/new-features-tarballs/angular-common-21.2.0-next.2+sha-5103983.tgz(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-21.2.0-next.2+sha-5103983.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-21.2.0-next.2+sha-5103983.tgz)(rxjs@7.8.2))(rxjs@7.8.2)
+      '@angular/core': file:../angular/dist/new-features-tarballs/angular-core-21.2.0-next.2+sha-5103983.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-21.2.0-next.2+sha-5103983.tgz)(rxjs@7.8.2)
+      '@angular/platform-browser': file:../angular/dist/new-features-tarballs/angular-platform-browser-21.2.0-next.2+sha-5103983.tgz(@angular/animations@file:../angular/dist/new-features-tarballs/angular-animations-21.2.0-next.2+sha-5103983.tgz(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-21.2.0-next.2+sha-5103983.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-21.2.0-next.2+sha-5103983.tgz)(rxjs@7.8.2)))(@angular/common@file:../angular/dist/new-features-tarballs/angular-common-21.2.0-next.2+sha-5103983.tgz(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-21.2.0-next.2+sha-5103983.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-21.2.0-next.2+sha-5103983.tgz)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-21.2.0-next.2+sha-5103983.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-21.2.0-next.2+sha-5103983.tgz)(rxjs@7.8.2))
       '@standard-schema/spec': 1.1.0
       rxjs: 7.8.2
       tslib: 2.8.1
 
-  '@angular/platform-browser@21.1.3(@angular/common@21.1.3(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2))':
+  '@angular/platform-browser-dynamic@file:../angular/dist/new-features-tarballs/angular-platform-browser-dynamic-21.2.0-next.2+sha-5103983.tgz(3d61b293570265a0015785e3622cbf11)':
     dependencies:
-      '@angular/common': 21.1.3(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2))(rxjs@7.8.2)
-      '@angular/core': 21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2)
+      '@angular/common': file:../angular/dist/new-features-tarballs/angular-common-21.2.0-next.2+sha-5103983.tgz(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-21.2.0-next.2+sha-5103983.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-21.2.0-next.2+sha-5103983.tgz)(rxjs@7.8.2))(rxjs@7.8.2)
+      '@angular/compiler': file:../angular/dist/new-features-tarballs/angular-compiler-21.2.0-next.2+sha-5103983.tgz
+      '@angular/core': file:../angular/dist/new-features-tarballs/angular-core-21.2.0-next.2+sha-5103983.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-21.2.0-next.2+sha-5103983.tgz)(rxjs@7.8.2)
+      '@angular/platform-browser': file:../angular/dist/new-features-tarballs/angular-platform-browser-21.2.0-next.2+sha-5103983.tgz(@angular/animations@file:../angular/dist/new-features-tarballs/angular-animations-21.2.0-next.2+sha-5103983.tgz(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-21.2.0-next.2+sha-5103983.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-21.2.0-next.2+sha-5103983.tgz)(rxjs@7.8.2)))(@angular/common@file:../angular/dist/new-features-tarballs/angular-common-21.2.0-next.2+sha-5103983.tgz(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-21.2.0-next.2+sha-5103983.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-21.2.0-next.2+sha-5103983.tgz)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-21.2.0-next.2+sha-5103983.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-21.2.0-next.2+sha-5103983.tgz)(rxjs@7.8.2))
       tslib: 2.8.1
 
-  '@angular/router@21.1.3(@angular/common@21.1.3(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2))(@angular/platform-browser@21.1.3(@angular/common@21.1.3(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2)))(rxjs@7.8.2)':
+  '@angular/platform-browser@file:../angular/dist/new-features-tarballs/angular-platform-browser-21.2.0-next.2+sha-5103983.tgz(@angular/animations@file:../angular/dist/new-features-tarballs/angular-animations-21.2.0-next.2+sha-5103983.tgz(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-21.2.0-next.2+sha-5103983.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-21.2.0-next.2+sha-5103983.tgz)(rxjs@7.8.2)))(@angular/common@file:../angular/dist/new-features-tarballs/angular-common-21.2.0-next.2+sha-5103983.tgz(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-21.2.0-next.2+sha-5103983.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-21.2.0-next.2+sha-5103983.tgz)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-21.2.0-next.2+sha-5103983.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-21.2.0-next.2+sha-5103983.tgz)(rxjs@7.8.2))':
     dependencies:
-      '@angular/common': 21.1.3(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2))(rxjs@7.8.2)
-      '@angular/core': 21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2)
-      '@angular/platform-browser': 21.1.3(@angular/common@21.1.3(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@21.1.3(@angular/compiler@21.1.3)(rxjs@7.8.2))
+      '@angular/common': file:../angular/dist/new-features-tarballs/angular-common-21.2.0-next.2+sha-5103983.tgz(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-21.2.0-next.2+sha-5103983.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-21.2.0-next.2+sha-5103983.tgz)(rxjs@7.8.2))(rxjs@7.8.2)
+      '@angular/core': file:../angular/dist/new-features-tarballs/angular-core-21.2.0-next.2+sha-5103983.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-21.2.0-next.2+sha-5103983.tgz)(rxjs@7.8.2)
+      tslib: 2.8.1
+    optionalDependencies:
+      '@angular/animations': file:../angular/dist/new-features-tarballs/angular-animations-21.2.0-next.2+sha-5103983.tgz(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-21.2.0-next.2+sha-5103983.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-21.2.0-next.2+sha-5103983.tgz)(rxjs@7.8.2))
+
+  '@angular/router@file:../angular/dist/new-features-tarballs/angular-router-21.2.0-next.2+sha-5103983.tgz(5e13a4c9b15fb97c4c799a6ea92e1dce)':
+    dependencies:
+      '@angular/common': file:../angular/dist/new-features-tarballs/angular-common-21.2.0-next.2+sha-5103983.tgz(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-21.2.0-next.2+sha-5103983.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-21.2.0-next.2+sha-5103983.tgz)(rxjs@7.8.2))(rxjs@7.8.2)
+      '@angular/core': file:../angular/dist/new-features-tarballs/angular-core-21.2.0-next.2+sha-5103983.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-21.2.0-next.2+sha-5103983.tgz)(rxjs@7.8.2)
+      '@angular/platform-browser': file:../angular/dist/new-features-tarballs/angular-platform-browser-21.2.0-next.2+sha-5103983.tgz(@angular/animations@file:../angular/dist/new-features-tarballs/angular-animations-21.2.0-next.2+sha-5103983.tgz(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-21.2.0-next.2+sha-5103983.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-21.2.0-next.2+sha-5103983.tgz)(rxjs@7.8.2)))(@angular/common@file:../angular/dist/new-features-tarballs/angular-common-21.2.0-next.2+sha-5103983.tgz(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-21.2.0-next.2+sha-5103983.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-21.2.0-next.2+sha-5103983.tgz)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-21.2.0-next.2+sha-5103983.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-21.2.0-next.2+sha-5103983.tgz)(rxjs@7.8.2))
       rxjs: 7.8.2
       tslib: 2.8.1
 
@@ -3171,6 +3220,26 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  '@babel/core@7.29.0':
+    dependencies:
+      '@babel/code-frame': 7.29.0
+      '@babel/generator': 7.29.1
+      '@babel/helper-compilation-targets': 7.28.6
+      '@babel/helper-module-transforms': 7.28.6(@babel/core@7.29.0)
+      '@babel/helpers': 7.28.6
+      '@babel/parser': 7.29.0
+      '@babel/template': 7.28.6
+      '@babel/traverse': 7.29.0
+      '@babel/types': 7.29.0
+      '@jridgewell/remapping': 2.3.5
+      convert-source-map: 2.0.0
+      debug: 4.4.3
+      gensync: 1.0.0-beta.2
+      json5: 2.2.3
+      semver: 6.3.1
+    transitivePeerDependencies:
+      - supports-color
+
   '@babel/generator@7.29.1':
     dependencies:
       '@babel/parser': 7.29.0
@@ -3203,6 +3272,15 @@ snapshots:
   '@babel/helper-module-transforms@7.28.6(@babel/core@7.28.5)':
     dependencies:
       '@babel/core': 7.28.5
+      '@babel/helper-module-imports': 7.28.6
+      '@babel/helper-validator-identifier': 7.28.5
+      '@babel/traverse': 7.29.0
+    transitivePeerDependencies:
+      - supports-color
+
+  '@babel/helper-module-transforms@7.28.6(@babel/core@7.29.0)':
+    dependencies:
+      '@babel/core': 7.29.0
       '@babel/helper-module-imports': 7.28.6
       '@babel/helper-validator-identifier': 7.28.5
       '@babel/traverse': 7.29.0
