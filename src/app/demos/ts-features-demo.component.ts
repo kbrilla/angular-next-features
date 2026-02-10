@@ -14,7 +14,7 @@
  * This component uses ACTUAL new template syntax from our custom Angular build!
  */
 import {Component, signal} from '@angular/core';
-import {CurrencyPipe, JsonPipe} from '@angular/common';
+import {CurrencyPipe, JsonPipe, UpperCasePipe} from '@angular/common';
 
 interface Product {
   id: number;
@@ -30,7 +30,7 @@ interface Product {
 
 @Component({
   selector: 'app-ts-features-demo',
-  imports: [CurrencyPipe, JsonPipe],
+  imports: [CurrencyPipe, JsonPipe, UpperCasePipe],
   template: `
     <div class="demo-container">
       <h2>TypeScript Features in Angular Templates</h2>
@@ -221,6 +221,35 @@ interface Product {
         </div>
       </div>
 
+      <!-- 9. Pipes in Event Bindings -->
+      <div class="example-section">
+        <h3>9. Pipes in Event Bindings (Live!)</h3>
+        <p class="syntax-block">
+          (click)="handleClick($event.target.value | uppercase)"<br>
+          (input)="search($event.target.value | lowercase)"<br>
+          (click)="log($event | json)"
+        </p>
+        <p class="note">
+          Pipes can now be used inside event binding expressions to transform
+          data before passing it to handler functions. This eliminates the need
+          for intermediate transformation methods in your component class.
+        </p>
+        <div class="event-demo">
+          <input class="demo-input" placeholder="Type here..."
+                 (input)="pipeInputValue.set(($any($event.target)).value | uppercase)" />
+          <div class="code-row">
+            <span class="label">(input)="set(value | uppercase)":</span>
+            <span class="result">{{ pipeInputValue() }}</span>
+          </div>
+        </div>
+        <div class="usage-examples">
+          <p><strong>Pipes in event expressions:</strong></p>
+          <pre class="syntax-block">&lt;input (input)="handleSearch($event.target.value | lowercase)" /&gt;
+&lt;button (click)="log($event.type | uppercase)"&gt;Click&lt;/button&gt;
+&lt;select (change)="setNum($event.target.value | number)"&gt;...&lt;/select&gt;</pre>
+        </div>
+      </div>
+
       <!-- Interactive Product List: Select a product to see features in action -->
       <div class="products-section">
         <h3>Select a Product (used by demos above)</h3>
@@ -307,6 +336,11 @@ interface Product {
       background: white; border-radius: 4px;
     }
     .usage-examples p { margin-top: 0; font-size: 13px; }
+    .demo-input {
+      padding: 8px 12px; border: 2px solid #e2e8f0; border-radius: 4px;
+      font-size: 14px; width: 300px; margin-bottom: 8px;
+    }
+    .demo-input:focus { border-color: #3b82f6; outline: none; }
   `],
 })
 export class TsFeaturesDemoComponent {
@@ -316,6 +350,7 @@ export class TsFeaturesDemoComponent {
 
   arrowClickCount = signal(0);
   lastEventType = signal('(none)');
+  pipeInputValue = signal('');
 
   products = signal<Product[]>([
     {id: 1, name: 'Laptop', price: 999, category: 'Electronics', tags: ['tech', 'work'], inventory: {stock: 5, warehouse: 'NYC'}},
