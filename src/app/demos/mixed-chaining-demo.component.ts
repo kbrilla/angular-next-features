@@ -437,6 +437,76 @@ export class NativeChainingComponent {
           </div>
         </div>
       </div>
+
+      <!-- Community Issues Section -->
+      <div class="issues-section">
+        <h3>Community Issues Addressed</h3>
+        <p class="issues-intro">
+          These changes address longstanding community requests dating back to 2019:
+        </p>
+
+        <div class="issue-card">
+          <div class="issue-header">
+            <a class="issue-link" href="https://github.com/angular/angular/issues/34385" target="_blank">#34385</a>
+            <span class="issue-title">Align with the optional chaining spec</span>
+          </div>
+          <p class="issue-desc">
+            Requests that template <code>?.</code> match TC39 semantics (return <code>undefined</code> on short-circuit).
+            Documents that generated TCB and runtime diverge from modern JS, and links to historical safe-navigation behavior.
+          </p>
+          <div class="issue-tags">
+            <span class="tag">runtime</span>
+            <span class="tag">type</span>
+            <span class="tag">migration</span>
+            <span class="tag">safe-navigation</span>
+          </div>
+          <p class="addressed">
+            <strong>Addressed by:</strong> <code>optionalChainingSemantics: 'native'</code> per-component
+            and <code>strictOptionalChainingSemantics: true</code> project-wide setting.
+          </p>
+        </div>
+
+        <div class="issue-card">
+          <div class="issue-header">
+            <a class="issue-link" href="https://github.com/angular/angular/issues/37622" target="_blank">#37622</a>
+            <span class="issue-title">optional chaining uses 'null', but strictTemplates treats it as 'undefined'</span>
+          </div>
+          <p class="issue-desc">
+            <code>foo?.bar</code> yields <code>null</code> at runtime, but strict template checking infers
+            <code>undefined</code>. This means declared inputs may accept the wrong union type,
+            causing confusing type errors.
+          </p>
+          <div class="issue-tags">
+            <span class="tag">runtime</span>
+            <span class="tag">type</span>
+            <span class="tag">compiler</span>
+          </div>
+          <p class="addressed">
+            <strong>Addressed by:</strong> Native semantics aligns runtime (<code>undefined</code>) with what TypeScript's
+            type checker expects, eliminating the null/undefined mismatch.
+          </p>
+        </div>
+
+        <div class="issue-card">
+          <div class="issue-header">
+            <a class="issue-link" href="https://github.com/angular/angular/issues/37619" target="_blank">#37619</a>
+            <span class="issue-title">strictTemplates + strictNullChecks doesn't work well with optional chaining</span>
+          </div>
+          <p class="issue-desc">
+            Strictness flags plus <code>?.</code> trigger "Object is possibly 'undefined'" diagnostics
+            even though runtime guards exist. Points to TCB generation and upstream compiler/type-checking limitations.
+          </p>
+          <div class="issue-tags">
+            <span class="tag">type</span>
+            <span class="tag">migration</span>
+            <span class="tag">partial-compilation</span>
+          </div>
+          <p class="addressed">
+            <strong>Addressed by:</strong> With native semantics, the TCB correctly models the runtime return type
+            as <code>T | undefined</code>, matching TypeScript's own <code>?.</code> type narrowing.
+          </p>
+        </div>
+      </div>
     </div>
   `,
   styles: [`
@@ -512,6 +582,35 @@ export class NativeChainingComponent {
     .example-row .before code { color: #dc2626; }
     .example-row .after code { color: #16a34a; }
     .example-row .reason { color: #64748b; font-size: 12px; font-style: italic; }
+    .issues-section {
+      background: #faf5ff; border: 1px solid #c084fc;
+      padding: 16px; border-radius: 8px; margin: 16px 0;
+    }
+    .issues-section h3 { color: #7c3aed; border-bottom: 2px solid #e9d5ff; padding-bottom: 8px; }
+    .issues-intro { font-size: 13px; color: #475569; }
+    .issue-card {
+      background: white; border: 1px solid #e9d5ff;
+      padding: 16px; border-radius: 8px; margin: 12px 0;
+    }
+    .issue-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+    .issue-link {
+      background: #7c3aed; color: white; padding: 2px 8px;
+      border-radius: 4px; font-size: 12px; font-weight: 700;
+      text-decoration: none;
+    }
+    .issue-link:hover { background: #6d28d9; }
+    .issue-title { font-weight: 600; color: #1e293b; font-size: 14px; }
+    .issue-desc { font-size: 13px; color: #475569; line-height: 1.6; }
+    .issue-tags { display: flex; gap: 6px; flex-wrap: wrap; margin: 8px 0; }
+    .tag {
+      background: #f3e8ff; color: #7c3aed; padding: 2px 8px;
+      border-radius: 10px; font-size: 11px; font-weight: 600;
+    }
+    .addressed {
+      background: #f0fdf4; border-left: 3px solid #22c55e;
+      padding: 8px 12px; border-radius: 4px; font-size: 13px;
+      color: #166534; margin-bottom: 0;
+    }
     @media (max-width: 768px) {
       .side-by-side { grid-template-columns: 1fr; }
       .example-row { grid-template-columns: 1fr; gap: 4px; }
