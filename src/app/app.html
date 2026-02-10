@@ -1,23 +1,123 @@
-<div style="padding: 20px; max-width: 1200px; margin: 0 auto;">
-  <h1 style="color: #0f172a; border-bottom: 3px solid #0f172a; padding-bottom: 12px;">
-    Angular New Features Demo
-  </h1>
-  <p style="color: #64748b; margin-bottom: 30px;">
-    Combined branch: inlay hints + optional chaining semantics + TypeScript template features
-  </p>
+<mat-toolbar class="app-toolbar">
+  <button mat-icon-button (click)="sidenavOpened.set(!sidenavOpened())">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <img src="https://angular.dev/assets/images/press-kit/angular_icon_gradient.gif" alt="Angular" class="toolbar-logo" />
+  <span class="toolbar-title">Angular New Features Demo</span>
+  <span class="toolbar-spacer"></span>
+  <a mat-button href="https://github.com/kbrilla/nativeoptional_chaning_and_template_features_upgrade" target="_blank" class="toolbar-link">
+    <mat-icon>open_in_new</mat-icon>
+    GitHub
+  </a>
+</mat-toolbar>
 
-  <section style="margin-bottom: 40px;">
-    <h2 style="color: #92400e;">PR 1: Optional Chaining Semantics (Legacy)</h2>
-    <app-optional-chaining-legacy-demo></app-optional-chaining-legacy-demo>
-  </section>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav [opened]="sidenavOpened()" mode="side" class="sidenav">
+    <div class="sidenav-header">
+      <span class="sidenav-brand">Feature Demos</span>
+      <span class="sidenav-version">Angular 21.2.0-next</span>
+    </div>
+    <mat-nav-list>
+      @for (item of navItems; track item.id) {
+        <a mat-list-item
+           [class.active-link]="activeSection() === item.id"
+           (click)="navigate(item.id)">
+          <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+          <span matListItemTitle>{{ item.label }}</span>
+        </a>
+      }
+    </mat-nav-list>
+    <div class="sidenav-footer">
+      <div class="branch-info">
+        <mat-icon class="branch-icon">merge</mat-icon>
+        <div>
+          <div class="branch-label">Combined Branch</div>
+          <div class="branch-names">
+            <span class="branch-tag">main (inlay hints)</span>
+            <span class="branch-tag">optional-chaining</span>
+            <span class="branch-tag">ts-features</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-sidenav>
 
-  <section style="margin-bottom: 40px;">
-    <h2 style="color: #7c3aed;">Mix and Match: Legacy + Native Components</h2>
-    <app-mixed-chaining-demo></app-mixed-chaining-demo>
-  </section>
+  <mat-sidenav-content class="main-content">
+    @switch (activeSection()) {
+      @case ('overview') {
+        <div class="overview-page">
+          <div class="hero-section">
+            <h1>Angular Template Upgrades</h1>
+            <p class="hero-subtitle">
+              Two proposed features that modernize Angular's template expression system
+            </p>
+          </div>
 
-  <section style="margin-bottom: 40px;">
-    <h2 style="color: #1e40af;">PR 2: TypeScript Features in Templates</h2>
-    <app-ts-features-demo></app-ts-features-demo>
-  </section>
-</div>
+          <div class="feature-cards">
+            <div class="feature-card pr1" (click)="navigate('optional-chaining')">
+              <div class="card-icon">
+                <mat-icon>link</mat-icon>
+              </div>
+              <h3>Native Optional Chaining</h3>
+              <p>Align <code>?.</code> with ECMAScript spec — return <code>undefined</code> instead of <code>null</code></p>
+              <div class="card-tags">
+                <span class="card-tag">PR 1</span>
+                <span class="card-tag">Runtime</span>
+                <span class="card-tag">Migration</span>
+              </div>
+            </div>
+
+            <div class="feature-card pr2" (click)="navigate('ts-features')">
+              <div class="card-icon">
+                <mat-icon>code</mat-icon>
+              </div>
+              <h3>TypeScript Template Features</h3>
+              <p>BigInt, hex literals, computed properties, arrow rest params, block comments</p>
+              <div class="card-tags">
+                <span class="card-tag">PR 2</span>
+                <span class="card-tag">Parser</span>
+                <span class="card-tag">Syntax</span>
+              </div>
+            </div>
+
+            <div class="feature-card mix" (click)="navigate('mix-match')">
+              <div class="card-icon">
+                <mat-icon>compare_arrows</mat-icon>
+              </div>
+              <h3>Mix & Match</h3>
+              <p>Legacy and native components side by side with migration examples</p>
+              <div class="card-tags">
+                <span class="card-tag">Comparison</span>
+                <span class="card-tag">Migration</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="quick-stats">
+            <div class="stat">
+              <span class="stat-num">3</span>
+              <span class="stat-label">GitHub Issues Addressed</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num">9</span>
+              <span class="stat-label">New Template Features</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num">16+</span>
+              <span class="stat-label">Migration Examples</span>
+            </div>
+          </div>
+        </div>
+      }
+      @case ('optional-chaining') {
+        <app-optional-chaining-legacy-demo></app-optional-chaining-legacy-demo>
+      }
+      @case ('mix-match') {
+        <app-mixed-chaining-demo></app-mixed-chaining-demo>
+      }
+      @case ('ts-features') {
+        <app-ts-features-demo></app-ts-features-demo>
+      }
+    }
+  </mat-sidenav-content>
+</mat-sidenav-container>

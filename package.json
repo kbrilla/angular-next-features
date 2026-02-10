@@ -24,10 +24,12 @@
   "packageManager": "pnpm@10.28.0",
   "dependencies": {
     "@angular/animations": "file:/Users/krzbri/repos/angular/dist/new-features-tarballs/angular-animations-21.2.0-next.2+sha-5103983.tgz",
+    "@angular/cdk": "~21.1.3",
     "@angular/common": "file:/Users/krzbri/repos/angular/dist/new-features-tarballs/angular-common-21.2.0-next.2+sha-5103983.tgz",
     "@angular/compiler": "file:/Users/krzbri/repos/angular/dist/new-features-tarballs/angular-compiler-21.2.0-next.2+sha-5103983.tgz",
     "@angular/core": "file:/Users/krzbri/repos/angular/dist/new-features-tarballs/angular-core-21.2.0-next.2+sha-5103983.tgz",
     "@angular/forms": "file:/Users/krzbri/repos/angular/dist/new-features-tarballs/angular-forms-21.2.0-next.2+sha-5103983.tgz",
+    "@angular/material": "~21.1.3",
     "@angular/platform-browser": "file:/Users/krzbri/repos/angular/dist/new-features-tarballs/angular-platform-browser-21.2.0-next.2+sha-5103983.tgz",
     "@angular/platform-browser-dynamic": "file:/Users/krzbri/repos/angular/dist/new-features-tarballs/angular-platform-browser-dynamic-21.2.0-next.2+sha-5103983.tgz",
     "@angular/router": "file:/Users/krzbri/repos/angular/dist/new-features-tarballs/angular-router-21.2.0-next.2+sha-5103983.tgz",
@@ -38,6 +40,7 @@
     "@angular/build": "^21.1.3",
     "@angular/cli": "^21.1.3",
     "@angular/compiler-cli": "file:/Users/krzbri/repos/angular/dist/new-features-tarballs/angular-compiler-cli-21.2.0-next.2+sha-5103983.tgz",
+    "@angular/material": "21.1.3",
     "jsdom": "^27.1.0",
     "typescript": "~5.9.2",
     "vitest": "^4.0.8"
