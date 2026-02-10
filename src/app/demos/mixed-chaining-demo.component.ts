@@ -239,6 +239,162 @@ export class NativeChainingComponent {
           </div>
         </div>
       </div>
+
+      <!-- Migration Examples -->
+      <div class="examples-section">
+        <h3>Migration Examples (from actual schematic tests)</h3>
+
+        <div class="example-group safe">
+          <h4>Safe Contexts (no change needed)</h4>
+          <p class="group-description">
+            These expressions behave identically with null or undefined —
+            the migration schematic leaves them as-is.
+          </p>
+
+          <div class="example-row">
+            <div class="before"><code>{{ '{{ a?.b }}' }}</code></div>
+            <div class="arrow">&rarr;</div>
+            <div class="after"><code>{{ '{{ a?.b }}' }}</code></div>
+            <div class="reason">Interpolation renders both null and undefined as ""</div>
+          </div>
+
+          <div class="example-row">
+            <div class="before"><code>{{ '{{ a?.b?.c?.d }}' }}</code></div>
+            <div class="arrow">&rarr;</div>
+            <div class="after"><code>{{ '{{ a?.b?.c?.d }}' }}</code></div>
+            <div class="reason">Deep chains in interpolation — same rendering</div>
+          </div>
+
+          <div class="example-row">
+            <div class="before"><code>{{ "{{ a?.b ?? 'fallback' }}" }}</code></div>
+            <div class="arrow">&rarr;</div>
+            <div class="after"><code>{{ "{{ a?.b ?? 'fallback' }}" }}</code></div>
+            <div class="reason">?? catches both null and undefined</div>
+          </div>
+
+          <div class="example-row">
+            <div class="before"><code>{{ "{{ a?.b || 'default' }}" }}</code></div>
+            <div class="arrow">&rarr;</div>
+            <div class="after"><code>{{ "{{ a?.b || 'default' }}" }}</code></div>
+            <div class="reason">|| treats both as falsy</div>
+          </div>
+
+          <div class="example-row">
+            <div class="before"><code>{{ '{{ a?.b && something }}' }}</code></div>
+            <div class="arrow">&rarr;</div>
+            <div class="after"><code>{{ '{{ a?.b && something }}' }}</code></div>
+            <div class="reason">Both are falsy — same short-circuit</div>
+          </div>
+
+          <div class="example-row">
+            <div class="before"><code>{{ '{{ !a?.b }}' }}</code></div>
+            <div class="arrow">&rarr;</div>
+            <div class="after"><code>{{ '{{ !a?.b }}' }}</code></div>
+            <div class="reason">Negation: both falsy = true</div>
+          </div>
+
+          <div class="example-row">
+            <div class="before"><code>{{ '{{ a?.b == null }}' }}</code></div>
+            <div class="arrow">&rarr;</div>
+            <div class="after"><code>{{ '{{ a?.b == null }}' }}</code></div>
+            <div class="reason">Loose equality: null == undefined is true</div>
+          </div>
+
+          <div class="example-row">
+            <div class="before"><code>{{ '{{ a?.b != null }}' }}</code></div>
+            <div class="arrow">&rarr;</div>
+            <div class="after"><code>{{ '{{ a?.b != null }}' }}</code></div>
+            <div class="reason">Loose inequality: same rule</div>
+          </div>
+
+          <div class="example-row">
+            <div class="before"><code>{{ '{{ a?.b ? x : y }}' }}</code></div>
+            <div class="arrow">&rarr;</div>
+            <div class="after"><code>{{ '{{ a?.b ? x : y }}' }}</code></div>
+            <div class="reason">Condition position — truthiness check only</div>
+          </div>
+        </div>
+
+        <div class="example-group sensitive">
+          <h4>Sensitive Contexts (MUST convert — ternary form)</h4>
+          <p class="group-description">
+            These expressions would behave differently with null vs undefined.
+            The migration converts them to explicit ternary guards.
+          </p>
+
+          <div class="example-row">
+            <div class="before"><code>{{ '{{ a?.b }}' }} in strict equality</code></div>
+            <div class="arrow">&rarr;</div>
+            <div class="after"><code>{{ '{{ a != null ? a.b : null }}' }}</code></div>
+            <div class="reason">Preserves null return for === null checks</div>
+          </div>
+
+          <div class="example-row">
+            <div class="before"><code>{{ '{{ a?.b?.c }}' }} in sensitive ctx</code></div>
+            <div class="arrow">&rarr;</div>
+            <div class="after"><code>{{ '{{ a != null ? (a.b != null ? a.b.c : null) : null }}' }}</code></div>
+            <div class="reason">Deep chain: nested ternary guards</div>
+          </div>
+
+          <div class="example-row">
+            <div class="before"><code>{{ '{{ a.b?.c?.d }}' }} mixed chain</code></div>
+            <div class="arrow">&rarr;</div>
+            <div class="after"><code>{{ '{{ a.b != null ? (a.b.c != null ? a.b.c.d : null) : null }}' }}</code></div>
+            <div class="reason">Guards start at first safe nav, not before</div>
+          </div>
+
+          <div class="example-row">
+            <div class="before"><code>{{ '"prefix" + a?.b' }}</code></div>
+            <div class="arrow">&rarr;</div>
+            <div class="after"><code>{{ '"prefix" + (a != null ? a.b : null)' }}</code></div>
+            <div class="reason">"prefixnull" vs "prefixundefined" would differ</div>
+          </div>
+
+          <div class="example-row">
+            <div class="before"><code>{{ '{{ a?.b === null }}' }}</code></div>
+            <div class="arrow">&rarr;</div>
+            <div class="after"><code>{{ '{{ (a != null ? a.b : null) === null }}' }}</code></div>
+            <div class="reason">null === null is true, undefined === null is false</div>
+          </div>
+        </div>
+
+        <div class="example-group best-effort">
+          <h4>Best Effort Mode (?? null fallback)</h4>
+          <p class="group-description">
+            When a <code>?.</code> expression can't be converted to a ternary
+            (method calls, keyed access, pipes), best-effort mode appends <code>?? null</code>.
+            This ensures the return value remains null instead of undefined.
+          </p>
+
+          <div class="example-row">
+            <div class="before"><code>{{ 'a?.method()' }}</code></div>
+            <div class="arrow">&rarr;</div>
+            <div class="after"><code>{{ 'a?.method() ?? null' }}</code></div>
+            <div class="reason">Method calls: can't build ternary (side effects)</div>
+          </div>
+
+          <div class="example-row">
+            <div class="before"><code>{{ 'a?.[key]' }}</code></div>
+            <div class="arrow">&rarr;</div>
+            <div class="after"><code>{{ 'a?.[key] ?? null' }}</code></div>
+            <div class="reason">Keyed access: not a simple property chain</div>
+          </div>
+
+          <div class="example-row">
+            <div class="before"><code>{{ 'a?.b | pipe' }}</code></div>
+            <div class="arrow">&rarr;</div>
+            <div class="after"><code>{{ 'a?.b ?? null | pipe' }}</code></div>
+            <div class="reason">Pipe transform: best-effort fallback needed</div>
+          </div>
+
+          <div class="example-row">
+            <div class="before"><code>{{ 'a?.b?.method()?.c' }}</code></div>
+            <div class="arrow">&rarr;</div>
+            <div class="after"><code>{{ 'a?.b?.method()?.c ?? null' }}</code></div>
+            <div class="reason">Mixed chain with method: can't fully decompose</div>
+          </div>
+        </div>
+      </div>
     </div>
   `,
   styles: [`
@@ -290,8 +446,34 @@ export class NativeChainingComponent {
       flex-shrink: 0;
     }
     .step p { margin: 4px 0 0; font-size: 13px; color: #64748b; }
+    .examples-section {
+      background: #f8fafc; border: 1px solid #e2e8f0;
+      padding: 16px; border-radius: 8px; margin: 16px 0;
+    }
+    .examples-section h3 { color: #0f172a; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; }
+    .example-group { margin: 16px 0; padding: 16px; border-radius: 8px; }
+    .example-group.safe { background: #f0fdf4; border: 1px solid #86efac; }
+    .example-group.sensitive { background: #fef2f2; border: 1px solid #fca5a5; }
+    .example-group.best-effort { background: #fffbeb; border: 1px solid #fcd34d; }
+    .example-group h4 { margin-top: 0; }
+    .safe h4 { color: #166534; }
+    .sensitive h4 { color: #991b1b; }
+    .best-effort h4 { color: #92400e; }
+    .group-description { font-size: 13px; color: #475569; margin-bottom: 12px; }
+    .example-row {
+      display: grid; grid-template-columns: 1fr auto 1fr 1fr;
+      gap: 8px; align-items: center;
+      background: white; padding: 8px 12px; border-radius: 4px; margin: 6px 0;
+      font-size: 13px;
+    }
+    .example-row .arrow { color: #9ca3af; font-size: 16px; text-align: center; }
+    .example-row .before code { color: #dc2626; }
+    .example-row .after code { color: #16a34a; }
+    .example-row .reason { color: #64748b; font-size: 12px; font-style: italic; }
     @media (max-width: 768px) {
       .side-by-side { grid-template-columns: 1fr; }
+      .example-row { grid-template-columns: 1fr; gap: 4px; }
+      .example-row .arrow { display: none; }
     }
   `],
 })
