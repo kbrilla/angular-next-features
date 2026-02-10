@@ -51,7 +51,7 @@ interface User {
         <div class="code-row">
           <code>user?.email</code>
           <span class="arrow">&rarr;</span>
-          <span class="result">{{ currentUser()?.email ?? '(nullish)' }}</span>
+          <span class="result">{{ currentUser()?.email ?? 'null' }}</span>
         </div>
       </div>
 
@@ -60,12 +60,12 @@ interface User {
         <div class="code-row">
           <code>user?.address?.city</code>
           <span class="arrow">&rarr;</span>
-          <span class="result">{{ currentUser()?.address?.city ?? '(nullish)' }}</span>
+          <span class="result">{{ currentUser()?.address?.city ?? 'null' }}</span>
         </div>
         <div class="code-row">
           <code>user?.address?.country?.name</code>
           <span class="arrow">&rarr;</span>
-          <span class="result">{{ currentUser()?.address?.country?.name ?? '(nullish)' }}</span>
+          <span class="result">{{ currentUser()?.address?.country?.name ?? 'null' }}</span>
         </div>
       </div>
 

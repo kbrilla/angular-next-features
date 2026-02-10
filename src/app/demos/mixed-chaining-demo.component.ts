@@ -38,19 +38,19 @@ interface Config {
 
       <div class="result-row">
         <code>config?.theme</code>
-        <span class="value">{{ config()?.theme ?? '(nullish)' }}</span>
+        <span class="value">{{ config()?.theme ?? fallbackLabel }}</span>
       </div>
       <div class="result-row">
         <code>config?.api?.baseUrl</code>
-        <span class="value">{{ config()?.api?.baseUrl ?? '(nullish)' }}</span>
+        <span class="value">{{ config()?.api?.baseUrl ?? fallbackLabel }}</span>
       </div>
       <div class="result-row">
         <code>config?.api?.timeout</code>
-        <span class="value">{{ config()?.api?.timeout ?? '(nullish)' }}</span>
+        <span class="value">{{ config()?.api?.timeout ?? fallbackLabel }}</span>
       </div>
       <div class="result-row">
         <code>config?.api?.headers?.authorization</code>
-        <span class="value">{{ config()?.api?.headers?.authorization ?? '(nullish)' }}</span>
+        <span class="value">{{ config()?.api?.headers?.authorization ?? fallbackLabel }}</span>
       </div>
 
       <div class="comparison-box">
@@ -85,6 +85,7 @@ interface Config {
 })
 export class LegacyChainingComponent {
   config = signal<Config | null>(null);
+  fallbackLabel = 'null';
 
   @Input() set configData(value: Config | null) {
     this.config.set(value);
@@ -106,19 +107,19 @@ export class LegacyChainingComponent {
 
       <div class="result-row">
         <code>config?.theme</code>
-        <span class="value">{{ config()?.theme ?? '(nullish)' }}</span>
+        <span class="value">{{ config()?.theme ?? fallbackLabel }}</span>
       </div>
       <div class="result-row">
         <code>config?.api?.baseUrl</code>
-        <span class="value">{{ config()?.api?.baseUrl ?? '(nullish)' }}</span>
+        <span class="value">{{ config()?.api?.baseUrl ?? fallbackLabel }}</span>
       </div>
       <div class="result-row">
         <code>config?.api?.timeout</code>
-        <span class="value">{{ config()?.api?.timeout ?? '(nullish)' }}</span>
+        <span class="value">{{ config()?.api?.timeout ?? fallbackLabel }}</span>
       </div>
       <div class="result-row">
         <code>config?.api?.headers?.authorization</code>
-        <span class="value">{{ config()?.api?.headers?.authorization ?? '(nullish)' }}</span>
+        <span class="value">{{ config()?.api?.headers?.authorization ?? fallbackLabel }}</span>
       </div>
 
       <div class="comparison-box">
@@ -153,6 +154,7 @@ export class LegacyChainingComponent {
 })
 export class NativeChainingComponent {
   config = signal<Config | null>(null);
+  fallbackLabel = 'undefined';
 
   @Input() set configData(value: Config | null) {
     this.config.set(value);
