@@ -313,6 +313,48 @@ export class NativeChainingComponent {
             <div class="after"><code>{{ '{{ a?.b ? x : y }}' }}</code></div>
             <div class="reason">Condition position — truthiness check only</div>
           </div>
+
+          <div class="example-row">
+            <div class="before"><code>&#64;if (user?.address)</code></div>
+            <div class="arrow">&rarr;</div>
+            <div class="after"><code>&#64;if (user?.address)</code></div>
+            <div class="reason">&#64;if condition: both null and undefined are falsy</div>
+          </div>
+
+          <div class="example-row">
+            <div class="before"><code>&#64;if (a?.b?.c) {{ '{' }}...{{ '}' }} &#64;else if (a?.d)</code></div>
+            <div class="arrow">&rarr;</div>
+            <div class="after"><code>&#64;if (a?.b?.c) {{ '{' }}...{{ '}' }} &#64;else if (a?.d)</code></div>
+            <div class="reason">&#64;else if: also a truthiness check, safe</div>
+          </div>
+
+          <div class="example-row">
+            <div class="before"><code>&#64;if (user?.address; as addr)</code></div>
+            <div class="arrow">&rarr;</div>
+            <div class="after"><code>&#64;if (user?.address; as addr)</code></div>
+            <div class="reason">&#64;if with alias: condition is still a truthiness check</div>
+          </div>
+
+          <div class="example-row">
+            <div class="before"><code>&#64;defer (when config?.ready)</code></div>
+            <div class="arrow">&rarr;</div>
+            <div class="after"><code>&#64;defer (when config?.ready)</code></div>
+            <div class="reason">&#64;defer when: boolean-like condition, safe</div>
+          </div>
+
+          <div class="example-row">
+            <div class="before"><code>[class.active]="item?.selected"</code></div>
+            <div class="arrow">&rarr;</div>
+            <div class="after"><code>[class.active]="item?.selected"</code></div>
+            <div class="reason">Class binding: truthy/falsy check, safe</div>
+          </div>
+
+          <div class="example-row">
+            <div class="before"><code>[hidden]="!user?.isVisible"</code></div>
+            <div class="arrow">&rarr;</div>
+            <div class="after"><code>[hidden]="!user?.isVisible"</code></div>
+            <div class="reason">Property binding with negation: safe</div>
+          </div>
         </div>
 
         <div class="example-group sensitive">
