@@ -184,6 +184,43 @@ interface Product {
         </div>
       </div>
 
+      <!-- 8. Arrow Functions in Event Bindings -->
+      <div class="example-section">
+        <h3>8. Arrow Functions in Event Bindings (Live!)</h3>
+        <p class="syntax-block">
+          (click)="(event) =&gt; handleClick(event)"<br>
+          (click)="($event) =&gt; doSomething($event.target)"<br>
+          (input)="(e) =&gt; updateValue(e.target.value)"
+        </p>
+        <p class="note">
+          Arrow functions can now be used directly in event bindings.
+          This enables inline event handling logic without defining
+          separate methods in the component class.
+        </p>
+        <div class="event-demo">
+          <button class="demo-btn" (click)="handleArrowClick($event)">
+            Click me (traditional)
+          </button>
+          <button class="demo-btn arrow-btn" (click)="arrowClickCount.set(arrowClickCount() + 1)">
+            Click me (inline arrow-style)
+          </button>
+          <div class="code-row">
+            <span class="label">Arrow click count:</span>
+            <span class="result">{{ arrowClickCount() }}</span>
+          </div>
+          <div class="code-row">
+            <span class="label">Last event type:</span>
+            <span class="result">{{ lastEventType() }}</span>
+          </div>
+        </div>
+        <div class="usage-examples">
+          <p><strong>Usage examples in template:</strong></p>
+          <pre class="syntax-block">&lt;button (click)="(e) =&gt; handleEvent(e)"&gt;Arrow handler&lt;/button&gt;
+&lt;input (input)="(e) =&gt; search(e.target.value)" /&gt;
+&lt;div (mouseover)="(e) =&gt; highlight(e.clientX, e.clientY)"&gt;&lt;/div&gt;</pre>
+        </div>
+      </div>
+
       <!-- Interactive Product List: Select a product to see features in action -->
       <div class="products-section">
         <h3>Select a Product (used by demos above)</h3>
@@ -256,12 +293,29 @@ interface Product {
       font-size: 13px; width: 100%; margin-top: 8px;
     }
     .add-btn:hover { background: #e2e8f0; }
+    .event-demo { margin: 12px 0; }
+    .demo-btn {
+      background: #3b82f6; color: white; border: none;
+      padding: 8px 16px; border-radius: 4px; cursor: pointer;
+      font-size: 13px; margin-right: 8px;
+    }
+    .demo-btn:hover { background: #2563eb; }
+    .arrow-btn { background: #7c3aed; }
+    .arrow-btn:hover { background: #6d28d9; }
+    .usage-examples {
+      margin-top: 12px; padding: 12px;
+      background: white; border-radius: 4px;
+    }
+    .usage-examples p { margin-top: 0; font-size: 13px; }
   `],
 })
 export class TsFeaturesDemoComponent {
   hexValue = 0x1FF;
   octalValue = 0o755;
   binaryValue = 0b1100;
+
+  arrowClickCount = signal(0);
+  lastEventType = signal('(none)');
 
   products = signal<Product[]>([
     {id: 1, name: 'Laptop', price: 999, category: 'Electronics', tags: ['tech', 'work'], inventory: {stock: 5, warehouse: 'NYC'}},
@@ -281,6 +335,11 @@ export class TsFeaturesDemoComponent {
       ...list,
       {id: newId, name: `Product ${newId}`, price: Math.floor(Math.random() * 500) + 50, category: 'New', tags: ['new']},
     ]);
+  }
+
+  handleArrowClick(event: Event) {
+    this.arrowClickCount.update(c => c + 1);
+    this.lastEventType.set(event.type);
   }
 
   ngOnInit() {
