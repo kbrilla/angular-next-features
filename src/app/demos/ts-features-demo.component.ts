@@ -14,7 +14,7 @@
  * This component uses ACTUAL new template syntax from our custom Angular build!
  */
 import {Component, signal} from '@angular/core';
-import {CurrencyPipe} from '@angular/common';
+import {CurrencyPipe, JsonPipe} from '@angular/common';
 
 interface Product {
   id: number;
@@ -30,7 +30,7 @@ interface Product {
 
 @Component({
   selector: 'app-ts-features-demo',
-  imports: [CurrencyPipe],
+  imports: [CurrencyPipe, JsonPipe],
   template: `
     <div class="demo-container">
       <h2>TypeScript Features in Angular Templates</h2>
@@ -111,57 +111,77 @@ interface Product {
 
       <!-- 4. Computed Property Names -->
       <div class="example-section">
-        <h3>4. Computed Property Names</h3>
+        <h3>4. Computed Property Names (Live!)</h3>
         <p class="syntax-block">
           {{ '{{ {[key]: value} }}' }}<br>
-          {{ "{{ {['name']: value} }}" }}<br>
-          {{ "{{ {a: 1, [dynamicKey]: 2} }}" }}
+          {{ "{{ {['name']: value} }}" }}
         </p>
-        <p class="note">
-          Computed property names enable dynamic object construction directly
-          in templates. Previously only static keys were allowed.
-        </p>
+        <div class="code-row">
+          <span class="label">{{ '{' }}['price']: 42{{ '}' }}:</span>
+          <span class="result">{{ {['price']: 42} | json }}</span>
+        </div>
+        <div class="code-row">
+          <span class="label">{{ '{' }}['a']: 1, ['b']: 2{{ '}' }}:</span>
+          <span class="result">{{ {['a']: 1, ['b']: 2} | json }}</span>
+        </div>
       </div>
 
       <!-- 5. BigInt Literals -->
       <div class="example-section">
-        <h3>5. BigInt Literals</h3>
+        <h3>5. BigInt Literals (Live!)</h3>
         <p class="syntax-block">
           {{ '{{ 1n }}' }}<br>
-          {{ '{{ 9007199254740991n }}' }} (beyond Number.MAX_SAFE_INTEGER)<br>
-          {{ '{{ 1_000_000n }}' }} (with separators)
+          {{ '{{ 9007199254740991n }}' }} (beyond Number.MAX_SAFE_INTEGER)
         </p>
-        <p class="note">
-          BigInt support allows templates to work with arbitrary precision integers.
-        </p>
+        <div class="code-row">
+          <span class="label">1n:</span>
+          <span class="result">{{ 1n }}</span>
+        </div>
+        <div class="code-row">
+          <span class="label">100n + 200n:</span>
+          <span class="result">{{ 100n + 200n }}</span>
+        </div>
+        <div class="code-row">
+          <span class="label">9007199254740991n:</span>
+          <span class="result">{{ 9007199254740991n }}</span>
+        </div>
       </div>
 
       <!-- 6. Arrow Rest Parameters -->
       <div class="example-section">
-        <h3>6. Arrow Function Rest Parameters</h3>
+        <h3>6. Arrow Function Rest Parameters (Live!)</h3>
         <p class="syntax-block">
-          {{ '{{ (...args) => args }}' }}<br>
-          {{ '{{ (a, b, ...rest) => a + b }}' }}<br>
-          {{ '{{ (a, ...rest) => a }}' }}
+          {{ '{{ items.reduce((...args) => args[0] + args[1]) }}' }}
         </p>
-        <p class="note">
-          Rest parameters in arrow functions within templates. The rest param
-          must always be the last parameter.
-        </p>
+        @let nums = [10, 20, 30];
+        <div class="code-row">
+          <span class="label">[10,20,30].reduce((...args) =&gt; args[0] + args[1]):</span>
+          <span class="result">{{ nums.reduce((...args) => args[0] + args[1]) }}</span>
+        </div>
+        <div class="code-row">
+          <span class="label">[1,2,3].map((x, ...rest) =&gt; x * 2):</span>
+          <span class="result">{{ [1,2,3].map((x, ...rest) => x * 2) }}</span>
+        </div>
       </div>
 
       <!-- 7. Block Comments -->
       <div class="example-section">
-        <h3>7. Block Comments in Expressions</h3>
+        <h3>7. Block Comments in Expressions (Live!)</h3>
         <p class="syntax-block">
-          {{ '{{ a /* comment */ + b }}' }}<br>
-          {{ '{{ foo(/* arg */ x) }}' }}<br>
-          {{ '{{ /* main expression */ x }}' }}
+          {{ '{{ a /* comment */ + b }}' }} &rarr; comment stripped, math works
         </p>
-        <p class="note">
-          Block comments are stripped during parsing.
-          Comments inside string literals are preserved.
-        </p>
+        <div class="code-row">
+          <span class="label">5 /* ignored */ + 3:</span>
+          <span class="result">{{ 5 /* this comment is stripped! */ + 3 }}</span>
+        </div>
+        <div class="code-row">
+          <span class="label">'hello' /* mid */ + ' world':</span>
+          <span class="result">{{ 'hello' /* this is stripped */ + ' world' }}</span>
+        </div>
+        <div class="code-row">
+          <span class="label">100 /* divisor */ / 4:</span>
+          <span class="result">{{ 100 /* divisor */ / 4 }}</span>
+        </div>
       </div>
 
       <!-- Interactive Product List: Select a product to see features in action -->
