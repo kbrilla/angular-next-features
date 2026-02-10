@@ -164,9 +164,13 @@ interface Product {
         </p>
       </div>
 
-      <!-- Interactive Product List -->
+      <!-- Interactive Product List: Select a product to see features in action -->
       <div class="products-section">
-        <h3>Interactive: Product Data</h3>
+        <h3>Select a Product (used by demos above)</h3>
+        <p class="products-note">
+          Click a product to see &#64;let destructuring and array access demos update above.
+          This data drives the live examples for sections 1 and 2.
+        </p>
         @for (product of products(); track product.id) {
           <div class="product-card" [class.selected]="product.id === selectedProduct()?.id">
             <span class="product-name">{{ product.name }}</span>
@@ -208,6 +212,10 @@ interface Product {
       padding: 10px; border-radius: 4px; font-size: 13px; color: #166534;
     }
     .products-section { margin-top: 20px; }
+    .products-note {
+      font-size: 13px; color: #475569; font-style: italic;
+      margin-bottom: 12px;
+    }
     .product-card {
       display: flex; align-items: center; gap: 12px;
       background: white; padding: 10px; border-radius: 4px;
