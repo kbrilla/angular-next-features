@@ -238,30 +238,30 @@ interface Product {
 
       <!-- 9. Pipes in Event Bindings -->
       <div class="example-section">
-        <h3>9. Pipes in Event Bindings (Live!)</h3>
+        <h3>9. Pipes in Event Bindings</h3>
         <p class="syntax-block">
           (click)="handleClick($event.target.value | uppercase)"<br>
           (input)="search($event.target.value | lowercase)"<br>
           (click)="log($event | json)"
         </p>
+        <div class="warning-box" style="background: #fefce8; border-left-color: #eab308;">
+          <strong>⚠️ Known issue:</strong> While the compiler now accepts pipes in event binding
+          expressions (parser feature from PR 2), the <strong>runtime pipe infrastructure
+          does not properly support pipes in action/listener contexts</strong>. At runtime
+          this produces: <em>ASSERTION ERROR: Array must be defined</em>. This is a
+          runtime gap that needs to be addressed before this feature works end-to-end.
+        </div>
         <p class="note">
-          Pipes can now be used inside event binding expressions to transform
-          data before passing it to handler functions. This eliminates the need
-          for intermediate transformation methods in your component class.
+          The parser now accepts pipe syntax in event bindings — a step toward full support.
+          For now, use methods in the component class to transform values before passing them.
         </p>
         <div class="event-demo">
           <input class="demo-input" placeholder="Type here..."
-                 (input)="pipeInputValue.set(($any($event.target)).value | uppercase)" />
+                 (input)="pipeInputValue.set(($any($event.target)).value.toUpperCase())" />
           <div class="code-row">
-            <span class="label">(input)="set(value | uppercase)":</span>
+            <span class="label">Workaround with .toUpperCase():</span>
             <span class="result">{{ pipeInputValue() }}</span>
           </div>
-        </div>
-        <div class="usage-examples">
-          <p><strong>Pipes in event expressions:</strong></p>
-          <pre class="syntax-block">&lt;input (input)="handleSearch($event.target.value | lowercase)" /&gt;
-&lt;button (click)="log($event.type | uppercase)"&gt;Click&lt;/button&gt;
-&lt;select (change)="setNum($event.target.value | number)"&gt;...&lt;/select&gt;</pre>
         </div>
       </div>
 
