@@ -237,44 +237,196 @@ import {Component} from '@angular/core';
         <p class="desc">
           Detects when the <strong>same CSS property</strong> is set from different binding sources
           on the same element. This is unique &mdash; no other tool catches conflicts between host
-          metadata, &#64;HostBinding decorators, directive host bindings, and template bindings!
+          metadata, &#64;HostBinding decorators, directive host bindings, hostDirectives, and template bindings!
+          Covers <strong>7 binding sources</strong> across <strong>4 origin levels</strong>.
         </p>
 
-        <h4>Example 1: Host metadata vs &#64;HostBinding</h4>
-        <div class="code-block">
-          <pre><code>&#64;Component(&#123;
-  host: &#123;
-    '[style.width]': '"100px"',     // Source 1: host metadata
-  &#125;,
+        <!-- Scenario Grid -->
+        <div class="conflict-grid">
+          <!-- Scenario 1: Host metadata vs @HostBinding -->
+          <div class="conflict-card">
+            <div class="conflict-header">
+              <span class="conflict-num">1</span>
+              <strong>Host metadata vs &#64;HostBinding</strong>
+              <span class="conflict-code">99005</span>
+            </div>
+            <div class="code-block">
+              <pre><code>&#64;Component(&#123;
+  host: &#123; '[style.width]': '"100px"' &#125;  // Source A
 &#125;)
-export class AppComponent &#123;
-  &#64;HostBinding('style.width') widthValue = '200px';  // Source 2: decorator
+export class MyCmp &#123;
+  &#64;HostBinding('style.width')           // Source B
+  w = '200px';
+&#125;</code></pre>
+            </div>
+            <div class="conflict-result">
+              <span class="conflict-diag">&#9888; Conflicting style binding: 'width' is set via both host metadata and &#64;HostBinding</span>
+              <span class="conflict-note">Same origin (component host), but different binding methods &rarr; conflict</span>
+            </div>
+          </div>
+
+          <!-- Scenario 2: Component host vs directive host -->
+          <div class="conflict-card">
+            <div class="conflict-header">
+              <span class="conflict-num">2</span>
+              <strong>Component host vs directive host</strong>
+              <span class="conflict-code">99005</span>
+            </div>
+            <div class="code-block">
+              <pre><code>&#64;Directive(&#123;
+  selector: '[highlight]',
+  host: &#123; '[style.color]': '"red"' &#125;    // Source A
+&#125;)
+class HighlightDir &#123;&#125;
+
+&#64;Component(&#123;
+  host: &#123; '[style.color]': '"blue"' &#125;,  // Source B
+  template: '&lt;div highlight&gt;...'
+&#125;)
+class MyCmp &#123;&#125;</code></pre>
+            </div>
+            <div class="conflict-result">
+              <span class="conflict-diag">&#9888; 'color' is set via component host and directive 'HighlightDir' host binding. Directive wins at runtime</span>
+              <span class="conflict-note">Cross-origin: component (P7-8) vs directive (P3-6) &rarr; directive wins</span>
+            </div>
+          </div>
+
+          <!-- Scenario 3: Directive host vs template binding -->
+          <div class="conflict-card">
+            <div class="conflict-header">
+              <span class="conflict-num">3</span>
+              <strong>Directive host vs template [style.prop]</strong>
+              <span class="conflict-code">99005</span>
+            </div>
+            <div class="code-block">
+              <pre><code>&#64;Directive(&#123;
+  selector: '[fixedWidth]',
+  host: &#123; '[style.width]': '"50px"' &#125;
+&#125;)
+class FixedWidthDir &#123;&#125;
+
+&lt;div fixedWidth [style.width]="'100px'"&gt;
+// Template [style.prop] ALWAYS wins</code></pre>
+            </div>
+            <div class="conflict-result">
+              <span class="conflict-diag">&#9888; 'width' is set via [style.property] and directive host. Template binding takes precedence</span>
+              <span class="conflict-note">Template individual (P1) always beats directive (P3-6)</span>
+            </div>
+          </div>
+
+          <!-- Scenario 4: hostDirective vs directive -->
+          <div class="conflict-card">
+            <div class="conflict-header">
+              <span class="conflict-num">4</span>
+              <strong>hostDirective vs parent directive</strong>
+              <span class="conflict-code">99005</span>
+            </div>
+            <div class="code-block">
+              <pre><code>&#64;Directive(&#123;selector: '[colorHost]'&#125;)
+class ColorHostDir &#123;
+  &#64;HostBinding('style.color') c = 'red';
 &#125;
-// Result: 99005 CONFLICTING_STYLE_BINDING containing 'width'</code></pre>
-        </div>
 
-        <h4>Example 2: Directive host binding vs template binding</h4>
-        <div class="code-block">
-          <pre><code>&#64;Directive(&#123;
-  selector: '[widthApplier]',
-  host: &#123; '[style.width]': '"50px"' &#125;,
+&#64;Directive(&#123;
+  selector: '[myDir]',
+  hostDirectives: [ColorHostDir],   // HostDirective
+  host: &#123; '[style.color]': '"green"' &#125;
 &#125;)
-export class WidthApplierDirective &#123;&#125;
+class MyDir &#123;&#125;  // Parent directive WINS</code></pre>
+            </div>
+            <div class="conflict-result">
+              <span class="conflict-diag">&#9888; 'color' conflicts between directive host and its hostDirective 'ColorHostDir'. Parent directive wins</span>
+              <span class="conflict-note">Directive (P3-6) beats its hostDirective (P5-8)</span>
+            </div>
+          </div>
 
-// Template:
-&lt;div widthApplier [style.width]="'100px'"&gt;
-// Result: 99005 &mdash; "[style.property]" + "directive" in message
-// Template binding wins over directive host binding</code></pre>
-        </div>
-
-        <h4>Example 3: Component host + directive host + template</h4>
-        <div class="code-block">
-          <pre><code>&#64;Component(&#123;
-  host: &#123; '[style.color]': '"blue"' &#125;,  // Component host
-  template: '&lt;div colorDir [style.color]="red"&gt;'
+          <!-- Scenario 5: Three-way conflict -->
+          <div class="conflict-card wide">
+            <div class="conflict-header">
+              <span class="conflict-num">5</span>
+              <strong>Three-way: Component host + Directive host + Template</strong>
+              <span class="conflict-code">99005 &times;2</span>
+            </div>
+            <div class="code-block">
+              <pre><code>&#64;Component(&#123;
+  host: &#123; '[style.color]': '"blue"' &#125;,                      // Source C (P7-8)
+  template: '&lt;div colorDir [style.color]="dynamicColor"&gt;'  // Source A (P1)
 &#125;)
-// Where colorDir has: host: &#123; '[style.color]': '"green"' &#125;
-// Result: Multiple conflict diagnostics showing ALL 3 sources</code></pre>
+// Where colorDir has: host: &#123; '[style.color]': '"green"' &#125; // Source B (P3-6)
+// Result: 2 diagnostics total &mdash; ALL 3 sources flagged!</code></pre>
+            </div>
+            <div class="conflict-result">
+              <span class="conflict-diag">&#9888; (1) 'color': directive 'colorDir' host vs component host</span>
+              <span class="conflict-diag">&#9888; (2) 'color': template [style.property] vs directive host &mdash; template wins</span>
+              <span class="conflict-note">Each pair generates a separate diagnostic with the specific source names</span>
+            </div>
+          </div>
+
+          <!-- Scenario 6: [style] map vs [ngStyle] -->
+          <div class="conflict-card">
+            <div class="conflict-header">
+              <span class="conflict-num">6</span>
+              <strong>[style] map vs [ngStyle]</strong>
+              <span class="conflict-code">99005</span>
+            </div>
+            <div class="code-block">
+              <pre><code>&lt;div
+  [style]="&#123;width: '100px'&#125;"
+  [ngStyle]="&#123;width: '200px'&#125;"
+&gt;
+// [style] beats [ngStyle]</code></pre>
+            </div>
+            <div class="conflict-result">
+              <span class="conflict-diag">&#9888; [style] binding takes precedence over [ngStyle] for 'width'</span>
+              <span class="conflict-note">Template map (P2) beats [ngStyle] (P3)</span>
+            </div>
+          </div>
+
+          <!-- Scenario 7: Full 4-tier conflict -->
+          <div class="conflict-card wide">
+            <div class="conflict-header">
+              <span class="conflict-num">7</span>
+              <strong>Full 4-Tier: hostDirective + Directive + Component + Template</strong>
+              <span class="conflict-code">99005 &times;3</span>
+            </div>
+            <div class="code-block">
+              <pre><code>// hostDirective: @HostBinding('style.fontSize') = '12px'
+// Directive:    host: &#123; '[style.fontSize]': '"14px"' &#125; + hostDirectives: [^above]
+// Component:    host: &#123; '[style.fontSize]': '"16px"' &#125;
+// Template:     &lt;div myDir [style.fontSize]="'18px'" [style.font-size.px]="20"&gt;
+
+// Results: 3 diagnostics (each pair), PLUS a shorthand/variant warning!
+// Winner: [style.fontSize] template individual (P1)</code></pre>
+            </div>
+            <div class="conflict-result">
+              <span class="conflict-diag">&#9888; (1) hostDirective vs directive host</span>
+              <span class="conflict-diag">&#9888; (2) directive host vs component host</span>
+              <span class="conflict-diag">&#9888; (3) template vs directive host</span>
+              <span class="conflict-note">Up to N(N-1)/2 pairwise diagnostics for N conflicting sources</span>
+            </div>
+          </div>
+
+          <!-- Scenario 8: [class] conflicts -->
+          <div class="conflict-card">
+            <div class="conflict-header">
+              <span class="conflict-num">8</span>
+              <strong>Class binding conflicts</strong>
+              <span class="conflict-code">99005</span>
+            </div>
+            <div class="code-block">
+              <pre><code>&#64;Directive(&#123;
+  selector: '[themed]',
+  host: &#123; '[class.active]': 'true' &#125;
+&#125;)
+
+&lt;div themed [class.active]="isActive"&gt;
+// Template class binding beats directive</code></pre>
+            </div>
+            <div class="conflict-result">
+              <span class="conflict-diag">&#9888; 'active' class binding conflicts: template vs directive host</span>
+              <span class="conflict-note">Same rules apply to [class.X] as [style.X]</span>
+            </div>
+          </div>
         </div>
 
         <h4>Full Precedence Order (7 levels)</h4>
@@ -287,6 +439,11 @@ export class WidthApplierDirective &#123;&#125;
           <div class="prec-item p6"><span class="prec-num">6</span><span class="prec-label">Directive's own host binding</span></div>
           <div class="prec-item p7"><span class="prec-num">7</span><span class="prec-label">hostDirectives binding</span><span class="prec-priority">LOWEST</span></div>
         </div>
+        <p class="note">
+          <strong>&#9888; Standalone anomaly:</strong> In standalone components, directive host bindings may beat
+          template <code>[style]</code> maps (P2-3). Only <code>[style.prop]</code> (P1) is guaranteed to win in both modes.
+          See the <strong>Style Precedence</strong> tab for live proof.
+        </p>
       </div>
 
       <!-- CSS Unit Validation -->
@@ -710,6 +867,15 @@ export class AppComponent &#123;
     .p7 .prec-num { background: #6b7280; }
     .prec-label { flex: 1; color: var(--adev-text); }
     .prec-priority { font-size: 10px; font-weight: 700; color: var(--adev-text-tertiary); text-transform: uppercase; }
+    .conflict-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 12px; margin: 16px 0; }
+    .conflict-card { background: var(--adev-surface-2, #0f172a); border: 1px solid var(--adev-border, #334155); border-radius: 10px; padding: 14px; }
+    .conflict-card.wide { grid-column: 1 / -1; }
+    .conflict-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; font-size: 13px; }
+    .conflict-num { width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: 700; font-size: 11px; color: white; background: #f0a0c8; flex-shrink: 0; }
+    .conflict-code { margin-left: auto; background: rgba(240, 160, 200, 0.12); color: #f0a0c8; padding: 2px 8px; border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; }
+    .conflict-result { margin-top: 8px; display: flex; flex-direction: column; gap: 4px; }
+    .conflict-diag { display: block; font-size: 12px; color: #fbbf24; padding: 4px 8px; background: rgba(251, 191, 36, 0.06); border-left: 3px solid #fbbf24; border-radius: 0 4px 4px 0; font-family: 'JetBrains Mono', monospace; }
+    .conflict-note { font-size: 11px; color: var(--adev-text-secondary, #94a3b8); font-style: italic; margin-top: 2px; }
     .code-block { background: var(--adev-code-bg); border: 1px solid var(--adev-code-border); border-radius: 8px; padding: 14px; margin: 8px 0; overflow-x: auto; }
     .code-block pre { margin: 0; }
     .code-block code { background: none; border: none; padding: 0; font-size: 12px; color: var(--adev-code-text); line-height: 1.6; }

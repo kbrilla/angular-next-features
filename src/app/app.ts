@@ -1,9 +1,10 @@
-import {Component, signal} from '@angular/core';
+import {Component, signal, OnInit, OnDestroy, inject} from '@angular/core';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatListModule} from '@angular/material/list';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
+import {DOCUMENT} from '@angular/common';
 import {OptionalChainingLegacyDemoComponent} from './demos/optional-chaining-demo.component';
 import {TsFeaturesDemoComponent} from './demos/ts-features-demo.component';
 import {MixedChainingDemoComponent} from './demos/mixed-chaining-demo.component';
@@ -42,9 +43,17 @@ interface NavItem {
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
-export class App {
+export class App implements OnInit, OnDestroy {
+  private doc = inject(DOCUMENT);
   activeSection = signal('overview');
   sidenavOpened = signal(true);
+  private hashListener = () => this.syncFromHash();
+
+  private readonly validSections = new Set([
+    'overview', 'ts-features', 'optional-chaining', 'mix-match',
+    'inlay-hints', 'css-intellisense', 'template-debug',
+    'selection-range', 'document-symbols', 'style-precedence',
+  ]);
 
   navItems: NavItem[] = [
     {id: 'overview', label: 'Overview', icon: 'home'},
@@ -59,7 +68,26 @@ export class App {
     {id: 'style-precedence', label: 'Style Precedence', icon: 'layers', badge: 'NEW'},
   ];
 
+  ngOnInit() {
+    this.syncFromHash();
+    this.doc.defaultView?.addEventListener('hashchange', this.hashListener);
+  }
+
+  ngOnDestroy() {
+    this.doc.defaultView?.removeEventListener('hashchange', this.hashListener);
+  }
+
   navigate(sectionId: string) {
     this.activeSection.set(sectionId);
+    const win = this.doc.defaultView;
+    if (win) {
+      win.location.hash = sectionId === 'overview' ? '' : sectionId;
+    }
+  }
+
+  private syncFromHash() {
+    const hash = this.doc.defaultView?.location.hash.replace('#', '') ?? '';
+    const section = this.validSections.has(hash) ? hash : 'overview';
+    this.activeSection.set(section);
   }
 }
