@@ -767,6 +767,44 @@ export class AppComponent &#123;
           See the <strong>Style Binding Precedence Bugs</strong> tab for live demonstrations.</p>
       </div>
 
+      <!-- Style/Class Type-Checking Gap -->
+      <div class="example-section" style="border-left-color: #f59e0b;">
+        <h3><span class="feat-badge">GAP</span> Style/Class Binding Type-Checking Gap</h3>
+        <p class="desc">
+          Angular's type checker <strong>does not</strong> fully type-check style and class bindings.
+          There is an explicit <code>TODO</code> in the source (<code>inputs.ts</code>). The expression
+          is validated for existence, but not for type compatibility.
+        </p>
+        <div class="msg-table">
+          <div class="msg-header"><span>Binding</span><span>Type Checking Status</span></div>
+          <div class="msg-row"><code>[value]="x"</code><span class="msg" style="color: var(--adev-success);">&#10003; Full &mdash; checks HTMLInputElement["value"]</span></div>
+          <div class="msg-row"><code>[disabled]="x"</code><span class="msg" style="color: var(--adev-success);">&#10003; Full &mdash; checks HTMLButtonElement["disabled"]</span></div>
+          <div class="msg-row"><code>[style.width]="x"</code><span class="msg" style="color: var(--adev-warning);">&#9888; Partial &mdash; only validates expression exists</span></div>
+          <div class="msg-row"><code>[style.width.px]="x"</code><span class="msg" style="color: var(--adev-warning);">&#9888; Partial &mdash; only validates expression exists</span></div>
+          <div class="msg-row"><code>[class.active]="x"</code><span class="msg" style="color: var(--adev-warning);">&#9888; Partial &mdash; only validates expression exists</span></div>
+          <div class="msg-row"><code>[attr.data-cy]="x"</code><span class="msg" style="color: var(--adev-warning);">&#9888; Partial &mdash; only validates expression exists</span></div>
+        </div>
+
+        <h4>Expected Types (When Implemented)</h4>
+        <div class="msg-table">
+          <div class="msg-header"><span>Binding Pattern</span><span>Expected Type</span></div>
+          <div class="msg-row"><code>[style.propertyName]</code><span class="msg" style="color: var(--adev-info);">string</span></div>
+          <div class="msg-row"><code>[style.propertyName.unit]</code><span class="msg" style="color: var(--adev-info);">number (unit suffix means numeric)</span></div>
+          <div class="msg-row"><code>[class.className]</code><span class="msg" style="color: var(--adev-info);">boolean (toggle on/off)</span></div>
+          <div class="msg-row"><code>[attr.name]</code><span class="msg" style="color: var(--adev-info);">string | null (set or remove)</span></div>
+        </div>
+
+        <h4>These Pass Today But Shouldn't</h4>
+        <div class="code-block"><pre><code>&lt;div [style.width.px]="'red'"&gt;   &lt;!-- string where number expected --&gt;
+&lt;div [class.active]="'maybe'"&gt;   &lt;!-- string where boolean expected --&gt;
+&lt;div [style.width.px]="true"&gt;    &lt;!-- boolean where number expected --&gt;</code></pre></div>
+
+        <p class="note">
+          <strong>Inlay hints fill this gap</strong> by showing expected types even though the compiler
+          doesn't enforce them yet. See the <strong>Inlay Hints</strong> demo for details.
+        </p>
+      </div>
+
       <!-- Scope Limitations -->
       <div class="example-section dim">
         <h3>Scope Limitations</h3>
@@ -775,6 +813,7 @@ export class AppComponent &#123;
           <li><strong>data-* attributes</strong> &mdash; user-defined by W3C spec</li>
           <li><strong>General template errors</strong> &mdash; handled by Angular compiler (8001&ndash;8118)</li>
           <li><strong>CSS value validation</strong> &mdash; planned for a future release</li>
+          <li><strong>Style/class type checking</strong> &mdash; TODO in Angular source (see above)</li>
         </ul>
       </div>
     </div>

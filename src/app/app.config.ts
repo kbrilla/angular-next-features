@@ -1,5 +1,5 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
-import { provideRouter, withHashLocation, withRouterConfig } from '@angular/router';
+import { provideRouter, withHashLocation, withInMemoryScrolling } from '@angular/router';
 
 import { routes } from './app.routes';
 
@@ -10,7 +10,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(
       routes,
       withHashLocation(),
-      withRouterConfig({
+      withInMemoryScrolling({
         scrollPositionRestoration: 'top',
         anchorScrolling: 'enabled'
       })

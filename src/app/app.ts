@@ -43,6 +43,8 @@ export class App {
     {id: 'selection-range', path: '/selection-range', label: 'Selection Range', icon: 'select_all', badge: 'NEW'},
     {id: 'document-symbols', path: '/document-symbols', label: 'Document Symbols', icon: 'account_tree', badge: 'NEW'},
     {id: 'style-precedence', path: '/style-precedence', label: 'Style Binding Bugs', icon: 'layers', badge: 'NEW'},
+    {id: 'host-element', path: '/host-element', label: 'HostElement Type Safety', icon: 'security', badge: 'NEW'},
+    {id: 'linked-editing', path: '/linked-editing', label: 'Linked Editing', icon: 'edit', badge: 'NEW'},
   ];
 
 

@@ -113,11 +113,44 @@ import {MatIconModule} from '@angular/material/icon';
             <span class="tag">CSS IntelliSense</span>
           </div>
         </a>
+
+        <a class="feature-card" routerLink="/host-element">
+          <div class="card-icon he"><mat-icon>security</mat-icon></div>
+          <h3>HostElement Type Safety</h3>
+          <p>14 capabilities unlocked by the HostElement AST — type-checked host bindings, pipe tracking, scope isolation, &#64;HostListener syntax catalog</p>
+          <div class="card-footer">
+            <span class="tag accent">NEW</span>
+            <span class="tag">Compiler</span>
+            <span class="tag">v21</span>
+          </div>
+        </a>
+
+        <a class="feature-card" routerLink="/linked-editing">
+          <div class="card-icon le"><mat-icon>edit</mat-icon></div>
+          <h3>Linked Editing</h3>
+          <p>Mirror cursor for HTML tag pairs — rename opening tag and the closing tag updates automatically in inline templates</p>
+          <div class="card-footer">
+            <span class="tag accent">NEW</span>
+            <span class="tag">LSP</span>
+            <span class="tag">DX</span>
+          </div>
+        </a>
+
+        <a class="feature-card" routerLink="/document-symbols">
+          <div class="card-icon th"><mat-icon>account_tree</mat-icon></div>
+          <h3>Type Hierarchy</h3>
+          <p>Navigate supertypes and subtypes — heritage clauses, type alias intersections, class expressions. Hybrid FindAllReferences approach.</p>
+          <div class="card-footer">
+            <span class="tag accent">NEW</span>
+            <span class="tag">LSP</span>
+            <span class="tag">Navigation</span>
+          </div>
+        </a>
       </section>
 
       <section class="stats-row">
         <div class="stat-card">
-          <span class="stat-value">8</span>
+          <span class="stat-value">11</span>
           <span class="stat-label">Feature Demos</span>
         </div>
         <div class="stat-card">

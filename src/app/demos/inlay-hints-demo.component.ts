@@ -404,6 +404,60 @@ obj?.method?.(42)         <span class="hl-comment">// safe call</span>
         </div>
       </section>
 
+      <!-- TS vs ANGULAR INLAY HINTS COMPARISON -->
+      <section class="example-section">
+        <h3>TypeScript vs Angular Inlay Hints</h3>
+        <p class="desc">
+          Angular's inlay hints mirror TypeScript's configuration model but add template-specific hints
+          that have no TS equivalent:
+        </p>
+        <div class="hint-grid">
+          <div class="hint-example">
+            <div class="hint-label">TypeScript Options &rarr; Angular Equivalents</div>
+            <div class="code-block"><pre><span class="hl-comment">// TS: includeInlayVariableTypeHints</span>
+<span class="hl-event">Angular: variableTypes</span> <span class="hl-good">&#10003;</span>
+
+<span class="hl-comment">// TS: includeInlayFunctionParameterTypeHints</span>
+<span class="hl-event">Angular: eventParameterTypes</span> <span class="hl-good">&#10003;</span>
+
+<span class="hl-comment">// TS: includeInlayParameterNameHints</span>
+<span class="hl-event">Angular: parameterNameHints</span> <span class="hl-good">&#10003;</span>
+
+<span class="hl-comment">// TS: includeInlayFunctionLikeReturnTypeHints</span>
+<span class="hl-event">Angular: pipeReturnTypes</span> <span class="hl-good">&#10003;</span></pre></div>
+          </div>
+          <div class="hint-example">
+            <div class="hint-label">Angular-Only (No TS Equivalent)</div>
+            <div class="code-block"><pre><span class="hl-var">forLoopVariableTypes</span>       <span class="hl-hint">&#64;for loop vars</span>
+<span class="hl-var">letDeclarationTypes</span>        <span class="hl-hint">&#64;let decls</span>
+<span class="hl-var">templateReferenceTypes</span>     <span class="hl-hint">#ref types</span>
+<span class="hl-var">twoWayBindingSignalTypes</span>   <span class="hl-hint">[(model)]</span>
+<span class="hl-var">structuralDirectiveVars</span>    <span class="hl-hint">*ngFor/*ngIf</span>
+<span class="hl-var">requiredInputIndicator</span>     <span class="hl-hint">! marker</span>
+<span class="hl-var">propertyBindingTypes</span>       <span class="hl-hint">[prop] types</span></pre></div>
+          </div>
+        </div>
+
+        <h4 style="margin-top: 16px;">Fine-Grained Event Parameter Config</h4>
+        <div class="code-block wide"><pre><span class="hl-comment">// Show only component event hints, hide native HTML event hints</span>
+{{'{'}}
+  eventParameterTypes: {{'{'}}
+    nativeEvents: false,      <span class="hl-dim">// Hide: (click): PointerEvent</span>
+    componentEvents: true,    <span class="hl-dim">// Show: (customEvent): string</span>
+    animationEvents: true,    <span class="hl-dim">// Show: (&#64;fade.done): AnimationEvent</span>
+  {{'}'}}
+{{'}'}}</pre></div>
+
+        <h4>Fine-Grained Property Binding Config</h4>
+        <div class="code-block wide"><pre><span class="hl-comment">// Show only component input hints, hide native property hints</span>
+{{'{'}}
+  propertyBindingTypes: {{'{'}}
+    nativeProperties: false,   <span class="hl-dim">// Hide: [disabled]: boolean</span>
+    componentInputs: true,     <span class="hl-dim">// Show: [user]: User</span>
+  {{'}'}}
+{{'}'}}</pre></div>
+      </section>
+
       <!-- INLAY HINTS + OPTIONAL CHAINING -->
       <section class="example-section highlight-section">
         <h3>Inlay Hints + Optional Chaining</h3>

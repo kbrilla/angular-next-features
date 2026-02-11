@@ -10,5 +10,7 @@ export const routes: Routes = [
   {path: 'selection-range', loadComponent: () => import('./demos/selection-range-demo.component').then(m => m.SelectionRangeDemoComponent)},
   {path: 'document-symbols', loadComponent: () => import('./demos/document-symbols-demo.component').then(m => m.DocumentSymbolsDemoComponent)},
   {path: 'style-precedence', loadComponent: () => import('./demos/style-precedence-demo.component').then(m => m.StylePrecedenceDemoComponent)},
+  {path: 'host-element', loadComponent: () => import('./demos/host-element-demo.component').then(m => m.HostElementDemoComponent)},
+  {path: 'linked-editing', loadComponent: () => import('./demos/linked-editing-demo.component').then(m => m.LinkedEditingDemoComponent)},
   {path: '**', redirectTo: ''},
 ];
