@@ -455,6 +455,67 @@ export class NativeChainingComponent {
         </div>
       </div>
 
+      <!-- HOST BINDINGS GAP -->
+      <div class="host-bindings-section">
+        <h3>&#x26A0;&#xFE0F; Known Gap: Host Bindings Always Use Legacy Semantics</h3>
+        <p class="group-description">
+          Even with <code>strictOptionalChainingSemantics: true</code>, host binding expressions
+          (<code>&#64;Component.host</code>, <code>&#64;Directive.host</code>, <code>&#64;HostBinding</code>)
+          always use legacy semantics (returning <code>null</code>).
+        </p>
+
+        <div class="example-row">
+          <div class="before"><code>template: '{{ '{{ user?.name }}' }}'</code></div>
+          <div class="arrow">&rarr;</div>
+          <div class="after"><code>Returns <strong>undefined</strong> (native)</code></div>
+          <div class="reason">Template expressions respect the setting</div>
+        </div>
+        <div class="example-row">
+          <div class="before"><code>host: {{ '{' }}'[style.color]': 'theme?.primaryColor'{{ '}' }}</code></div>
+          <div class="arrow">&rarr;</div>
+          <div class="after"><code>Returns <strong>null</strong> (legacy!)</code></div>
+          <div class="reason">Host bindings always use HostBindingCompilationJob</div>
+        </div>
+        <div class="example-row">
+          <div class="before"><code>host: {{ '{' }}'[attr.title]': '"Hello " + user?.name'{{ '}' }}</code></div>
+          <div class="arrow">&rarr;</div>
+          <div class="after"><code>"Hello null" (not "Hello undefined")</code></div>
+          <div class="reason">String concatenation with null vs undefined differs</div>
+        </div>
+
+        <div class="note-box gap-note">
+          <p><strong>Root cause:</strong> <code>HostBindingCompilationJob</code> is NOT an instance of
+            <code>ComponentCompilationJob</code>, so <code>useJsSemantics</code> is always <code>false</code>
+            in <code>expand_safe_reads.ts</code>.</p>
+          <p><strong>Affected:</strong> Component host bindings, directive host bindings, hostDirective bindings,
+            &#64;HostBinding decorators.</p>
+          <p><strong>Migration schematic:</strong> Also misses host bindings — only visits <code>template</code>
+            and <code>templateUrl</code> properties.</p>
+        </div>
+      </div>
+
+      <!-- INLAY HINTS TIE-IN -->
+      <div class="inlay-hints-section">
+        <h3>&#x1F4A1; Inlay Hints Make the Difference Visible</h3>
+        <p class="group-description">
+          With <strong>inlay hints</strong> enabled, the <code>null</code> vs <code>undefined</code>
+          difference is immediately visible next to every <code>?.</code> usage in the editor —
+          without running the app.
+        </p>
+
+        <div class="example-row">
+          <div class="before"><code>{{ '{{ user?.name }}' }}<span class="native-hint">: string | undefined</span></code></div>
+          <div class="arrow">vs</div>
+          <div class="after"><code>{{ '{{ user?.name }}' }}<span class="legacy-hint">: string | null</span></code></div>
+          <div class="reason">Inlay hint reveals semantics at a glance</div>
+        </div>
+
+        <div class="note-box">
+          See the <strong>Inlay Hints</strong> demo for the complete reference of all 118 test scenarios
+          and 25 configuration options.
+        </div>
+      </div>
+
       <!-- Community Issues Section -->
       <div class="issues-section">
         <h3>Community Issues Addressed</h3>
@@ -632,6 +693,22 @@ export class NativeChainingComponent {
       padding: 8px 12px; border-radius: 6px; font-size: 13px;
       color: var(--adev-success); margin-bottom: 0;
     }
+    .host-bindings-section {
+      background: rgba(251, 191, 36, 0.06); border: 1px solid rgba(251, 191, 36, 0.2);
+      padding: 20px; border-radius: 8px; margin: 20px 0;
+    }
+    .host-bindings-section h3 { color: var(--adev-warning); }
+    .gap-note { margin-top: 12px; }
+    .gap-note p { margin: 4px 0; font-size: 13px; }
+    .note-box { background: var(--adev-surface); border: 1px solid var(--adev-border); border-left: 3px solid var(--adev-info);
+      border-radius: 8px; padding: 14px 16px; font-size: 14px; color: var(--adev-text-secondary); line-height: 1.6; }
+    .inlay-hints-section {
+      background: rgba(240, 160, 200, 0.06); border: 1px solid rgba(240, 160, 200, 0.2);
+      padding: 20px; border-radius: 8px; margin: 20px 0;
+    }
+    .inlay-hints-section h3 { color: var(--adev-primary); }
+    .native-hint { color: #22c55e; font-style: italic; opacity: 0.7; }
+    .legacy-hint { color: #fb923c; font-style: italic; opacity: 0.7; }
     @media (max-width: 768px) {
       .side-by-side { grid-template-columns: 1fr; }
       .example-row { grid-template-columns: 1fr; gap: 4px; }

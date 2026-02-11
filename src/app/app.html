@@ -21,17 +21,18 @@
   <nav class="sidebar" [class.collapsed]="!sidenavOpened()">
     <div class="nav-section-label">Demos</div>
     @for (item of navItems; track item.id) {
-      <button
+      <a
         class="nav-item"
-        [class.active]="isActive(item.path)"
-        (click)="navigate(item.path)"
+        [routerLink]="item.path"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact: item.path === '/'}"
       >
         <mat-icon class="nav-icon">{{ item.icon }}</mat-icon>
         <span class="nav-label">{{ item.label }}</span>
         @if (item.badge) {
           <span class="nav-badge">{{ item.badge }}</span>
         }
-      </button>
+      </a>
     }
   </nav>
 
