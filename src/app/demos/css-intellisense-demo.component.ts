@@ -18,6 +18,39 @@ import {Component} from '@angular/core';
         of directives, &#64;HostBinding decorators, and template bindings.
       </p>
 
+      <!-- Placement Warning Banner -->
+      <div class="placement-banner">
+        <div class="placement-banner-header">
+          <span class="placement-icon">&#9888;&#65039;</span>
+          <strong>Diagnostic Placement: Work In Progress</strong>
+        </div>
+        <p>
+          Some diagnostics currently in the <strong>Language Service</strong> could or should be moved to:
+        </p>
+        <div class="placement-options">
+          <div class="placement-opt compiler-opt">
+            <strong>Compiler (ngtsc)</strong>
+            <span>Build-time errors &mdash; shown by both compiler CLI and LSP. Best for correctness checks that should always fail the build.</span>
+          </div>
+          <div class="placement-opt eslint-opt">
+            <strong>ESLint Angular Plugin (&#64;angular-eslint)</strong>
+            <span>Configurable rules &mdash; best for style preferences, migration hints, and best practices that teams may want to enable/disable.</span>
+          </div>
+          <div class="placement-opt type-opt">
+            <strong>Type System (Typed Style Bindings)</strong>
+            <span>If Angular adds proper type support for <code>[style.*]</code> bindings (also in progress in this PR), some unit/value checks become redundant as TypeScript would catch them.</span>
+          </div>
+          <div class="placement-opt lsp-opt">
+            <strong>Language Service Only</strong>
+            <span>Features requiring full project context (cross-file, cross-directive) that can't run at build time cost-effectively.</span>
+          </div>
+        </div>
+        <p class="placement-note">
+          Note: Compiler diagnostics are <strong>also</strong> picked up and shown by the Language Service.
+          Moving a check to the compiler means it shows up in both the editor AND <code>ng build</code> output.
+        </p>
+      </div>
+
       <!-- Stats -->
       <div class="stats-row">
         <div class="stat">
@@ -40,32 +73,58 @@ import {Component} from '@angular/core';
 
       <!-- Diagnostic Code Table -->
       <div class="example-section">
-        <h3><span class="feat-badge">NEW</span> All CSS Diagnostic Codes</h3>
-        <p class="desc">Every diagnostic code from <code>CssDiagnosticCode</code> enum in <code>css_diagnostics.ts</code>:</p>
-        <div class="diag-table">
+        <h3><span class="feat-badge">NEW</span> All CSS Diagnostic Codes &amp; Recommended Placement</h3>
+        <p class="desc">Every diagnostic code from <code>CssDiagnosticCode</code> enum. The <strong>Placement</strong> column shows where each diagnostic could best live:</p>
+        <div class="diag-table wide">
           <div class="diag-header">
-            <span>Code</span><span>Constant</span><span>Description</span>
+            <span>Code</span><span>Constant</span><span>Description</span><span>Placement</span>
           </div>
-          <div class="diag-row err"><span>99001</span><span>UNKNOWN_CSS_PROPERTY</span><span>Unknown CSS property in [style.prop]</span></div>
-          <div class="diag-row err"><span>99002</span><span>INVALID_CSS_UNIT</span><span>Invalid CSS unit suffix in [style.prop.unit]</span></div>
-          <div class="diag-row err"><span>99003</span><span>UNKNOWN_CSS_PROPERTY_IN_OBJECT</span><span>Unknown CSS property in [style]="&#123;prop: val&#125;"</span></div>
-          <div class="diag-row err"><span>99004</span><span>DUPLICATE_CSS_PROPERTY</span><span>Duplicate CSS property in style object literal</span></div>
-          <div class="diag-row warn"><span>99005</span><span>CONFLICTING_STYLE_BINDING</span><span>Same CSS property set via multiple binding types</span></div>
-          <div class="diag-row err"><span>99006</span><span>UNKNOWN_CSS_PROPERTY_IN_HOST</span><span>Unknown CSS property in host: &#123;'[style.prop]': ...&#125;</span></div>
-          <div class="diag-row err"><span>99007</span><span>INVALID_CSS_UNIT_IN_HOST</span><span>Invalid CSS unit in host binding</span></div>
-          <div class="diag-row warn"><span>99008</span><span>OBSOLETE_CSS_PROPERTY</span><span>Obsolete/deprecated CSS property in [style.prop]</span></div>
-          <div class="diag-row warn"><span>99009</span><span>OBSOLETE_CSS_PROPERTY_IN_HOST</span><span>Obsolete CSS property in host binding</span></div>
-          <div class="diag-row warn"><span>99010</span><span>OBSOLETE_CSS_PROPERTY_IN_OBJECT</span><span>Obsolete CSS property in style object</span></div>
-          <div class="diag-row err"><span>99011</span><span>INVALID_UNIT_VALUE</span><span>[style.prop.unit] expects numeric, got string/boolean</span></div>
-          <div class="diag-row err"><span>99012</span><span>INVALID_UNIT_VALUE_IN_HOST</span><span>Invalid unit value in host binding</span></div>
-          <div class="diag-row warn"><span>99014</span><span>SHORTHAND_OVERRIDE</span><span>CSS shorthand overrides longhand set elsewhere</span></div>
-          <div class="diag-row hint"><span>99015</span><span>PREFER_NUMERIC_UNIT_VALUE</span><span>Use number instead of string for unit suffix</span></div>
-          <div class="diag-row hint"><span>99017</span><span>PREFER_CLASS_OVER_NGCLASS</span><span>Migrate [ngClass] to [class]</span></div>
-          <div class="diag-row hint"><span>99018</span><span>PREFER_INDIVIDUAL_STYLE_BINDINGS</span><span>Convert [style]="&#123;...&#125;" to individual [style.x]</span></div>
-          <div class="diag-row hint"><span>99019</span><span>PREFER_STYLE_OBJECT_BINDING</span><span>Consolidate multiple [style.x] into [style]="&#123;...&#125;"</span></div>
-          <div class="diag-row err"><span>99020</span><span>DUPLICATE_STYLE_BINDING</span><span>Duplicate CSS property across individual bindings</span></div>
-          <div class="diag-row warn"><span>99411</span><span>CLASS_BINDING_SHADOWS_INPUT</span><span>[class] binding shadows &#64;Input('class')</span></div>
-          <div class="diag-row warn"><span>99412</span><span>STYLE_BINDING_SHADOWS_INPUT</span><span>[style] binding shadows &#64;Input('style')</span></div>
+          <div class="diag-row err"><span>99001</span><span>UNKNOWN_CSS_PROPERTY</span><span>Unknown CSS property in [style.prop]</span><span class="place-tag compiler-tag">Compiler</span></div>
+          <div class="diag-row err"><span>99002</span><span>INVALID_CSS_UNIT</span><span>Invalid CSS unit suffix in [style.prop.unit]</span><span class="place-tag compiler-tag">Compiler</span></div>
+          <div class="diag-row err"><span>99003</span><span>UNKNOWN_CSS_PROPERTY_IN_OBJECT</span><span>Unknown CSS property in [style]="&#123;prop: val&#125;"</span><span class="place-tag compiler-tag">Compiler</span></div>
+          <div class="diag-row err"><span>99004</span><span>DUPLICATE_CSS_PROPERTY</span><span>Duplicate CSS property in style object literal</span><span class="place-tag compiler-tag">Compiler</span></div>
+          <div class="diag-row warn"><span>99005</span><span>CONFLICTING_STYLE_BINDING</span><span>Same CSS property set via multiple binding types</span><span class="place-tag lsp-tag">LSP only</span></div>
+          <div class="diag-row err"><span>99006</span><span>UNKNOWN_CSS_PROPERTY_IN_HOST</span><span>Unknown CSS property in host: &#123;'[style.prop]': ...&#125;</span><span class="place-tag compiler-tag">Compiler</span></div>
+          <div class="diag-row err"><span>99007</span><span>INVALID_CSS_UNIT_IN_HOST</span><span>Invalid CSS unit in host binding</span><span class="place-tag compiler-tag">Compiler</span></div>
+          <div class="diag-row warn"><span>99008</span><span>OBSOLETE_CSS_PROPERTY</span><span>Obsolete/deprecated CSS property in [style.prop]</span><span class="place-tag eslint-tag">ESLint</span></div>
+          <div class="diag-row warn"><span>99009</span><span>OBSOLETE_CSS_PROPERTY_IN_HOST</span><span>Obsolete CSS property in host binding</span><span class="place-tag eslint-tag">ESLint</span></div>
+          <div class="diag-row warn"><span>99010</span><span>OBSOLETE_CSS_PROPERTY_IN_OBJECT</span><span>Obsolete CSS property in style object</span><span class="place-tag eslint-tag">ESLint</span></div>
+          <div class="diag-row err"><span>99011</span><span>INVALID_UNIT_VALUE</span><span>[style.prop.unit] expects numeric, got string/boolean</span><span class="place-tag type-tag">Types / Compiler</span></div>
+          <div class="diag-row err"><span>99012</span><span>INVALID_UNIT_VALUE_IN_HOST</span><span>Invalid unit value in host binding</span><span class="place-tag type-tag">Types / Compiler</span></div>
+          <div class="diag-row warn"><span>99014</span><span>SHORTHAND_OVERRIDE</span><span>CSS shorthand overrides longhand set elsewhere</span><span class="place-tag lsp-tag">LSP only</span></div>
+          <div class="diag-row hint"><span>99015</span><span>PREFER_NUMERIC_UNIT_VALUE</span><span>Use number instead of string for unit suffix</span><span class="place-tag eslint-tag">ESLint</span></div>
+          <div class="diag-row hint"><span>99017</span><span>PREFER_CLASS_OVER_NGCLASS</span><span>Migrate [ngClass] to [class]</span><span class="place-tag eslint-tag">ESLint</span></div>
+          <div class="diag-row hint"><span>99018</span><span>PREFER_INDIVIDUAL_STYLE_BINDINGS</span><span>Convert [style]="&#123;...&#125;" to individual [style.x]</span><span class="place-tag eslint-tag">ESLint</span></div>
+          <div class="diag-row hint"><span>99019</span><span>PREFER_STYLE_OBJECT_BINDING</span><span>Consolidate multiple [style.x] into [style]="&#123;...&#125;"</span><span class="place-tag eslint-tag">ESLint</span></div>
+          <div class="diag-row err"><span>99020</span><span>DUPLICATE_STYLE_BINDING</span><span>Duplicate CSS property across individual bindings</span><span class="place-tag lsp-tag">LSP only</span></div>
+          <div class="diag-row warn"><span>99411</span><span>CLASS_BINDING_SHADOWS_INPUT</span><span>[class] binding shadows &#64;Input('class')</span><span class="place-tag lsp-tag">LSP only</span></div>
+          <div class="diag-row warn"><span>99412</span><span>STYLE_BINDING_SHADOWS_INPUT</span><span>[style] binding shadows &#64;Input('style')</span><span class="place-tag lsp-tag">LSP only</span></div>
+        </div>
+
+        <h4 style="margin-top: 16px;">ARIA Diagnostic Codes</h4>
+        <div class="diag-table wide">
+          <div class="diag-header">
+            <span>Code</span><span>Constant</span><span>Description</span><span>Placement</span>
+          </div>
+          <div class="diag-row err"><span>99201</span><span>UNKNOWN_ARIA_ATTRIBUTE</span><span>ARIA attribute not in WAI-ARIA spec</span><span class="place-tag compiler-tag">Compiler</span></div>
+          <div class="diag-row err"><span>99202</span><span>INVALID_ARIA_VALUE</span><span>Value doesn't match ARIA attribute type</span><span class="place-tag compiler-tag">Compiler</span></div>
+          <div class="diag-row err"><span>99203</span><span>UNKNOWN_ARIA_ROLE</span><span>Role not in WAI-ARIA spec</span><span class="place-tag compiler-tag">Compiler</span></div>
+          <div class="diag-row warn"><span>99204</span><span>DEPRECATED_ARIA_ATTRIBUTE</span><span>Deprecated ARIA attr (aria-grabbed, aria-dropeffect)</span><span class="place-tag eslint-tag">ESLint</span></div>
+          <div class="diag-row err"><span>99205</span><span>INVALID_ARIA_ROLE_VALUE</span><span>Invalid value for role attribute</span><span class="place-tag compiler-tag">Compiler</span></div>
+        </div>
+
+        <h4 style="margin-top: 16px;">Event Diagnostic Codes</h4>
+        <div class="diag-table wide">
+          <div class="diag-header">
+            <span>Code</span><span>Constant</span><span>Description</span><span>Placement</span>
+          </div>
+          <div class="diag-row warn"><span>99101</span><span>UNKNOWN_DOM_EVENT</span><span>Event name not a known DOM event or directive output</span><span class="place-tag compiler-tag">Compiler</span></div>
+          <div class="diag-row warn"><span>99102</span><span>SHADOWED_DOM_EVENT</span><span>Directive output shadows a DOM event of same name</span><span class="place-tag lsp-tag">LSP only</span></div>
+          <div class="diag-row warn"><span>99103</span><span>CONFLICTING_OUTPUTS</span><span>Multiple directives have outputs with same name</span><span class="place-tag lsp-tag">LSP only</span></div>
+          <div class="diag-row warn"><span>99104</span><span>OUTPUT_SHADOWS_DOM_EVENT</span><span>&#64;Output/output() shadows a native DOM event</span><span class="place-tag eslint-tag">ESLint</span></div>
+          <div class="diag-row warn"><span>99105</span><span>CONFLICTING_INPUTS</span><span>Multiple directives have inputs with same name</span><span class="place-tag lsp-tag">LSP only</span></div>
+          <div class="diag-row warn"><span>99106</span><span>HOST_DIRECTIVE_OUTPUT_SHADOWED</span><span>Host directive output shadowed by host directive</span><span class="place-tag lsp-tag">LSP only</span></div>
+          <div class="diag-row warn"><span>99107</span><span>HOST_DIRECTIVE_INPUT_SHADOWED</span><span>Host directive input shadowed by host directive</span><span class="place-tag lsp-tag">LSP only</span></div>
         </div>
       </div>
 
@@ -578,6 +637,30 @@ export class AppComponent &#123;
     .badge { display: inline-block; padding: 3px 10px; border-radius: 6px; font-size: 11px; font-weight: 600; font-family: 'JetBrains Mono', monospace; }
     .css-badge { background: rgba(168, 85, 247, 0.12); color: #a855f7; border: 1px solid rgba(168, 85, 247, 0.25); }
     .css-badge-alt { background: rgba(34, 211, 238, 0.12); color: #22d3ee; border: 1px solid rgba(34, 211, 238, 0.25); }
+
+    /* Placement Banner */
+    .placement-banner { background: linear-gradient(135deg, rgba(251, 146, 60, 0.08) 0%, rgba(251, 191, 36, 0.08) 100%); border: 1px solid rgba(251, 146, 60, 0.3); border-radius: 10px; padding: 16px 20px; margin-bottom: 20px; }
+    .placement-banner-header { display: flex; align-items: center; gap: 8px; font-size: 15px; margin-bottom: 8px; }
+    .placement-icon { font-size: 18px; }
+    .placement-banner p { font-size: 13px; color: var(--adev-text-secondary); margin: 4px 0; }
+    .placement-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin: 10px 0; }
+    .placement-opt { padding: 10px 12px; border-radius: 8px; font-size: 12px; }
+    .placement-opt strong { display: block; margin-bottom: 4px; font-size: 13px; }
+    .placement-opt span { color: var(--adev-text-secondary); line-height: 1.5; }
+    .compiler-opt { background: rgba(239, 68, 68, 0.06); border-left: 3px solid #ef4444; }
+    .eslint-opt { background: rgba(168, 85, 247, 0.06); border-left: 3px solid #a855f7; }
+    .type-opt { background: rgba(59, 130, 246, 0.06); border-left: 3px solid #3b82f6; }
+    .lsp-opt { background: rgba(34, 197, 94, 0.06); border-left: 3px solid #22c55e; }
+    .placement-note { font-style: italic; font-size: 12px; margin-top: 8px; }
+
+    /* Placement Tags in Table */
+    .diag-table.wide .diag-header { grid-template-columns: 60px 1fr 2fr 100px; }
+    .diag-table.wide .diag-row { grid-template-columns: 60px 1fr 2fr 100px; }
+    .place-tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; }
+    .compiler-tag { background: rgba(239, 68, 68, 0.12); color: #ef4444; }
+    .eslint-tag { background: rgba(168, 85, 247, 0.12); color: #a855f7; }
+    .type-tag { background: rgba(59, 130, 246, 0.12); color: #3b82f6; }
+    .lsp-tag { background: rgba(34, 197, 94, 0.12); color: #22c55e; }
     .feat-badge { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 0.5px; background: linear-gradient(135deg, var(--adev-gradient-start), var(--adev-gradient-end)); color: #0f0f11; padding: 2px 6px; border-radius: 4px; vertical-align: middle; margin-right: 4px; }
     code { background: var(--adev-code-bg); border: 1px solid var(--adev-code-border); padding: 2px 6px; border-radius: 4px; font-size: 12px; color: var(--adev-primary); font-family: 'JetBrains Mono', monospace; }
     .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
