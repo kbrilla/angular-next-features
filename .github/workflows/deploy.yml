@@ -23,23 +23,25 @@ jobs:
           # use pnpm v10 (current stable major series)
           version: '10'
 
-      - name: Cache pnpm store
+      - name: Cache pnpm store (demo)
         uses: actions/cache@v4
         with:
           path: ~/.pnpm-store
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('new_angular_features_demo/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-
 
-      - name: Install dependencies
-        run: pnpm install
+      - name: Install demo dependencies
+        working-directory: new_angular_features_demo
+        run: pnpm install --frozen-lockfile
 
-      - name: Build production
+      - name: Build demo production bundle
+        working-directory: new_angular_features_demo
         run: pnpm run build:prod
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist/new_angular_features_demo/browser
+          publish_dir: ./new_angular_features_demo/dist/new_angular_features_demo/browser
           publish_branch: gh-pages
