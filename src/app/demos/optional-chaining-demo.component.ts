@@ -99,45 +99,49 @@ interface User {
     </div>
   `,
   styles: [`
-    .demo-container { padding: 20px; }
+    .demo-container { max-width: 900px; margin: 0 auto; padding: 32px 32px 64px; }
     .badge {
-      display: inline-block; padding: 4px 12px; border-radius: 12px;
-      font-size: 13px; font-weight: 600; font-family: monospace;
+      display: inline-block; padding: 3px 10px; border-radius: 6px;
+      font-size: 11px; font-weight: 600; font-family: 'JetBrains Mono', monospace;
     }
-    .legacy { background: #fef3c7; color: #92400e; border: 1px solid #f59e0b; }
-    .description { color: #475569; line-height: 1.6; }
-    code { background: #f1f5f9; padding: 2px 6px; border-radius: 3px; font-size: 13px; }
+    .legacy {
+      background: rgba(251, 191, 36, 0.12); color: #fbbf24;
+      border: 1px solid rgba(251, 191, 36, 0.25);
+    }
+    .description { color: var(--adev-text-secondary); line-height: 1.6; }
+    code {
+      background: var(--adev-code-bg); border: 1px solid var(--adev-code-border);
+      padding: 2px 6px; border-radius: 4px; font-size: 13px; color: var(--adev-primary);
+    }
     .example-section {
-      background: #fffbeb; border-left: 4px solid #f59e0b;
-      padding: 16px; margin: 16px 0; border-radius: 4px;
+      background: var(--adev-surface); border: 1px solid var(--adev-border);
+      border-left: 3px solid var(--adev-warning);
+      padding: 20px; margin: 20px 0; border-radius: 8px;
     }
-    .example-section.pitfall {
-      background: #fef2f2; border-left-color: #ef4444;
-    }
-    h3 { color: #92400e; margin-top: 0; font-size: 16px; }
+    .example-section.pitfall { border-left-color: var(--adev-error); }
+    h3 { color: var(--adev-text); margin-top: 0; font-size: 16px; font-weight: 600; }
     .code-row {
       display: flex; align-items: center; gap: 12px;
-      background: white; padding: 10px; border-radius: 4px;
+      background: var(--adev-surface-2); padding: 10px 12px; border-radius: 6px;
       margin: 8px 0; font-size: 14px;
     }
-    .arrow { color: #9ca3af; font-size: 18px; }
-    .result { font-weight: 600; color: #92400e; }
+    .arrow { color: var(--adev-text-tertiary); font-size: 18px; }
+    .result { font-weight: 600; color: var(--adev-warning); }
     .note {
-      background: #eff6ff; border-left: 3px solid #3b82f6;
-      padding: 10px; border-radius: 4px; font-size: 13px; color: #1e40af;
+      background: rgba(96, 165, 250, 0.08); border-left: 3px solid var(--adev-info);
+      padding: 10px 14px; border-radius: 6px; font-size: 13px; color: var(--adev-text-secondary);
     }
     .warning {
-      background: #fef2f2; border-left: 3px solid #ef4444;
-      padding: 10px; border-radius: 4px; font-size: 13px; color: #991b1b;
+      background: rgba(248, 113, 113, 0.08); border-left: 3px solid var(--adev-error);
+      padding: 10px 14px; border-radius: 6px; font-size: 13px; color: var(--adev-text-secondary);
     }
     .controls { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
     button {
-      background: #f59e0b; color: white; border: none;
-      padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 13px;
+      background: var(--adev-accent); color: white; border: none;
+      padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px;
     }
-    button:hover { background: #d97706; }
-    .null-btn { background: #dc2626; }
-    .null-btn:hover { background: #b91c1c; }
+    button:hover { opacity: 0.85; }
+    .null-btn { background: var(--adev-error); }
   `],
 })
 export class OptionalChainingLegacyDemoComponent {

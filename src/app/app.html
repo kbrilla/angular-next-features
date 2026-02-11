@@ -1,123 +1,165 @@
-<mat-toolbar class="app-toolbar">
-  <button mat-icon-button (click)="sidenavOpened.set(!sidenavOpened())">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <img src="https://angular.dev/assets/images/press-kit/angular_icon_gradient.gif" alt="Angular" class="toolbar-logo" />
-  <span class="toolbar-title">Angular New Features Demo</span>
-  <span class="toolbar-spacer"></span>
-  <a mat-button href="https://github.com/kbrilla/nativeoptional_chaning_and_template_features_upgrade" target="_blank" class="toolbar-link">
-    <mat-icon>open_in_new</mat-icon>
-    GitHub
-  </a>
-</mat-toolbar>
-
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav [opened]="sidenavOpened()" mode="side" class="sidenav">
-    <div class="sidenav-header">
-      <span class="sidenav-brand">Feature Demos</span>
-      <span class="sidenav-version">Angular 21.2.0-next</span>
+<header class="app-header">
+  <div class="header-left">
+    <button mat-icon-button (click)="sidenavOpened.set(!sidenavOpened())" class="menu-btn">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <div class="brand">
+      <img
+        src="https://angular.dev/assets/images/press-kit/angular_icon_gradient.gif"
+        alt="Angular"
+        class="brand-logo"
+      />
+      <span class="brand-text">Angular Template Upgrades</span>
     </div>
-    <mat-nav-list>
-      @for (item of navItems; track item.id) {
-        <a mat-list-item
-           [class.active-link]="activeSection() === item.id"
-           (click)="navigate(item.id)">
-          <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
-          <span matListItemTitle>{{ item.label }}</span>
-        </a>
-      }
-    </mat-nav-list>
-    <div class="sidenav-footer">
+  </div>
+  <div class="header-right">
+    <span class="version-badge">v21.2.0-next</span>
+    <a
+      mat-button
+      href="https://github.com/kbrilla/angular"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="gh-link"
+    >
+      <mat-icon>open_in_new</mat-icon>
+      GitHub
+    </a>
+  </div>
+</header>
+
+<div class="app-body">
+  <nav class="sidebar" [class.collapsed]="!sidenavOpened()">
+    <div class="nav-section-label">Demos</div>
+    @for (item of navItems; track item.id) {
+      <button
+        class="nav-item"
+        [class.active]="activeSection() === item.id"
+        (click)="navigate(item.id)"
+      >
+        <mat-icon class="nav-icon">{{ item.icon }}</mat-icon>
+        <span class="nav-label">{{ item.label }}</span>
+        @if (item.badge) {
+          <span class="nav-badge">{{ item.badge }}</span>
+        }
+      </button>
+    }
+
+    <div class="sidebar-footer">
       <div class="branch-info">
-        <mat-icon class="branch-icon">merge</mat-icon>
-        <div>
-          <div class="branch-label">Combined Branch</div>
-          <div class="branch-names">
-            <span class="branch-tag">main (inlay hints)</span>
-            <span class="branch-tag">optional-chaining</span>
-            <span class="branch-tag">ts-features</span>
-          </div>
+        <mat-icon class="branch-icon">merge_type</mat-icon>
+        <div class="branch-tags">
+          <span class="branch-tag">main + inlay-hints</span>
+          <span class="branch-tag">optional-chaining</span>
+          <span class="branch-tag">ts-features</span>
         </div>
       </div>
     </div>
-  </mat-sidenav>
+  </nav>
 
-  <mat-sidenav-content class="main-content">
+  <main class="content">
     @switch (activeSection()) {
       @case ('overview') {
         <div class="overview-page">
-          <div class="hero-section">
-            <h1>Angular Template Upgrades</h1>
+          <section class="hero">
+            <h1 class="hero-title">Angular Template Upgrades</h1>
             <p class="hero-subtitle">
-              Two proposed features that modernize Angular's template expression system
+              Proposed features that modernize Angular's template expression system and developer
+              experience
             </p>
-          </div>
+          </section>
 
-          <div class="feature-cards">
-            <div class="feature-card pr1" (click)="navigate('optional-chaining')">
-              <div class="card-icon">
-                <mat-icon>link</mat-icon>
-              </div>
-              <h3>Native Optional Chaining</h3>
-              <p>Align <code>?.</code> with ECMAScript spec — return <code>undefined</code> instead of <code>null</code></p>
-              <div class="card-tags">
-                <span class="card-tag">PR 1</span>
-                <span class="card-tag">Runtime</span>
-                <span class="card-tag">Migration</span>
-              </div>
-            </div>
-
-            <div class="feature-card pr2" (click)="navigate('ts-features')">
-              <div class="card-icon">
+          <section class="feature-grid">
+            <button class="feature-card" (click)="navigate('ts-features')">
+              <div class="card-icon ts">
                 <mat-icon>code</mat-icon>
               </div>
               <h3>TypeScript Template Features</h3>
-              <p>BigInt, hex literals, computed properties, arrow rest params, block comments</p>
-              <div class="card-tags">
-                <span class="card-tag">PR 2</span>
-                <span class="card-tag">Parser</span>
-                <span class="card-tag">Syntax</span>
+              <p>
+                Destructuring, BigInt, hex/octal/binary literals, computed properties, arrow rest
+                params, block comments
+              </p>
+              <div class="card-footer">
+                <span class="tag">Parser</span>
+                <span class="tag">Syntax</span>
               </div>
-            </div>
+            </button>
 
-            <div class="feature-card mix" (click)="navigate('mix-match')">
-              <div class="card-icon">
+            <button class="feature-card" (click)="navigate('optional-chaining')">
+              <div class="card-icon oc">
+                <mat-icon>link</mat-icon>
+              </div>
+              <h3>Native Optional Chaining</h3>
+              <p>
+                Align <code>?.</code> with ECMAScript — return <code>undefined</code> instead of
+                <code>null</code>
+              </p>
+              <div class="card-footer">
+                <span class="tag">Runtime</span>
+                <span class="tag">Migration</span>
+              </div>
+            </button>
+
+            <button class="feature-card" (click)="navigate('mix-match')">
+              <div class="card-icon mix">
                 <mat-icon>compare_arrows</mat-icon>
               </div>
               <h3>Mix & Match</h3>
-              <p>Legacy and native components side by side with migration examples</p>
-              <div class="card-tags">
-                <span class="card-tag">Comparison</span>
-                <span class="card-tag">Migration</span>
+              <p>Legacy and native components side by side with migration path examples</p>
+              <div class="card-footer">
+                <span class="tag">Comparison</span>
+                <span class="tag">Migration</span>
               </div>
-            </div>
-          </div>
+            </button>
 
-          <div class="quick-stats">
-            <div class="stat">
-              <span class="stat-num">3</span>
-              <span class="stat-label">GitHub Issues Addressed</span>
+            <button class="feature-card" (click)="navigate('inlay-hints')">
+              <div class="card-icon ih">
+                <mat-icon>visibility</mat-icon>
+              </div>
+              <h3>Inlay Hints</h3>
+              <p>
+                Angular-specific inlay hints for templates — types for &#64;for, &#64;if, &#64;let,
+                events, pipes, and more
+              </p>
+              <div class="card-footer">
+                <span class="tag accent">NEW</span>
+                <span class="tag">LSP 3.17</span>
+                <span class="tag">DX</span>
+              </div>
+            </button>
+          </section>
+
+          <section class="stats-row">
+            <div class="stat-card">
+              <span class="stat-value">4</span>
+              <span class="stat-label">PRs Combined</span>
             </div>
-            <div class="stat">
-              <span class="stat-num">9</span>
+            <div class="stat-card">
+              <span class="stat-value">12+</span>
               <span class="stat-label">New Template Features</span>
             </div>
-            <div class="stat">
-              <span class="stat-num">16+</span>
-              <span class="stat-label">Migration Examples</span>
+            <div class="stat-card">
+              <span class="stat-value">20+</span>
+              <span class="stat-label">Inlay Hint Categories</span>
             </div>
-          </div>
+            <div class="stat-card">
+              <span class="stat-value">3</span>
+              <span class="stat-label">GitHub Issues Addressed</span>
+            </div>
+          </section>
         </div>
       }
+      @case ('ts-features') {
+        <app-ts-features-demo />
+      }
       @case ('optional-chaining') {
-        <app-optional-chaining-legacy-demo></app-optional-chaining-legacy-demo>
+        <app-optional-chaining-legacy-demo />
       }
       @case ('mix-match') {
-        <app-mixed-chaining-demo></app-mixed-chaining-demo>
+        <app-mixed-chaining-demo />
       }
-      @case ('ts-features') {
-        <app-ts-features-demo></app-ts-features-demo>
+      @case ('inlay-hints') {
+        <app-inlay-hints-demo />
       }
     }
-  </mat-sidenav-content>
-</mat-sidenav-container>
+  </main>
+</div>

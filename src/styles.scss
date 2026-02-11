@@ -1,15 +1,11 @@
 
-// Include theming for Angular Material with `mat.theme()`.
-// This Sass mixin will define CSS variables that are used for styling Angular Material
-// components according to the Material 3 design spec.
-// Learn more about theming and how to use it for your application's
-// custom components at https://material.angular.dev/guide/theming
 @use '@angular/material' as mat;
 
 html {
   height: 100%;
   @include mat.theme((
     color: (
+      theme-type: dark,
       primary: mat.$violet-palette,
       tertiary: mat.$blue-palette,
     ),
@@ -19,24 +15,72 @@ html {
 }
 
 body {
-  color-scheme: light;
-  background-color: var(--mat-sys-surface);
-  color: var(--mat-sys-on-surface);
-  font: var(--mat-sys-body-medium);
+  color-scheme: dark;
+  background-color: #0f0f11;
+  color: #e8e8ed;
+  font-family: 'Inter', 'Roboto', sans-serif;
   margin: 0;
   height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 :root {
-  --adev-primary: #7b1fa2;
-  --adev-accent: #3f51b5;
-  --adev-bg: #fafafa;
-  --adev-surface: #ffffff;
-  --adev-sidebar-bg: #f5f0ff;
-  --adev-sidebar-active: #ede7f6;
-  --adev-text: #1a1a2e;
-  --adev-text-secondary: #5f6368;
-  --adev-border: #e0e0e0;
-  --adev-code-bg: #1e1e2e;
-  --adev-code-text: #cdd6f4;
+  --adev-bg: #0f0f11;
+  --adev-surface: #1a1a1f;
+  --adev-surface-2: #222228;
+  --adev-surface-3: #2a2a32;
+  --adev-border: #333340;
+  --adev-border-subtle: #2a2a32;
+  --adev-text: #e8e8ed;
+  --adev-text-secondary: #9e9eab;
+  --adev-text-tertiary: #6e6e7a;
+  --adev-primary: #f0a0c8;
+  --adev-primary-hover: #f5b8d6;
+  --adev-accent: #a78bfa;
+  --adev-code-bg: #15151a;
+  --adev-code-text: #c4c4d0;
+  --adev-code-border: #2a2a32;
+  --adev-success: #4ade80;
+  --adev-warning: #fbbf24;
+  --adev-error: #f87171;
+  --adev-info: #60a5fa;
+  --adev-gradient-start: #f0a0c8;
+  --adev-gradient-end: #a78bfa;
 }
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--adev-border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--adev-text-tertiary); }
+
+/* Global code styling */
+code {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+  font-size: 0.85em;
+  background: var(--adev-code-bg);
+  border: 1px solid var(--adev-code-border);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--adev-primary);
+}
+
+pre {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+  background: var(--adev-code-bg);
+  border: 1px solid var(--adev-code-border);
+  border-radius: 8px;
+  padding: 16px;
+  overflow-x: auto;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--adev-code-text);
+}
+

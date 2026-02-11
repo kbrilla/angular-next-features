@@ -218,18 +218,18 @@ interface Product {
           Angular produces a diagnostic: <em>"Arrow function will not be invoked in this event listener."</em>
         </div>
 
-        <p class="note" style="background: #f0fdf4; border-left-color: #22c55e;">
+        <p class="note">
           <strong>Correct usage:</strong> Arrow functions work as <strong>callbacks</strong> to methods
           like <code>signal.update(prev =&gt; prev + 1)</code>, array methods, etc.
         </p>
 
-        <h4 style="color: #dc2626; margin-top: 16px;">❌ Anti-patterns (NO-OP — never invoked)</h4>
-        <pre class="syntax-block" style="border-left: 3px solid #dc2626;">&lt;button (click)="(event) =&gt; handleClick(event)"&gt;  ← Creates function, discards it
+        <h4 style="color: var(--adev-error); margin-top: 16px;">❌ Anti-patterns (NO-OP — never invoked)</h4>
+        <pre class="syntax-block" style="border-left: 3px solid var(--adev-error);">&lt;button (click)="(event) =&gt; handleClick(event)"&gt;  ← Creates function, discards it
 &lt;button (click)="() =&gt; doSomething()"&gt;             ← Same problem
 &lt;button (click)="(e) =&gt; e.preventDefault()"&gt;       ← Never runs</pre>
 
-        <h4 style="color: #16a34a; margin-top: 16px;">✅ Correct patterns (arrow as callback)</h4>
-        <pre class="syntax-block" style="border-left: 3px solid #16a34a;">&lt;button (click)="count.update(prev =&gt; prev + 1)"&gt;         ← Signal update
+        <h4 style="color: var(--adev-success); margin-top: 16px;">✅ Correct patterns (arrow as callback)</h4>
+        <pre class="syntax-block" style="border-left: 3px solid var(--adev-success);">&lt;button (click)="count.update(prev =&gt; prev + 1)"&gt;         ← Signal update
 &lt;button (click)="count.update(prev =&gt; $event.type + prev)"&gt; ← $event available!
 &lt;button (click)="items().filter(x =&gt; x.active)"&gt;           ← Array callback
 &lt;button (click)="list.reduce((...args) =&gt; args[0] + args[1])"&gt; ← Rest params</pre>
@@ -252,7 +252,7 @@ interface Product {
           </div>
         </div>
 
-        <div class="warning-box" style="background: #fefce8; border-left-color: #eab308; margin-top: 12px;">
+        <div class="warning-box" style="background: rgba(251, 191, 36, 0.08); border-left-color: var(--adev-warning); margin-top: 12px;">
           <strong>Destructuring not supported:</strong>
           <code>({{ '{' }}target{{ '}' }}) =&gt; handle(target)</code> won't parse.
           The expression parser only accepts identifiers, <code>...rest</code>, and commas in arrow params.
@@ -304,93 +304,100 @@ interface Product {
     </div>
   `,
   styles: [`
-    .demo-container { padding: 20px; }
+    .demo-container {
+      max-width: 900px; margin: 0 auto; padding: 32px 32px 64px;
+    }
+    h2 {
+      font-size: 28px; font-weight: 700; color: var(--adev-text); margin: 0 0 8px;
+    }
     .badge {
-      display: inline-block; padding: 4px 12px; border-radius: 12px;
-      font-size: 13px; font-weight: 600; font-family: monospace;
+      display: inline-block; padding: 3px 10px; border-radius: 6px;
+      font-size: 11px; font-weight: 600; font-family: 'JetBrains Mono', monospace;
     }
-    .ts-features { background: #dbeafe; color: #1e40af; border: 1px solid #3b82f6; }
-    code { background: #f1f5f9; padding: 2px 6px; border-radius: 3px; font-size: 13px; }
+    .ts-features {
+      background: rgba(96, 165, 250, 0.12); color: #60a5fa;
+      border: 1px solid rgba(96, 165, 250, 0.25);
+    }
+    code {
+      background: var(--adev-code-bg); border: 1px solid var(--adev-code-border);
+      padding: 2px 6px; border-radius: 4px; font-size: 13px; color: var(--adev-primary);
+    }
     .example-section {
-      background: #eff6ff; border-left: 4px solid #3b82f6;
-      padding: 16px; margin: 16px 0; border-radius: 4px;
+      background: var(--adev-surface); border: 1px solid var(--adev-border);
+      border-left: 3px solid var(--adev-info);
+      padding: 20px; margin: 20px 0; border-radius: 8px;
     }
-    h3 { color: #1e40af; margin-top: 0; font-size: 16px; }
+    h3 { color: var(--adev-text); margin-top: 0; font-size: 16px; font-weight: 600; }
     .syntax-block {
-      background: #1e293b; color: #e2e8f0; padding: 12px;
-      border-radius: 4px; font-family: monospace; font-size: 13px; line-height: 1.8;
+      background: var(--adev-code-bg); color: var(--adev-code-text);
+      border: 1px solid var(--adev-code-border);
+      padding: 12px; border-radius: 6px; font-family: 'JetBrains Mono', monospace;
+      font-size: 13px; line-height: 1.8;
     }
     .code-row {
       display: flex; align-items: center; gap: 12px;
-      background: white; padding: 10px; border-radius: 4px;
+      background: var(--adev-surface-2); padding: 10px 12px; border-radius: 6px;
       margin: 8px 0; font-size: 14px;
     }
-    .label { color: #64748b; font-weight: 500; min-width: 120px; }
-    .result { font-weight: 600; color: #1e40af; }
+    .label { color: var(--adev-text-secondary); font-weight: 500; min-width: 120px; }
+    .result { font-weight: 600; color: var(--adev-primary); }
     .note {
-      background: #f0fdf4; border-left: 3px solid #22c55e;
-      padding: 10px; border-radius: 4px; font-size: 13px; color: #166534;
+      background: rgba(74, 222, 128, 0.08); border-left: 3px solid var(--adev-success);
+      padding: 10px 14px; border-radius: 6px; font-size: 13px; color: var(--adev-text-secondary);
     }
-    .products-section { margin-top: 20px; }
+    .products-section { margin-top: 24px; }
     .products-note {
-      font-size: 13px; color: #475569; font-style: italic;
-      margin-bottom: 12px;
+      font-size: 13px; color: var(--adev-text-tertiary); font-style: italic; margin-bottom: 12px;
     }
     .product-card {
       display: flex; align-items: center; gap: 12px;
-      background: white; padding: 10px; border-radius: 4px;
-      margin: 6px 0; border: 1px solid #e2e8f0;
+      background: var(--adev-surface-2); padding: 10px 12px; border-radius: 6px;
+      margin: 6px 0; border: 1px solid var(--adev-border-subtle);
     }
-    .product-card.selected { border-color: #3b82f6; background: #eff6ff; }
-    .product-name { font-weight: 600; min-width: 100px; }
-    .product-price { color: #059669; min-width: 80px; }
-    .product-category { color: #64748b; font-size: 13px; flex: 1; }
+    .product-card.selected { border-color: var(--adev-primary); background: rgba(240, 160, 200, 0.06); }
+    .product-name { font-weight: 600; min-width: 100px; color: var(--adev-text); }
+    .product-price { color: var(--adev-success); min-width: 80px; }
+    .product-category { color: var(--adev-text-secondary); font-size: 13px; flex: 1; }
     .product-card button {
-      background: #3b82f6; color: white; border: none;
+      background: var(--adev-accent); color: white; border: none;
       padding: 4px 12px; border-radius: 4px; cursor: pointer; font-size: 12px;
     }
-    .product-card button:hover { background: #2563eb; }
+    .product-card button:hover { opacity: 0.85; }
     .add-btn {
-      background: #f1f5f9; color: #475569; border: 2px dashed #cbd5e1;
-      padding: 8px 16px; border-radius: 4px; cursor: pointer;
+      background: var(--adev-surface-2); color: var(--adev-text-secondary);
+      border: 2px dashed var(--adev-border);
+      padding: 8px 16px; border-radius: 6px; cursor: pointer;
       font-size: 13px; width: 100%; margin-top: 8px;
     }
-    .add-btn:hover { background: #e2e8f0; }
+    .add-btn:hover { background: var(--adev-surface-3); }
     .event-demo { margin: 12px 0; }
     .demo-btn {
-      background: #3b82f6; color: white; border: none;
-      padding: 8px 16px; border-radius: 4px; cursor: pointer;
+      background: var(--adev-accent); color: white; border: none;
+      padding: 8px 16px; border-radius: 6px; cursor: pointer;
       font-size: 13px; margin-right: 8px;
     }
-    .demo-btn:hover { background: #2563eb; }
-    .arrow-btn { background: #7c3aed; }
-    .arrow-btn:hover { background: #6d28d9; }
-    .usage-examples {
-      margin-top: 12px; padding: 12px;
-      background: white; border-radius: 4px;
-    }
-    .usage-examples p { margin-top: 0; font-size: 13px; }
+    .demo-btn:hover { opacity: 0.85; }
+    .arrow-btn { background: var(--adev-primary); color: #0f0f11; }
     .demo-input {
-      padding: 8px 12px; border: 2px solid #e2e8f0; border-radius: 4px;
+      padding: 8px 12px; border: 1px solid var(--adev-border); border-radius: 6px;
       font-size: 14px; width: 300px; margin-bottom: 8px;
+      background: var(--adev-surface-2); color: var(--adev-text);
     }
-    .demo-input:focus { border-color: #3b82f6; outline: none; }
+    .demo-input:focus { border-color: var(--adev-primary); outline: none; }
     .warning-box {
-      background: #fef2f2; border-left: 3px solid #dc2626;
-      padding: 12px 16px; border-radius: 4px; margin: 12px 0;
-      font-size: 13px; line-height: 1.6; color: #7f1d1d;
+      background: rgba(248, 113, 113, 0.08); border-left: 3px solid var(--adev-error);
+      padding: 12px 16px; border-radius: 6px; margin: 12px 0;
+      font-size: 13px; line-height: 1.6; color: var(--adev-text-secondary);
     }
-    .warning-box code { background: #fecaca; color: #991b1b; }
+    .warning-box code { background: rgba(248, 113, 113, 0.15); color: var(--adev-error); }
   `],
 })
 export class TsFeaturesDemoComponent {
   dynamicProp = signal('category');
+  serverConfig = signal({api: {baseUrl: 'https://api.example.com', timeout: 5000}});
   arrowClickCount = signal(0);
   lastEventType = signal('(none)');
   pipeInputValue = signal('');
-  serverConfig = signal({
-    api: { baseUrl: 'https://api.example.com', timeout: 5000 },
-  });
 
   products = signal<Product[]>([
     {id: 1, name: 'Laptop', price: 999, category: 'Electronics', tags: ['tech', 'work'], inventory: {stock: 5, warehouse: 'NYC'}},
