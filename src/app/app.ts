@@ -8,6 +8,8 @@ import {OptionalChainingLegacyDemoComponent} from './demos/optional-chaining-dem
 import {TsFeaturesDemoComponent} from './demos/ts-features-demo.component';
 import {MixedChainingDemoComponent} from './demos/mixed-chaining-demo.component';
 import {InlayHintsDemoComponent} from './demos/inlay-hints-demo.component';
+import {CssIntellisenseDemoComponent} from './demos/css-intellisense-demo.component';
+import {TemplateDebugDemoComponent} from './demos/template-debug-demo.component';
 
 interface NavItem {
   id: string;
@@ -28,6 +30,8 @@ interface NavItem {
     TsFeaturesDemoComponent,
     MixedChainingDemoComponent,
     InlayHintsDemoComponent,
+    CssIntellisenseDemoComponent,
+    TemplateDebugDemoComponent,
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss',
@@ -38,10 +42,12 @@ export class App {
 
   navItems: NavItem[] = [
     {id: 'overview', label: 'Overview', icon: 'home'},
-    {id: 'ts-features', label: 'TS Template Features', icon: 'code'},
-    {id: 'optional-chaining', label: 'Optional Chaining', icon: 'link'},
-    {id: 'mix-match', label: 'Mix & Match', icon: 'compare_arrows'},
+    {id: 'ts-features', label: 'TS Template Features', icon: 'code', badge: 'NEW'},
+    {id: 'optional-chaining', label: 'Optional Chaining', icon: 'link', badge: 'NEW'},
+    {id: 'mix-match', label: 'Mix & Match', icon: 'compare_arrows', badge: 'NEW'},
     {id: 'inlay-hints', label: 'Inlay Hints', icon: 'visibility', badge: 'NEW'},
+    {id: 'css-intellisense', label: 'CSS/ARIA IntelliSense', icon: 'palette', badge: 'NEW'},
+    {id: 'template-debug', label: 'Template Debug Overlay', icon: 'bug_report', badge: 'NEW'},
   ];
 
   navigate(sectionId: string) {

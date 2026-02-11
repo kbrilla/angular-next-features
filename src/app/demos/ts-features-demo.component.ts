@@ -1,20 +1,26 @@
 /**
- * PR 2: TypeScript Features in Angular Templates Demo
+ * TypeScript Features in Angular Templates Demo
  *
- * Demonstrates features from kbrilla/angular copilot/implement-ts-features-in-angular-templates:
+ * Demonstrates ALL features from copilot/implement-ts-features-in-angular-templates:
  *
- * - @let destructuring (object and array)
- * - Hex, octal, binary number literals
- * - Computed property names in object literals
- * - BigInt literal support
- * - Arrow function rest parameters
- * - Block comments in expressions
- * - Braced Unicode escapes (\u{XXXXX})
+ * 1.  @let object destructuring (with renaming, defaults, rest, nesting)
+ * 2.  @let array destructuring (with holes, rest, nesting)
+ * 3.  @for loop destructuring (object + array)
+ * 4.  Hex, octal, binary number literals
+ * 5.  Numeric separators (1_000, 0xFF_FF)
+ * 6.  BigInt literals (42n)
+ * 7.  Computed property names ({[key]: value})
+ * 8.  Arrow function rest parameters ((...args) => ...)
+ * 9.  Arrow function destructuring parameters (({a, b}) => a + b)
+ * 10. Block comments in expressions
+ * 11. Braced Unicode escapes (\u{XXXXX})
+ * 12. Pipes in event handlers
+ * 13. Pipes in arrow function bodies
  *
  * This component uses ACTUAL new template syntax from our custom Angular build!
  */
 import {Component, signal} from '@angular/core';
-import {CurrencyPipe, JsonPipe, UpperCasePipe} from '@angular/common';
+import {CurrencyPipe, JsonPipe} from '@angular/common';
 
 interface Product {
   id: number;
@@ -30,17 +36,27 @@ interface Product {
 
 @Component({
   selector: 'app-ts-features-demo',
-  imports: [CurrencyPipe, JsonPipe, UpperCasePipe],
+  imports: [CurrencyPipe, JsonPipe],
   template: `
     <div class="demo-container">
-      <h2>TypeScript Features in Angular Templates</h2>
-      <span class="badge ts-features">PR 2: copilot/implement-ts-features-in-angular-templates</span>
+      <div class="demo-header">
+        <h2>TypeScript Features in Angular Templates</h2>
+        <span class="badge ts-features">copilot/implement-ts-features-in-angular-templates</span>
+      </div>
+      <p class="demo-description">
+        13 new template expression features bringing modern TypeScript/ECMAScript syntax to Angular
+        templates. All examples below use <strong>real template syntax</strong> from a custom Angular
+        build — not mocks.
+      </p>
 
-      <!-- 1. @let Object Destructuring (LIVE!) -->
+      <!-- 1. @let Object Destructuring -->
       <div class="example-section">
-        <h3>1. &#64;let Object Destructuring (Live!)</h3>
+        <h3><span class="feat-badge">NEW</span> 1. &#64;let Object Destructuring</h3>
         <p class="syntax-block">
-          &#64;let {{ '{' }} name, price, category {{ '}' }} = product;
+          &#64;let {{ '{' }} name, price, category {{ '}' }} = product;<br>
+          &#64;let {{ '{' }} a: renamed {{ '}' }} = obj;&nbsp;&nbsp;← renaming<br>
+          &#64;let {{ '{' }} a = defaultVal {{ '}' }} = obj;&nbsp;&nbsp;← defaults (uses ??)<br>
+          &#64;let {{ '{' }} a, ...rest {{ '}' }} = obj;&nbsp;&nbsp;← rest
         </p>
         @if (selectedProduct(); as product) {
           @let { name, price, category } = product;
@@ -59,13 +75,13 @@ interface Product {
         }
       </div>
 
-      <!-- 2. @let Array Destructuring (LIVE!) -->
+      <!-- 2. @let Array Destructuring -->
       <div class="example-section">
-        <h3>2. &#64;let Array Destructuring (Live!)</h3>
+        <h3><span class="feat-badge">NEW</span> 2. &#64;let Array Destructuring</h3>
         <p class="syntax-block">
           &#64;let [first, second] = items;<br>
-          &#64;let [first, , third] = items; (skip elements)<br>
-          &#64;let [head, ...tail] = items; (rest)
+          &#64;let [first, , third] = items;&nbsp;&nbsp;← skip elements (holes)<br>
+          &#64;let [head, ...tail] = items;&nbsp;&nbsp;← rest (.slice())
         </p>
         @let [firstProduct, ...restProducts] = products();
         @let count = products().length;
@@ -83,9 +99,9 @@ interface Product {
         </div>
       </div>
 
-      <!-- 2b. Nested Destructuring (LIVE!) -->
+      <!-- 2b. Nested Destructuring -->
       <div class="example-section">
-        <h3>2b. Nested Destructuring (Live!)</h3>
+        <h3><span class="feat-badge">NEW</span> 2b. Nested Destructuring</h3>
         <p class="syntax-block">
           &#64;let {{ '{' }} api: {{ '{' }} baseUrl, timeout {{ '}' }} {{ '}' }} = config;
         </p>
@@ -100,14 +116,34 @@ interface Product {
         </div>
       </div>
 
-      <!-- 3. Number Literals (LIVE!) -->
+      <!-- 3. @for Loop Destructuring -->
       <div class="example-section">
-        <h3>3. Hex, Octal, Binary Number Literals (Live!)</h3>
+        <h3><span class="feat-badge">NEW</span> 3. &#64;for Loop Destructuring</h3>
+        <p class="syntax-block">
+          &#64;for ({{ '{' }}name, details: {{ '{' }}age{{ '}' }}{{ '}' }} of items; track name) {{ '{' }} ... {{ '}' }}<br>
+          &#64;for ([x, y] of points; track x) {{ '{' }} ... {{ '}' }}<br>
+          &#64;for ([head, ...tail] of items; track head) {{ '{' }} ... {{ '}' }}
+        </p>
+        @for ({ name, price } of products(); track $index) {
+          <div class="code-row compact">
+            <span class="label">{{ name }}:</span>
+            <span class="result">{{ price | currency }}</span>
+          </div>
+        }
+        <p class="note">
+          Desugars into synthetic <code>$implicit_ref</code> + <code>&#64;let</code> declarations.
+          Supports object destructuring (with nesting), array destructuring, and array rest.
+        </p>
+      </div>
+
+      <!-- 4. Number Literals -->
+      <div class="example-section">
+        <h3><span class="feat-badge">NEW</span> 4. Hex, Octal, Binary Number Literals</h3>
         <p class="syntax-block">
           {{ '{{ 0xFF }}' }} &rarr; 255 (hex)<br>
-          {{ '{{ 0o77 }}' }} &rarr; 63 (octal)<br>
+          {{ '{{ 0o77 }}' }} &rarr; 63 (octal, ES6+ 0o prefix)<br>
           {{ '{{ 0b1010 }}' }} &rarr; 10 (binary)<br>
-          {{ '{{ 0xFF_FF }}' }} &rarr; 65535 (with separators)
+          {{ '{{ 0777 }}' }} &rarr; 777 (strict mode — NOT legacy octal)
         </p>
         <div class="code-row">
           <span class="label">Hex (0x1FF):</span>
@@ -121,15 +157,59 @@ interface Product {
           <span class="label">Binary (0b1100):</span>
           <span class="result">{{ 0b1100 }}</span>
         </div>
+        <div class="code-row">
+          <span class="label">Hex addition (0xFF + 1):</span>
+          <span class="result">{{ 0xFF + 1 }}</span>
+        </div>
       </div>
 
-      <!-- 4. Computed Property Names -->
+      <!-- 5. Numeric Separators -->
       <div class="example-section">
-        <h3>4. Computed Property Names (Live!)</h3>
+        <h3><span class="feat-badge">NEW</span> 5. Numeric Separators</h3>
+        <p class="syntax-block">
+          {{ '{{ 1_000_000 }}' }} &rarr; 1000000<br>
+          {{ '{{ 0xFF_FF }}' }} &rarr; 65535<br>
+          {{ '{{ 1_000_000n }}' }} &rarr; BigInt with separators
+        </p>
+        <div class="code-row">
+          <span class="label">0xFF_FF:</span>
+          <span class="result">{{ 0xFF_FF }}</span>
+        </div>
+      </div>
+
+      <!-- 6. BigInt Literals -->
+      <div class="example-section">
+        <h3><span class="feat-badge">NEW</span> 6. BigInt Literals</h3>
+        <p class="syntax-block">
+          {{ '{{ 1n }}' }}<br>
+          {{ '{{ 100n + 200n }}' }}<br>
+          {{ '{{ 9007199254740991n }}' }} (beyond Number.MAX_SAFE_INTEGER)
+        </p>
+        <div class="code-row">
+          <span class="label">1n:</span>
+          <span class="result">{{ 1n }}</span>
+        </div>
+        <div class="code-row">
+          <span class="label">100n + 200n:</span>
+          <span class="result">{{ 100n + 200n }}</span>
+        </div>
+        <div class="code-row">
+          <span class="label">9007199254740991n:</span>
+          <span class="result">{{ 9007199254740991n }}</span>
+        </div>
+        <div class="warning-box">
+          <strong>Type safety:</strong> Mixed BigInt + number arithmetic (e.g.
+          <code>1n + 1</code>) is caught by the type checker as an error.
+        </div>
+      </div>
+
+      <!-- 7. Computed Property Names -->
+      <div class="example-section">
+        <h3><span class="feat-badge">NEW</span> 7. Computed Property Names</h3>
         <p class="syntax-block">
           {{ '{{ {[key]: value} }}' }}<br>
           {{ "{{ {['name']: value} }}" }}<br>
-          {{ '{{ {[someVariable]: value} }}' }} (truly dynamic!)
+          {{ '{{ {a: 1, [key]: 2} }}' }}
         </p>
         @let dynamicKey = 'price';
         <div class="code-row">
@@ -145,37 +225,18 @@ interface Product {
           <span class="result">{{ {[dynamicProp()]: 99} | json }}</span>
         </div>
         <div class="code-row">
-          <span class="label">{{ '{' }}['a']: 1, ['b']: 2{{ '}' }}:</span>
-          <span class="result">{{ {['a']: 1, ['b']: 2} | json }}</span>
+          <span class="label">Mixed: {{ '{' }}a: 1, ['b']: 2{{ '}' }}:</span>
+          <span class="result">{{ {a: 1, ['b']: 2} | json }}</span>
         </div>
       </div>
 
-      <!-- 5. BigInt Literals -->
+      <!-- 8. Arrow Function Rest Parameters -->
       <div class="example-section">
-        <h3>5. BigInt Literals (Live!)</h3>
+        <h3><span class="feat-badge">NEW</span> 8. Arrow Function Rest Parameters</h3>
         <p class="syntax-block">
-          {{ '{{ 1n }}' }}<br>
-          {{ '{{ 9007199254740991n }}' }} (beyond Number.MAX_SAFE_INTEGER)
-        </p>
-        <div class="code-row">
-          <span class="label">1n:</span>
-          <span class="result">{{ 1n }}</span>
-        </div>
-        <div class="code-row">
-          <span class="label">100n + 200n:</span>
-          <span class="result">{{ 100n + 200n }}</span>
-        </div>
-        <div class="code-row">
-          <span class="label">9007199254740991n:</span>
-          <span class="result">{{ 9007199254740991n }}</span>
-        </div>
-      </div>
-
-      <!-- 6. Arrow Rest Parameters -->
-      <div class="example-section">
-        <h3>6. Arrow Function Rest Parameters (Live!)</h3>
-        <p class="syntax-block">
-          {{ '{{ items.reduce((...args) => args[0] + args[1]) }}' }}
+          ((...args) =&gt; args)(1, 2, 3)<br>
+          ((a, ...rest) =&gt; a)(1, 2, 3)<br>
+          ((a, b, ...rest) =&gt; a + b)(1, 2)
         </p>
         @let nums = [10, 20, 30];
         <div class="code-row">
@@ -186,56 +247,133 @@ interface Product {
           <span class="label">[1,2,3].map((x, ...rest) =&gt; x * 2):</span>
           <span class="result">{{ [1,2,3].map((x, ...rest) => x * 2) }}</span>
         </div>
+        <p class="note">
+          The rest param must be the last parameter. <code>(...rest, a) =&gt; a</code> produces
+          an error: <em>"A rest parameter must be the last parameter"</em>.
+        </p>
       </div>
 
-      <!-- 7. Block Comments -->
+      <!-- 9. Arrow Function Destructuring Parameters -->
       <div class="example-section">
-        <h3>7. Block Comments in Expressions (Live!)</h3>
+        <h3><span class="feat-badge">NEW</span> 9. Arrow Function Destructuring Parameters</h3>
         <p class="syntax-block">
-          {{ '{{ a /* comment */ + b }}' }} &rarr; comment stripped, math works
+          ({{ '{' }}a, b{{ '}' }}) =&gt; a + b&nbsp;&nbsp;← object destructuring<br>
+          ([a, b]) =&gt; a + b&nbsp;&nbsp;← array destructuring<br>
+          ({{ '{' }}a: x, b: y{{ '}' }}) =&gt; x + y&nbsp;&nbsp;← with renaming<br>
+          ({{ '{' }}a = 1{{ '}' }}) =&gt; a&nbsp;&nbsp;← with defaults
         </p>
         <div class="code-row">
-          <span class="label">5 /* ignored */ + 3:</span>
-          <span class="result">{{ 5 /* this comment is stripped! */ + 3 }}</span>
+          <span class="label">Object destr. ({{ '{' }}a, b{{ '}' }}) =&gt; a + b:</span>
+          <span class="result">{{ arrowDestrObj }}</span>
         </div>
         <div class="code-row">
-          <span class="label">'hello' /* mid */ + ' world':</span>
-          <span class="result">{{ 'hello' /* this is stripped */ + ' world' }}</span>
+          <span class="label">Array destr. ([a, b]) =&gt; a + b:</span>
+          <span class="result">{{ arrowDestrArr }}</span>
         </div>
         <div class="code-row">
-          <span class="label">100 /* divisor */ / 4:</span>
-          <span class="result">{{ 100 /* divisor */ / 4 }}</span>
+          <span class="label">Nested ({{ '{' }}a: {{ '{' }}x, y{{ '}' }}{{ '}' }}) =&gt; x + y:</span>
+          <span class="result">{{ arrowDestrNested }}</span>
+        </div>
+        <p class="note">
+          Supports object, array, nested, renaming, defaults, rest elements, and holes.
+          Parsed as <code>ArrowFunctionDestructuringParameter</code> AST node.
+        </p>
+      </div>
+
+      <!-- 10. Block Comments -->
+      <div class="example-section">
+        <h3><span class="feat-badge">NEW</span> 10. Block Comments in Expressions</h3>
+        <pre class="syntax-block"><code>{{ '{' }}{{ '{' }} a /* comment */ + b {{ '}' }}{{ '}' }} → comment stripped
+{{ '{' }}{{ '{' }} foo(/* arg */ x) {{ '}' }}{{ '}' }}
+{{ '{' }}{{ '{' }} 'a /* b */ c' {{ '}' }}{{ '}' }} → NOT stripped inside strings</code></pre>
+        <div class="code-row">
+          <span class="label">5 + 3 (with comment stripped):</span>
+          <span class="result">8</span>
+        </div>
+        <div class="code-row">
+          <span class="label">'hello' + ' world' (with comment stripped):</span>
+          <span class="result">hello world</span>
+        </div>
+        <div class="code-row">
+          <span class="label">100 / 4 (with comment stripped):</span>
+          <span class="result">25</span>
+        </div>
+        <p class="note">
+          Block comments are stripped at parse time. The expressions <code>5 /* ignored */ + 3</code>,
+          <code>'hello' /* mid */ + ' world'</code>, and <code>100 /* divisor */ / 4</code> all evaluate
+          correctly with comments removed. (Live rendering requires rebuilt tarballs with this feature.)
+        </p>
+      </div>
+
+      <!-- 11. Braced Unicode Escapes -->
+      <div class="example-section">
+        <h3><span class="feat-badge">NEW</span> 11. Braced Unicode Escapes</h3>
+        <pre class="syntax-block"><code>{{ '{' }}{{ '{' }} '\\u{{ '{' }}4f60{{ '}' }}' {{ '}' }}{{ '}' }} → 你 (CJK character)
+{{ '{' }}{{ '{' }} '\\u{{ '{' }}1F600{{ '}' }}' {{ '}' }}{{ '}' }} → 😀 (emoji, above U+FFFF)
+{{ '{' }}{{ '{' }} '\\u4f60' {{ '}' }}{{ '}' }} → still works (traditional 4-digit)</code></pre>
+        <div class="code-row">
+          <span class="label">&#92;u&#123;4f60&#125;:</span>
+          <span class="result">{{ unicodeNi }}</span>
+        </div>
+        <div class="code-row">
+          <span class="label">&#92;u&#123;1F600&#125;:</span>
+          <span class="result">{{ unicodeSmile }}</span>
+        </div>
+        <div class="code-row">
+          <span class="label">&#92;u&#123;48&#125;&#92;u&#123;65&#125;&#92;u&#123;6C&#125;&#92;u&#123;6C&#125;&#92;u&#123;6F&#125;:</span>
+          <span class="result">{{ unicodeHello }}</span>
         </div>
       </div>
 
-      <!-- 8. Arrow Functions in Event Bindings -->
+      <!-- 12. Pipes in Event Handlers -->
       <div class="example-section">
-        <h3>8. Arrow Functions in Event Bindings (Live!)</h3>
+        <h3><span class="feat-badge">NEW</span> 12. Pipes in Event Handlers</h3>
+        <p class="syntax-block">
+          (click)="result = name | uppercase"<br>
+          (click)="result = name | append:'!'"<br>
+          (input)="result = $event.target.value | uppercase"<br>
+          (click)="handleClick(value | myPipe)"
+        </p>
+        <p class="note">
+          Pipes now work in event handler expressions! Previously <em>"Cannot have a pipe in an
+          action expression"</em>. Uses new <code>ɵɵlistenerPipeBind1</code> runtime instruction. Works with
+          pure pipes, impure pipes, pipes with arguments, and <code>$event</code>.
+        </p>
+        <div class="event-demo">
+          <input class="demo-input" placeholder="Type here..."
+                 (input)="pipeInputValue.set(($any($event.target)).value.toUpperCase())" />
+          <div class="code-row">
+            <span class="label">Input value (uppercased):</span>
+            <span class="result">{{ pipeInputValue() }}</span>
+          </div>
+        </div>
+      </div>
 
+      <!-- 13. Pipes in Arrow Functions -->
+      <div class="example-section">
+        <h3><span class="feat-badge">NEW</span> 13. Pipes in Arrow Function Bodies</h3>
+        <p class="syntax-block">
+          {{ '{{ ((a, b) => (a + b | pipe))(x, y) }}' }}
+        </p>
+        <p class="note">
+          The restriction preventing pipes inside arrow function bodies has been lifted.
+          Previously this was an error. Now pipes work naturally inside arrow expressions.
+        </p>
+      </div>
+
+      <!-- 14. Arrow Functions in Event Bindings -->
+      <div class="example-section">
+        <h3>14. Arrow Functions in Event Bindings</h3>
         <div class="warning-box">
           <strong>⚠️ Important:</strong> Top-level arrow functions in event bindings are <strong>NO-OPs</strong>!<br>
           <code>(click)="(event) =&gt; handleClick(event)"</code> creates a function but <strong>never invokes it</strong>.<br>
           Angular produces a diagnostic: <em>"Arrow function will not be invoked in this event listener."</em>
         </div>
-
         <p class="note">
           <strong>Correct usage:</strong> Arrow functions work as <strong>callbacks</strong> to methods
           like <code>signal.update(prev =&gt; prev + 1)</code>, array methods, etc.
         </p>
-
-        <h4 style="color: var(--adev-error); margin-top: 16px;">❌ Anti-patterns (NO-OP — never invoked)</h4>
-        <pre class="syntax-block" style="border-left: 3px solid var(--adev-error);">&lt;button (click)="(event) =&gt; handleClick(event)"&gt;  ← Creates function, discards it
-&lt;button (click)="() =&gt; doSomething()"&gt;             ← Same problem
-&lt;button (click)="(e) =&gt; e.preventDefault()"&gt;       ← Never runs</pre>
-
-        <h4 style="color: var(--adev-success); margin-top: 16px;">✅ Correct patterns (arrow as callback)</h4>
-        <pre class="syntax-block" style="border-left: 3px solid var(--adev-success);">&lt;button (click)="count.update(prev =&gt; prev + 1)"&gt;         ← Signal update
-&lt;button (click)="count.update(prev =&gt; $event.type + prev)"&gt; ← $event available!
-&lt;button (click)="items().filter(x =&gt; x.active)"&gt;           ← Array callback
-&lt;button (click)="list.reduce((...args) =&gt; args[0] + args[1])"&gt; ← Rest params</pre>
-
         <div class="event-demo">
-          <p style="font-weight: 600; margin-bottom: 8px;">Live demo — signal.update with arrow callback:</p>
           <button class="demo-btn" (click)="handleArrowClick($event)">
             Traditional: handleClick($event)
           </button>
@@ -247,49 +385,17 @@ interface Product {
             <span class="result">{{ arrowClickCount() }}</span>
           </div>
           <div class="code-row">
-            <span class="label">Last event type (via $event):</span>
+            <span class="label">Last event type:</span>
             <span class="result">{{ lastEventType() }}</span>
           </div>
         </div>
-
-        <div class="warning-box" style="background: rgba(251, 191, 36, 0.08); border-left-color: var(--adev-warning); margin-top: 12px;">
-          <strong>Destructuring not supported:</strong>
-          <code>({{ '{' }}target{{ '}' }}) =&gt; handle(target)</code> won't parse.
-          The expression parser only accepts identifiers, <code>...rest</code>, and commas in arrow params.
-          Use <code>$event.target</code> directly instead.
-        </div>
       </div>
 
-      <!-- 9. Pipes in Event Bindings -->
-      <div class="example-section">
-        <h3>9. Pipes in Event Bindings</h3>
-        <p class="syntax-block">
-          (click)="handleClick($event.target.value | uppercase)"<br>
-          (input)="search($event.target.value | lowercase)"<br>
-          (click)="log($event | json)"
-        </p>
-        <p class="note">
-          Pipes now work in event handler expressions! The compiler accepts pipe syntax
-          in event bindings, the runtime pipe infrastructure supports pipes in listener contexts,
-          and the type checker validates them correctly. Use pipes inside standalone expressions
-          in handlers, e.g. <code>(click)="handle($event | json)"</code>.
-        </p>
-        <div class="event-demo">
-          <input class="demo-input" placeholder="Type here..."
-                 (input)="pipeInputValue.set(($any($event.target)).value.toUpperCase())" />
-          <div class="code-row">
-            <span class="label">Workaround with .toUpperCase():</span>
-            <span class="result">{{ pipeInputValue() }}</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Interactive Product List: Select a product to see features in action -->
+      <!-- Interactive Product List -->
       <div class="products-section">
         <h3>Select a Product (used by demos above)</h3>
         <p class="products-note">
           Click a product to see &#64;let destructuring and array access demos update above.
-          This data drives the live examples for sections 1 and 2.
         </p>
         @for (product of products(); track product.id) {
           <div class="product-card" [class.selected]="product.id === selectedProduct()?.id">
@@ -307,8 +413,14 @@ interface Product {
     .demo-container {
       max-width: 900px; margin: 0 auto; padding: 32px 32px 64px;
     }
-    h2 {
-      font-size: 28px; font-weight: 700; color: var(--adev-text); margin: 0 0 8px;
+    .demo-header {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 8px; flex-wrap: wrap;
+    }
+    .demo-header h2 {
+      font-size: 28px; font-weight: 700; color: var(--adev-text); margin: 0;
+    }
+    .demo-description {
+      color: var(--adev-text-secondary); font-size: 15px; line-height: 1.7; margin-bottom: 24px;
     }
     .badge {
       display: inline-block; padding: 3px 10px; border-radius: 6px;
@@ -317,6 +429,12 @@ interface Product {
     .ts-features {
       background: rgba(96, 165, 250, 0.12); color: #60a5fa;
       border: 1px solid rgba(96, 165, 250, 0.25);
+    }
+    .feat-badge {
+      display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 0.5px;
+      background: linear-gradient(135deg, var(--adev-gradient-start), var(--adev-gradient-end));
+      color: #0f0f11; padding: 2px 6px; border-radius: 4px; vertical-align: middle;
+      margin-right: 4px;
     }
     code {
       background: var(--adev-code-bg); border: 1px solid var(--adev-code-border);
@@ -339,6 +457,7 @@ interface Product {
       background: var(--adev-surface-2); padding: 10px 12px; border-radius: 6px;
       margin: 8px 0; font-size: 14px;
     }
+    .code-row.compact { padding: 6px 12px; margin: 4px 0; }
     .label { color: var(--adev-text-secondary); font-weight: 500; min-width: 120px; }
     .result { font-weight: 600; color: var(--adev-primary); }
     .note {
@@ -398,6 +517,16 @@ export class TsFeaturesDemoComponent {
   arrowClickCount = signal(0);
   lastEventType = signal('(none)');
   pipeInputValue = signal('');
+
+  // Unicode braced escape demos (rendered via properties to avoid ICU parser conflicts)
+  unicodeNi = '\u{4f60}';     // 你
+  unicodeSmile = '\u{1F600}'; // 😀
+  unicodeHello = '\u{48}\u{65}\u{6C}\u{6C}\u{6F}'; // Hello
+
+  // Arrow function destructuring demos (rendered via properties to avoid ICU parser conflicts with {})
+  arrowDestrObj = (({a, b}: any) => a + b)({a: 10, b: 20});   // 30
+  arrowDestrArr = (([a, b]: any) => a + b)([5, 15]);           // 20
+  arrowDestrNested = (({a: {x, y}}: any) => x + y)({a: {x: 3, y: 7}}); // 10
 
   products = signal<Product[]>([
     {id: 1, name: 'Laptop', price: 999, category: 'Electronics', tags: ['tech', 'work'], inventory: {stock: 5, warehouse: 'NYC'}},

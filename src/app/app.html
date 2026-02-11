@@ -51,6 +51,8 @@
           <span class="branch-tag">main + inlay-hints</span>
           <span class="branch-tag">optional-chaining</span>
           <span class="branch-tag">ts-features</span>
+          <span class="branch-tag">css-intellisense</span>
+          <span class="branch-tag">debug-overlay</span>
         </div>
       </div>
     </div>
@@ -126,24 +128,56 @@
                 <span class="tag">DX</span>
               </div>
             </button>
+
+            <button class="feature-card" (click)="navigate('css-intellisense')">
+              <div class="card-icon css">
+                <mat-icon>palette</mat-icon>
+              </div>
+              <h3>CSS/ARIA IntelliSense</h3>
+              <p>
+                55+ diagnostics for CSS properties, units, ARIA attributes, DOM events, and
+                host binding syntax
+              </p>
+              <div class="card-footer">
+                <span class="tag accent">NEW</span>
+                <span class="tag">Language Service</span>
+                <span class="tag">Validation</span>
+              </div>
+            </button>
+
+            <button class="feature-card" (click)="navigate('template-debug')">
+              <div class="card-icon debug">
+                <mat-icon>bug_report</mat-icon>
+              </div>
+              <h3>Template Debug Overlay</h3>
+              <p>
+                Live debug values, template breakpoints, and AST-based expression extraction
+                in the editor
+              </p>
+              <div class="card-footer">
+                <span class="tag accent">NEW</span>
+                <span class="tag">Debugging</span>
+                <span class="tag">LSP</span>
+              </div>
+            </button>
           </section>
 
           <section class="stats-row">
             <div class="stat-card">
-              <span class="stat-value">4</span>
-              <span class="stat-label">PRs Combined</span>
+              <span class="stat-value">6</span>
+              <span class="stat-label">Feature Branches</span>
             </div>
             <div class="stat-card">
-              <span class="stat-value">12+</span>
+              <span class="stat-value">13+</span>
               <span class="stat-label">New Template Features</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-value">55+</span>
+              <span class="stat-label">CSS/ARIA Diagnostics</span>
             </div>
             <div class="stat-card">
               <span class="stat-value">20+</span>
               <span class="stat-label">Inlay Hint Categories</span>
-            </div>
-            <div class="stat-card">
-              <span class="stat-value">3</span>
-              <span class="stat-label">GitHub Issues Addressed</span>
             </div>
           </section>
         </div>
@@ -159,6 +193,12 @@
       }
       @case ('inlay-hints') {
         <app-inlay-hints-demo />
+      }
+      @case ('css-intellisense') {
+        <app-css-intellisense-demo />
+      }
+      @case ('template-debug') {
+        <app-template-debug-demo />
       }
     }
   </main>
