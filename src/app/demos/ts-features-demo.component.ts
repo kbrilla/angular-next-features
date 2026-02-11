@@ -43,46 +43,60 @@ interface Product {
           &#64;let {{ '{' }} name, price, category {{ '}' }} = product;
         </p>
         @if (selectedProduct(); as product) {
-          @let productName = product.name;
-          @let productPrice = product.price;
-          @let productCategory = product.category;
+          @let { name, price, category } = product;
           <div class="code-row">
             <span class="label">Name:</span>
-            <span class="result">{{ productName }}</span>
+            <span class="result">{{ name }}</span>
           </div>
           <div class="code-row">
             <span class="label">Price:</span>
-            <span class="result">{{ productPrice | currency }}</span>
+            <span class="result">{{ price | currency }}</span>
           </div>
           <div class="code-row">
             <span class="label">Category:</span>
-            <span class="result">{{ productCategory }}</span>
+            <span class="result">{{ category }}</span>
           </div>
         }
       </div>
 
       <!-- 2. @let Array Destructuring (LIVE!) -->
       <div class="example-section">
-        <h3>2. &#64;let Array Access (Live!)</h3>
+        <h3>2. &#64;let Array Destructuring (Live!)</h3>
         <p class="syntax-block">
           &#64;let [first, second] = items;<br>
           &#64;let [first, , third] = items; (skip elements)<br>
           &#64;let [head, ...tail] = items; (rest)
         </p>
-        @let firstProduct = products()[0];
-        @let lastProduct = products()[products().length - 1];
+        @let [firstProduct, ...restProducts] = products();
         @let count = products().length;
         <div class="code-row">
-          <span class="label">First:</span>
+          <span class="label">First (&#64;let [first, ...rest]):</span>
           <span class="result">{{ firstProduct?.name ?? 'none' }}</span>
         </div>
         <div class="code-row">
-          <span class="label">Last:</span>
-          <span class="result">{{ lastProduct?.name ?? 'none' }}</span>
+          <span class="label">Rest count (rest.length):</span>
+          <span class="result">{{ restProducts.length }}</span>
         </div>
         <div class="code-row">
           <span class="label">Total count:</span>
           <span class="result">{{ count }}</span>
+        </div>
+      </div>
+
+      <!-- 2b. Nested Destructuring (LIVE!) -->
+      <div class="example-section">
+        <h3>2b. Nested Destructuring (Live!)</h3>
+        <p class="syntax-block">
+          &#64;let {{ '{' }} api: {{ '{' }} baseUrl, timeout {{ '}' }} {{ '}' }} = config;
+        </p>
+        @let { api: { baseUrl, timeout } } = serverConfig();
+        <div class="code-row">
+          <span class="label">baseUrl (nested):</span>
+          <span class="result">{{ baseUrl }}</span>
+        </div>
+        <div class="code-row">
+          <span class="label">timeout (nested):</span>
+          <span class="result">{{ timeout }}ms</span>
         </div>
       </div>
 
@@ -97,15 +111,15 @@ interface Product {
         </p>
         <div class="code-row">
           <span class="label">Hex (0x1FF):</span>
-          <span class="result">{{ hexValue }}</span>
+          <span class="result">{{ 0x1FF }}</span>
         </div>
         <div class="code-row">
           <span class="label">Octal (0o755):</span>
-          <span class="result">{{ octalValue }}</span>
+          <span class="result">{{ 0o755 }}</span>
         </div>
         <div class="code-row">
           <span class="label">Binary (0b1100):</span>
-          <span class="result">{{ binaryValue }}</span>
+          <span class="result">{{ 0b1100 }}</span>
         </div>
       </div>
 
@@ -114,11 +128,21 @@ interface Product {
         <h3>4. Computed Property Names (Live!)</h3>
         <p class="syntax-block">
           {{ '{{ {[key]: value} }}' }}<br>
-          {{ "{{ {['name']: value} }}" }}
+          {{ "{{ {['name']: value} }}" }}<br>
+          {{ '{{ {[someVariable]: value} }}' }} (truly dynamic!)
         </p>
+        @let dynamicKey = 'price';
         <div class="code-row">
           <span class="label">{{ '{' }}['price']: 42{{ '}' }}:</span>
           <span class="result">{{ {['price']: 42} | json }}</span>
+        </div>
+        <div class="code-row">
+          <span class="label">{{ '{' }}[dynamicKey]: 42{{ '}' }} (variable key!):</span>
+          <span class="result">{{ {[dynamicKey]: 42} | json }}</span>
+        </div>
+        <div class="code-row">
+          <span class="label">{{ '{' }}[dynamicProp()]: 99{{ '}' }} (signal key!):</span>
+          <span class="result">{{ {[dynamicProp()]: 99} | json }}</span>
         </div>
         <div class="code-row">
           <span class="label">{{ '{' }}['a']: 1, ['b']: 2{{ '}' }}:</span>
@@ -244,16 +268,11 @@ interface Product {
           (input)="search($event.target.value | lowercase)"<br>
           (click)="log($event | json)"
         </p>
-        <div class="warning-box" style="background: #fefce8; border-left-color: #eab308;">
-          <strong>⚠️ Known issue:</strong> While the compiler now accepts pipes in event binding
-          expressions (parser feature from PR 2), the <strong>runtime pipe infrastructure
-          does not properly support pipes in action/listener contexts</strong>. At runtime
-          this produces: <em>ASSERTION ERROR: Array must be defined</em>. This is a
-          runtime gap that needs to be addressed before this feature works end-to-end.
-        </div>
         <p class="note">
-          The parser now accepts pipe syntax in event bindings — a step toward full support.
-          For now, use methods in the component class to transform values before passing them.
+          Pipes now work in event handler expressions! The compiler accepts pipe syntax
+          in event bindings, the runtime pipe infrastructure supports pipes in listener contexts,
+          and the type checker validates them correctly. Use pipes inside standalone expressions
+          in handlers, e.g. <code>(click)="handle($event | json)"</code>.
         </p>
         <div class="event-demo">
           <input class="demo-input" placeholder="Type here..."
@@ -365,13 +384,13 @@ interface Product {
   `],
 })
 export class TsFeaturesDemoComponent {
-  hexValue = 0x1FF;
-  octalValue = 0o755;
-  binaryValue = 0b1100;
-
+  dynamicProp = signal('category');
   arrowClickCount = signal(0);
   lastEventType = signal('(none)');
   pipeInputValue = signal('');
+  serverConfig = signal({
+    api: { baseUrl: 'https://api.example.com', timeout: 5000 },
+  });
 
   products = signal<Product[]>([
     {id: 1, name: 'Laptop', price: 999, category: 'Electronics', tags: ['tech', 'work'], inventory: {stock: 5, warehouse: 'NYC'}},

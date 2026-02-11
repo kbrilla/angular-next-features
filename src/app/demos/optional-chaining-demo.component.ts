@@ -31,7 +31,7 @@ interface User {
 
 @Component({
   selector: 'app-optional-chaining-legacy-demo',
-  // optionalChainingSemantics: 'legacy',  // <-- PR 1 feature: this is the default
+  optionalChainingSemantics: 'legacy',  // <-- PR 1 feature: this is the default
   template: `
     <div class="demo-container">
       <h2>Legacy Safe Navigation (default Angular behavior)</h2>

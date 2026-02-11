@@ -29,7 +29,7 @@ interface Config {
  */
 @Component({
   selector: 'app-legacy-chaining',
-  // optionalChainingSemantics: 'legacy',
+  optionalChainingSemantics: 'legacy',
   template: `
     <div class="panel legacy">
       <h3>Legacy Component</h3>
@@ -98,7 +98,7 @@ export class LegacyChainingComponent {
  */
 @Component({
   selector: 'app-native-chaining',
-  // optionalChainingSemantics: 'native',  // <-- PR 1 feature
+  optionalChainingSemantics: 'native',  // <-- PR 1 feature
   template: `
     <div class="panel native">
       <h3>Native Component</h3>
