@@ -29,7 +29,7 @@
     "@angular/cdk": "~21.1.3",
     "@angular/common": "file:dist/new-features-tarballs/angular-common-0.0.0.tgz",
     "@angular/compiler": "file:dist/new-features-tarballs/angular-compiler-0.0.0.tgz",
-    "@angular/core": "file:dist/new-features-tarballs/angular-core-0.0.0.tgz",
+    "@angular/core": "file:tarballs/angular-core-0.0.0.tgz",
     "@angular/forms": "file:dist/new-features-tarballs/angular-forms-0.0.0.tgz",
     "@angular/material": "~21.1.3",
     "@angular/platform-browser": "file:dist/new-features-tarballs/angular-platform-browser-0.0.0.tgz",
@@ -41,11 +41,12 @@
   "devDependencies": {
     "@angular/build": "^21.1.3",
     "@angular/cli": "^21.1.3",
-    "@angular/compiler-cli": "file:dist/new-features-tarballs/angular-compiler-cli-0.0.0.tgz",
+    "@angular/animations": "file:tarballs/angular-animations-0.0.0.tgz",
     "@angular/material": "21.1.3",
     "angular-cli-ghpages": "^3.0.2",
     "jsdom": "^27.1.0",
-    "typescript": "~5.9.2",
+    "@angular/forms": "file:tarballs/angular-forms-0.0.0.tgz",
     "vitest": "^4.0.8"
-  }
-}
+    "@angular/platform-browser": "file:tarballs/angular-platform-browser-0.0.0.tgz",
+    "@angular/platform-browser-dynamic": "file:tarballs/angular-platform-browser-dynamic-0.0.0.tgz",
+    "@angular/router": "file:tarballs/angular-router-0.0.0.tgz",

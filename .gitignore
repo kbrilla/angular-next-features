@@ -2,9 +2,6 @@
 
 # Compiled output
 /dist
-!dist/
-!dist/new-features-tarballs/
-!dist/new-features-tarballs/*
 /tmp
 /out-tsc
 /bazel-out
