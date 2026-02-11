@@ -12,6 +12,7 @@ import {CssIntellisenseDemoComponent} from './demos/css-intellisense-demo.compon
 import {TemplateDebugDemoComponent} from './demos/template-debug-demo.component';
 import {SelectionRangeDemoComponent} from './demos/selection-range-demo.component';
 import {DocumentSymbolsDemoComponent} from './demos/document-symbols-demo.component';
+import {StylePrecedenceDemoComponent} from './demos/style-precedence-demo.component';
 
 interface NavItem {
   id: string;
@@ -36,6 +37,7 @@ interface NavItem {
     TemplateDebugDemoComponent,
     SelectionRangeDemoComponent,
     DocumentSymbolsDemoComponent,
+    StylePrecedenceDemoComponent,
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss',
@@ -54,6 +56,7 @@ export class App {
     {id: 'template-debug', label: 'Template Debug Overlay', icon: 'bug_report', badge: 'NEW'},
     {id: 'selection-range', label: 'Selection Range', icon: 'select_all', badge: 'NEW'},
     {id: 'document-symbols', label: 'Document Symbols', icon: 'account_tree', badge: 'NEW'},
+    {id: 'style-precedence', label: 'Style Precedence', icon: 'layers', badge: 'NEW'},
   ];
 
   navigate(sectionId: string) {

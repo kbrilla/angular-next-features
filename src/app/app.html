@@ -55,6 +55,7 @@
           <span class="branch-tag">debug-overlay</span>
           <span class="branch-tag">selection-range</span>
           <span class="branch-tag">document-symbols</span>
+          <span class="branch-tag">style-precedence</span>
         </div>
       </div>
     </div>
@@ -207,11 +208,27 @@
                 <span class="tag">Navigation</span>
               </div>
             </button>
+
+            <button class="feature-card" (click)="navigate('style-precedence')">
+              <div class="card-icon sp">
+                <mat-icon>layers</mat-icon>
+              </div>
+              <h3>Style Precedence</h3>
+              <p>
+                Live demos showing how standalone vs module-based components
+                resolve competing style bindings differently
+              </p>
+              <div class="card-footer">
+                <span class="tag accent">NEW</span>
+                <span class="tag">Runtime</span>
+                <span class="tag">CSS IntelliSense</span>
+              </div>
+            </button>
           </section>
 
           <section class="stats-row">
             <div class="stat-card">
-              <span class="stat-value">8</span>
+              <span class="stat-value">9</span>
               <span class="stat-label">Feature Branches</span>
             </div>
             <div class="stat-card">
@@ -252,6 +269,9 @@
       }
       @case ('document-symbols') {
         <app-document-symbols-demo />
+      }
+      @case ('style-precedence') {
+        <app-style-precedence-demo />
       }
     }
   </main>
