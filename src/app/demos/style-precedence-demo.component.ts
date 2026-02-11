@@ -23,6 +23,28 @@ export class DirGreenDirective {
   @HostBinding('style.text-decoration') decoration = 'underline';
 }
 
+// === Directive setting backgroundColor via host ===
+@Directive({
+  selector: '[dirPurpleBg]',
+  host: {'[style.backgroundColor]': '"rgb(230, 200, 255)"', '[style.color]': '"rgb(100, 0, 200)"'},
+})
+export class DirPurpleBgDirective {}
+
+// === HostDirective: applied via hostDirectives, NOT template ===
+@Directive({selector: '[colorHostDir]', standalone: true})
+export class ColorHostDirective {
+  @HostBinding('style.backgroundColor') color = 'rgb(255, 200, 200)'; // Light red
+}
+
+// === Directive WITH a hostDirective ===
+@Directive({
+  selector: '[dirWithHost]',
+  hostDirectives: [ColorHostDirective],
+})
+export class DirWithHostDirective {
+  @HostBinding('style.backgroundColor') ownColor = 'rgb(200, 255, 200)'; // Light green
+}
+
 // === Component with host styles ===
 @Component({
   selector: 'styled-box',
@@ -55,9 +77,70 @@ export class RedFirstWrapperComponent {}
 })
 export class BlueFirstWrapperComponent {}
 
+// === Anomaly Test: [style] map vs directive host ===
+@Component({
+  selector: 'style-map-vs-host',
+  imports: [DirPurpleBgDirective],
+  template: `
+    <div class="anomaly-grid">
+      <div class="anomaly-item">
+        <span class="anomaly-label">[style] map only (no directive)</span>
+        <div class="anomaly-result" [style]="{'backgroundColor': 'rgb(0, 200, 200)', 'color': 'rgb(200, 0, 200)'}">Cyan bg, Magenta text</div>
+      </div>
+      <div class="anomaly-item">
+        <span class="anomaly-label">dirPurpleBg + [style] map</span>
+        <div class="anomaly-result" dirPurpleBg [style]="{'backgroundColor': 'rgb(0, 200, 200)', 'color': 'rgb(200, 0, 200)'}">
+          Who wins? Check background!
+        </div>
+        <span class="anomaly-expected">Module: Cyan wins. Standalone: ???</span>
+      </div>
+      <div class="anomaly-item">
+        <span class="anomaly-label">dirPurpleBg + [style.backgroundColor] individual</span>
+        <div class="anomaly-result" dirPurpleBg [style.backgroundColor]="'rgb(0, 200, 200)'" [style.color]="'rgb(200, 0, 200)'">
+          Individual always wins!
+        </div>
+        <span class="anomaly-expected">Both: Cyan wins (individual always highest)</span>
+      </div>
+    </div>
+  `,
+  styles: `
+    .anomaly-grid { display: grid; gap: 10px; }
+    .anomaly-item { background: var(--adev-surface-2, #0f172a); border: 1px solid var(--adev-border, #334155); border-radius: 8px; padding: 12px; }
+    .anomaly-label { display: block; font-size: 11px; color: var(--adev-text-secondary, #94a3b8); margin-bottom: 8px; font-family: 'JetBrains Mono', monospace; }
+    .anomaly-result { padding: 12px; font-size: 15px; font-weight: 600; border-radius: 6px; margin-bottom: 4px; }
+    .anomaly-expected { font-size: 11px; color: var(--adev-text-secondary, #94a3b8); font-style: italic; }
+  `,
+})
+export class StyleMapVsHostComponent {}
+
+// === Anomaly Test: hostDirective vs directive host ===
+@Component({
+  selector: 'host-directive-test',
+  imports: [DirWithHostDirective],
+  template: `
+    <div class="anomaly-grid">
+      <div class="anomaly-item">
+        <span class="anomaly-label">dirWithHost — directive sets green bg, its hostDirective sets red bg</span>
+        <div class="anomaly-result" dirWithHost style="padding: 12px; color: black; font-weight: 600;">
+          Which background wins? Green (directive) or Red (hostDirective)?
+        </div>
+        <span class="anomaly-expected">Expected: Green (directive beats its own hostDirective)</span>
+      </div>
+    </div>
+  `,
+  styles: `
+    .anomaly-grid { display: grid; gap: 10px; }
+    .anomaly-item { background: var(--adev-surface-2, #0f172a); border: 1px solid var(--adev-border, #334155); border-radius: 8px; padding: 12px; }
+    .anomaly-label { display: block; font-size: 11px; color: var(--adev-text-secondary, #94a3b8); margin-bottom: 8px; font-family: 'JetBrains Mono', monospace; }
+    .anomaly-result { padding: 12px; font-size: 15px; font-weight: 600; border-radius: 6px; margin-bottom: 4px; }
+    .anomaly-expected { font-size: 11px; color: var(--adev-text-secondary, #94a3b8); font-style: italic; }
+  `,
+})
+export class HostDirectiveTestComponent {}
+
 @Component({
   selector: 'app-style-precedence-demo',
-  imports: [DirRedDirective, DirBlueDirective, DirGreenDirective, StyledBoxComponent, RedFirstWrapperComponent, BlueFirstWrapperComponent],
+  imports: [DirRedDirective, DirBlueDirective, DirGreenDirective, DirPurpleBgDirective, StyledBoxComponent, RedFirstWrapperComponent, BlueFirstWrapperComponent, StyleMapVsHostComponent, HostDirectiveTestComponent],
   template: `
     <div class="demo-container">
       <div class="demo-header">
@@ -176,6 +259,52 @@ export class BlueFirstWrapperComponent {}
           </div>
         </div>
         <p class="note">Template bindings append to the <strong>tail</strong> of the styling linked list, giving them the highest priority. Both <code>[style.prop]</code> and <code>[style]="&#123;...&#125;"</code> template bindings beat all host bindings.</p>
+      </div>
+
+      <!-- Nuclear Test: [style] map vs directive host -->
+      <div class="example-section">
+        <h3><span class="feat-badge">ANOMALY</span> Test 2b: [style] Map vs Directive Host (Nuclear Test Finding)</h3>
+        <p class="desc">The nuclear test (<code>test-nuclear-all-style-precedence.ts</code>) found that in standalone,
+          directive host bindings can override <code>[style]="&#123;...&#125;"</code> maps.
+          This contradicts the expected "template beats everything" rule &mdash; only <code>[style.prop]</code> (individual) is guaranteed to win:</p>
+        <style-map-vs-host />
+        <div class="anomaly-box">
+          <strong>&#9888;&#65039; Finding:</strong> In module-based, <code>[style]="&#123;...&#125;"</code> (template map) beats directive host.
+          In standalone, directive host bindings may beat the template style map. Only <code>[style.prop]</code> (individual) is
+          guaranteed to have the highest priority in both modes.
+        </div>
+      </div>
+
+      <!-- Nuclear Test: hostDirective precedence -->
+      <div class="example-section">
+        <h3><span class="feat-badge">ANOMALY</span> Test 2c: Directive vs Its hostDirective</h3>
+        <p class="desc">A directive's own <code>&#64;HostBinding</code> should beat its <code>hostDirectives</code>.
+          The hostDirective slots in <em>below</em> its parent in the priority chain:</p>
+        <host-directive-test />
+      </div>
+
+      <!-- Nuclear Test: Property variant order -->
+      <div class="example-section">
+        <h3><span class="feat-badge">ANOMALY</span> Test 2d: CSS Property Name Variants (kebab vs camelCase)</h3>
+        <p class="desc">When both <code>[style.background-color]</code> and <code>[style.backgroundColor]</code> are set on the same element:</p>
+        <div class="live-grid">
+          <div class="live-box">
+            <span class="live-label">[style.background-color]="pink" + [style.backgroundColor]="lightblue"</span>
+            <div class="live-result" [style.background-color]="'pink'" [style.backgroundColor]="'lightblue'" style="color: black; padding: 10px;">
+              Which variant wins?
+            </div>
+            <span class="live-explain">Nuclear test: LAST variant wins in standalone</span>
+          </div>
+          <div class="live-box">
+            <span class="live-label">[style.backgroundColor]="lightblue" + [style.background-color]="pink"</span>
+            <div class="live-result" [style.backgroundColor]="'lightblue'" [style.background-color]="'pink'" style="color: black; padding: 10px;">
+              Which variant wins?
+            </div>
+            <span class="live-explain">Swap order — does winner change?</span>
+          </div>
+        </div>
+        <p class="note">The nuclear test found that the <strong>last property variant wins</strong> (second binding overrides the first).
+          This applies to kebab-case vs camelCase for the same CSS property.</p>
       </div>
 
       <!-- Live Demo: Component Host vs Directive Host -->
