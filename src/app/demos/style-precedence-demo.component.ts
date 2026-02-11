@@ -37,9 +37,27 @@ export class DirGreenDirective {
 })
 export class StyledBoxComponent {}
 
+// === Wrapper: imports Red FIRST, Blue SECOND → Blue wins (last in imports) ===
+@Component({
+  selector: 'red-first-wrapper',
+  imports: [DirRedDirective, DirBlueDirective],
+  template: `<div dirRed dirBlue class="live-result"><ng-content /></div>`,
+  styles: `.live-result { padding: 10px; font-size: 16px; font-weight: 600; background: rgba(255,255,255,0.03); border-radius: 6px; margin-bottom: 6px; }`,
+})
+export class RedFirstWrapperComponent {}
+
+// === Wrapper: imports Blue FIRST, Red SECOND → Red wins (last in imports) ===
+@Component({
+  selector: 'blue-first-wrapper',
+  imports: [DirBlueDirective, DirRedDirective],
+  template: `<div dirRed dirBlue class="live-result"><ng-content /></div>`,
+  styles: `.live-result { padding: 10px; font-size: 16px; font-weight: 600; background: rgba(255,255,255,0.03); border-radius: 6px; margin-bottom: 6px; }`,
+})
+export class BlueFirstWrapperComponent {}
+
 @Component({
   selector: 'app-style-precedence-demo',
-  imports: [DirRedDirective, DirBlueDirective, DirGreenDirective, StyledBoxComponent],
+  imports: [DirRedDirective, DirBlueDirective, DirGreenDirective, StyledBoxComponent, RedFirstWrapperComponent, BlueFirstWrapperComponent],
   template: `
     <div class="demo-container">
       <div class="demo-header">
@@ -48,9 +66,10 @@ export class StyledBoxComponent {}
       </div>
       <p class="demo-description">
         Angular resolves conflicting style bindings using a <strong>priority linked list</strong>.
-        Template bindings always beat host bindings, but the order among host bindings depends
-        on how directives are registered &mdash; which differs between
-        <strong>standalone</strong> and <strong>module-based</strong> components.
+        Template bindings always beat host bindings, but the order among directive host bindings
+        depends on the <strong>directive registry order</strong> &mdash; determined by the
+        <code>imports[]</code> array (standalone) or <code>declarations[]</code> array (module-based).
+        <strong>Template attribute order does NOT matter.</strong>
         CSS IntelliSense detects these conflicts and warns about them.
       </p>
 
@@ -73,8 +92,8 @@ export class StyledBoxComponent {}
 
       <!-- Standalone vs Module Comparison -->
       <div class="example-section">
-        <h3><span class="feat-badge">KEY</span> Standalone vs Module: Who is "Last Directive"?</h3>
-        <p class="desc">The priority order above is the same for both. But <strong>who counts as "last directive"</strong> differs:</p>
+        <h3><span class="feat-badge">KEY</span> What Determines "Last Directive"?</h3>
+        <p class="desc">The priority table above is the same for both standalone and module-based. But <strong>who counts as "last directive"</strong> depends on the registration array:</p>
         <div class="comparison-grid">
           <div class="compare-card module-card">
             <div class="compare-header">
@@ -91,7 +110,7 @@ export class StyledBoxComponent {}
 ]</pre>
               </div>
               <p class="result">Result: <span class="color-blue">DirBlue wins</span> because it's declared last.</p>
-              <p class="note">Template order doesn't matter. Only <code>declarations[]</code> array order.</p>
+              <p class="note">Template attribute order is irrelevant.</p>
             </div>
           </div>
           <div class="compare-card standalone-card">
@@ -100,41 +119,50 @@ export class StyledBoxComponent {}
               <strong>Standalone (<code>standalone: true</code>)</strong>
             </div>
             <div class="compare-body">
-              <p><strong>First directive in template order wins.</strong></p>
+              <p><strong>Last in <code>imports[]</code> wins.</strong></p>
               <div class="code-block">
-                <pre>&lt;!-- DirRed first in template --&gt;
-&lt;div dirRed dirBlue&gt;Text&lt;/div&gt;</pre>
+                <pre>&#64;Component(&#123;
+  imports: [
+    DirRed,   // Lower priority
+    DirBlue,  // Higher priority (WINS)
+  ],
+&#125;)</pre>
               </div>
-              <p class="result">Result: <span class="color-red">DirRed wins</span> because it appears first in the template.</p>
-              <p class="note">Directive order comes from <code>Set</code> iteration in scope resolution, not <code>imports[]</code>.</p>
+              <p class="result">Result: <span class="color-blue">DirBlue wins</span> because it's imported last.</p>
+              <p class="note">Template attribute order is irrelevant. <code>imports[]</code> feeds a <code>Set</code> that preserves insertion order.</p>
             </div>
           </div>
+        </div>
+        <div class="anomaly-box">
+          <strong>&#9888;&#65039; This means:</strong> Reordering <code>imports[]</code> can silently change which directive's styles win.
+          Unlike CSS specificity, this is <em>not visible in the template</em> &mdash; it's hidden in metadata.
+          This is exactly what CSS IntelliSense (diagnostic 99005) warns about.
         </div>
       </div>
 
       <!-- Live Demo: Directive vs Directive -->
       <div class="example-section">
-        <h3><span class="feat-badge">LIVE</span> Test 1: Two Directives Competing for <code>color</code></h3>
-        <p class="desc">Both <code>DirRed</code> and <code>DirBlue</code> set <code>[style.color]</code> via host bindings. Which wins?</p>
+        <h3><span class="feat-badge">LIVE</span> Test 1: <code>imports[]</code> Order Changes the Winner</h3>
+        <p class="desc">Both wrappers render the same template (<code>&lt;div dirRed dirBlue&gt;</code>), but with different <code>imports[]</code> order. The last imported directive wins:</p>
         <div class="live-grid">
           <div class="live-box">
-            <span class="live-label">dirRed first, dirBlue second</span>
-            <div class="live-result" dirRed dirBlue>This text shows the winning color</div>
-            <span class="live-explain">Standalone: DirRed wins (first in template)</span>
+            <span class="live-label">imports: [DirRed, DirBlue] &rarr; Blue wins (last)</span>
+            <red-first-wrapper>This text shows: Blue wins</red-first-wrapper>
+            <span class="live-explain">DirBlue is last in imports[] &rarr; blue wins</span>
           </div>
           <div class="live-box">
-            <span class="live-label">dirBlue first, dirRed second</span>
-            <div class="live-result" dirBlue dirRed>This text shows the winning color</div>
-            <span class="live-explain">Standalone: DirBlue wins (first in template)</span>
+            <span class="live-label">imports: [DirBlue, DirRed] &rarr; Red wins (last)</span>
+            <blue-first-wrapper>This text shows: Red wins</blue-first-wrapper>
+            <span class="live-explain">DirRed is last in imports[] &rarr; red wins</span>
           </div>
         </div>
-        <p class="note">In module-based, both would show the color of whichever directive is declared LAST in <code>declarations[]</code>.</p>
+        <p class="note">Both wrappers have identical templates. Only the <code>imports[]</code> array order differs. Template attribute order (<code>dirRed dirBlue</code>) is the same in both and does not affect the outcome.</p>
       </div>
 
       <!-- Live Demo: Template vs Directive Host -->
       <div class="example-section">
         <h3><span class="feat-badge">LIVE</span> Test 2: Template Binding vs Directive Host</h3>
-        <p class="desc">Template <code>[style.color]</code> always beats directive host <code>[style.color]</code>:</p>
+        <p class="desc">Template <code>[style.color]</code> always beats directive host <code>[style.color]</code>. Template <code>[style]</code> map also beats directive host:</p>
         <div class="live-grid">
           <div class="live-box">
             <span class="live-label">Template [style.color]="'orange'" + dirRed + dirBlue</span>
@@ -144,14 +172,10 @@ export class StyledBoxComponent {}
           <div class="live-box">
             <span class="live-label">Template [style]="&#123;color: 'orange'&#125;" + dirRed + dirBlue</span>
             <div class="live-result" [style]="templateStyleMap()" dirRed dirBlue>Style map vs directives: check the color!</div>
-            <span class="live-explain">Standalone anomaly: Directive host can beat template [style] map!</span>
+            <span class="live-explain">Template [style] map also beats all directive host bindings</span>
           </div>
         </div>
-        <div class="anomaly-box">
-          <strong>&#9888;&#65039; Standalone Anomaly:</strong> In module-based, <code>[style]="&#123;...&#125;"</code> (template map) beats directive host.
-          In standalone, directive host bindings can beat the template style map. This is because the linked list insertion
-          order differs &mdash; standalone uses <code>Set</code>-based scope resolution.
-        </div>
+        <p class="note">Template bindings append to the <strong>tail</strong> of the styling linked list, giving them the highest priority. Both <code>[style.prop]</code> and <code>[style]="&#123;...&#125;"</code> template bindings beat all host bindings.</p>
       </div>
 
       <!-- Live Demo: Component Host vs Directive Host -->
@@ -180,19 +204,20 @@ export class StyledBoxComponent {}
       <!-- Live Demo: @HostBinding vs host metadata -->
       <div class="example-section">
         <h3><span class="feat-badge">LIVE</span> Test 4: &#64;HostBinding vs host: &#123;&#125; Metadata</h3>
-        <p class="desc">Both are equivalent &mdash; they produce the same <code>ɵɵstyleProp</code> instructions:</p>
+        <p class="desc">Both <code>&#64;HostBinding</code> and <code>host: &#123;&#125;</code> produce the same <code>ɵɵstyleProp</code> instructions. The winner is determined by <code>imports[]</code> order, not the decorator type:</p>
         <div class="live-grid">
           <div class="live-box">
-            <span class="live-label">dirRed (host metadata) + dirGreen (&#64;HostBinding)</span>
-            <div class="live-result" dirRed dirGreen>First in template wins for standalone</div>
-            <span class="live-explain">dirRed is first &rarr; red wins in standalone</span>
+            <span class="live-label">dirRed (host) + dirGreen (&#64;HostBinding) &mdash; same element</span>
+            <div class="live-result" dirRed dirGreen>DirGreen wins (later in imports[])</div>
+            <span class="live-explain">imports: [DirRed, DirBlue, DirGreen, ...] &rarr; DirGreen is last</span>
           </div>
           <div class="live-box">
-            <span class="live-label">dirGreen (&#64;HostBinding) + dirRed (host metadata)</span>
-            <div class="live-result" dirGreen dirRed>First in template wins for standalone</div>
-            <span class="live-explain">dirGreen is first &rarr; green wins in standalone</span>
+            <span class="live-label">Swapped attribute order: dirGreen + dirRed</span>
+            <div class="live-result" dirGreen dirRed>Still same winner! Attribute order irrelevant</div>
+            <span class="live-explain">Same imports[] order &rarr; same result regardless of attribute order</span>
           </div>
         </div>
+        <p class="note">This proves that template attribute order (<code>dirRed dirGreen</code> vs <code>dirGreen dirRed</code>) does NOT affect the outcome. Only the position in <code>imports[]</code> matters.</p>
       </div>
 
       <!-- Live Demo: Individual prop vs Style Map -->
@@ -296,8 +321,8 @@ Directive2:                 Template:
         <p class="note">
           <strong>Key insight:</strong> Host bindings prepend to the list head (lower priority).
           Template bindings append to the tail (higher priority).
-          The <code>directiveRegistry</code> order (which directive is "Directive1" vs "Directive2") differs
-          between standalone (<code>Set</code> iteration) and module (<code>declarations[]</code> order).
+          The <code>directiveRegistry</code> order (which directive is "Directive1" vs "Directive2") comes from
+          <code>imports[]</code> (standalone) or <code>declarations[]</code> (module). Template attribute order has no effect.
         </p>
       </div>
 
