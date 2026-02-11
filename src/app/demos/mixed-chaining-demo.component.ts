@@ -2,7 +2,7 @@
  * Mixed Usage Demo: Legacy + Native Optional Chaining Side by Side
  *
  * Shows that components with different optionalChainingSemantics can coexist
- * in the same application. This is a key feature of PR 1:
+ * in the same application:
  *
  * - LegacyChainingComponent uses `optionalChainingSemantics: 'legacy'` (default)
  * - NativeChainingComponent uses `optionalChainingSemantics: 'native'`
@@ -110,7 +110,7 @@ export class LegacyChainingComponent {
  */
 @Component({
   selector: 'app-native-chaining',
-  optionalChainingSemantics: 'native',  // <-- PR 1 feature
+  optionalChainingSemantics: 'native',  // per-component override
   imports: [StringifyNullishPipe],
   template: `
     <div class="panel native">

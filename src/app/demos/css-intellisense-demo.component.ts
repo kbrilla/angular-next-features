@@ -6,8 +6,6 @@ import {Component} from '@angular/core';
     <div class="demo-container">
       <div class="demo-header">
         <h2>CSS / ARIA / Events IntelliSense</h2>
-        <span class="badge css-badge">feat/css-intellisense-legacy</span>
-        <span class="badge css-badge-alt">feat/css-intellisense</span>
       </div>
       <p class="demo-description">
         Comprehensive CSS property, unit, value, ARIA attribute, and DOM event validation for
@@ -442,7 +440,7 @@ class MyDir &#123;&#125;  // Parent directive WINS</code></pre>
         <p class="note">
           <strong>&#9888; Standalone anomaly:</strong> In standalone components, directive host bindings may beat
           template <code>[style]</code> maps (P2-3). Only <code>[style.prop]</code> (P1) is guaranteed to win in both modes.
-          See the <strong>Style Precedence</strong> tab for live proof.
+          See the <strong>Style Binding Bugs</strong> tab for live proof.
         </p>
       </div>
 
@@ -676,7 +674,7 @@ export class AppComponent &#123;
           </div>
         </div>
         <p class="note">
-          Available in <code>feat/css-intellisense</code> branch. Works on <code>[style.prop]</code>,
+          Works on <code>[style.prop]</code>,
           <code>[style]="&#123;prop: val&#125;"</code>, and host binding style keys.
         </p>
       </div>
@@ -707,7 +705,6 @@ export class AppComponent &#123;
         <p class="note">
           Completions are type-aware: boolean ARIA attrs show true/false, token ARIA attrs
           show their allowed enum values, tristate attrs show true/false/mixed.
-          Available in <code>feat/css-intellisense</code> branch.
         </p>
       </div>
 
@@ -716,8 +713,7 @@ export class AppComponent &#123;
         <h3><span class="feat-badge">NEW</span> Element Inspector (Phases 1&ndash;4 Implemented)</h3>
         <p class="desc">
           A comprehensive aggregated view of ALL bindings on an element. Collects from 3 binding
-          origins and presents them in a unified, navigable view. Implementation in
-          <code>feat/css-intellisense</code> branch (packages/language-service/src/element_inspector/).
+          origins and presents them in a unified, navigable view.
         </p>
         <div class="inspector-demo">
           <div class="inspector-header">&lt;button mat-button widthApplier&gt;</div>
@@ -750,28 +746,25 @@ export class AppComponent &#123;
           <div class="phase pending"><span class="phase-num">5</span><strong>Semantic Tokens</strong> &mdash; Color-coded tokens for different binding origins (planned)</div>
         </div>
         <p class="note">
-          See <code>ELEMENT_INSPECTOR_PLAN.md</code> for the full design document.
-          Implementation: <code>element_inspector/binding_collector.ts</code>,
-          <code>element_inspector/object_binding_analyzer.ts</code>,
-          <code>element_inspector/types.ts</code>.
+          Implementation in the Language Service: binding collector, object binding analyzer, and type definitions.
         </p>
       </div>
 
       <!-- Standalone Precedence -->
       <div class="example-section">
-        <h3>Standalone vs Module Precedence (Investigation)</h3>
+        <h3>Standalone vs Module Precedence</h3>
         <p class="desc">
-          Standalone components show <strong>different</strong> styling precedence than module-based.
-          Key findings from <code>STANDALONE_PRECEDENCE_INVESTIGATION.md</code>:
+          Standalone components show <strong>different</strong> styling precedence than module-based:
         </p>
         <div class="finding-list">
           <div class="finding bad"><strong>Module-based:</strong> Last declared in declarations[] wins</div>
-          <div class="finding bad"><strong>Standalone:</strong> First directive in template order wins (opposite!)</div>
-          <div class="finding bad"><strong>Standalone:</strong> Directive host [style] BEATS template [style] object</div>
+          <div class="finding bad"><strong>Standalone:</strong> Last in imports[] wins (reordering imports changes styles!)</div>
+          <div class="finding bad"><strong>Standalone:</strong> Directive host [style] can beat template [style] map</div>
           <div class="finding good"><strong>Both:</strong> Template [style.prop] (individual) always highest priority</div>
-          <div class="finding bad"><strong>Property variants:</strong> LAST variant wins (kebab vs camelCase)</div>
+          <div class="finding bad"><strong>Property variants:</strong> Last variant wins (kebab vs camelCase)</div>
         </div>
-        <p class="note">CSS IntelliSense accounts for these differences in its conflict detection.</p>
+        <p class="note">CSS IntelliSense accounts for these differences in its conflict detection.
+          See the <strong>Style Binding Precedence Bugs</strong> tab for live demonstrations.</p>
       </div>
 
       <!-- Scope Limitations -->
@@ -781,7 +774,7 @@ export class AppComponent &#123;
           <li><strong>Class name validation</strong> &mdash; too noisy (global styles, SCSS, CDN)</li>
           <li><strong>data-* attributes</strong> &mdash; user-defined by W3C spec</li>
           <li><strong>General template errors</strong> &mdash; handled by Angular compiler (8001&ndash;8118)</li>
-          <li><strong>CSS value validation</strong> &mdash; planned (see CSS_VALUE_VALIDATION_DESIGN.md)</li>
+          <li><strong>CSS value validation</strong> &mdash; planned for a future release</li>
         </ul>
       </div>
     </div>

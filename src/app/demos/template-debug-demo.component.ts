@@ -6,7 +6,6 @@ import {Component} from '@angular/core';
     <div class="demo-container">
       <div class="demo-header">
         <h2>Template Debug Overlay</h2>
-        <span class="badge debug-badge">feat/template-debug-overlay</span>
       </div>
       <p class="demo-description">
         A live debugging overlay for Angular templates — see expression values, set breakpoints, and

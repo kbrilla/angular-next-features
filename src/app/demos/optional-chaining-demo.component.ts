@@ -1,7 +1,7 @@
 /**
- * PR 1: Optional Chaining Semantics Demo
+ * Optional Chaining Semantics Demo
  *
- * Demonstrates features from kbrilla/angular copilot/implement-optional-chaining:
+ * Demonstrates:
  *
  * - Legacy semantics: `?.` returns `null` on short-circuit (Angular default)
  * - Native semantics: `?.` returns `undefined` on short-circuit (ECMAScript standard)
@@ -39,7 +39,7 @@ interface User {
 @Component({
   selector: 'app-optional-chaining-legacy-demo',
   imports: [StringifyNullishLegacyPipe],
-  optionalChainingSemantics: 'legacy',  // <-- PR 1 feature: this is the default
+  optionalChainingSemantics: 'legacy',  // this is the default
   template: `
     <div class="demo-container">
       <h2>Legacy Safe Navigation (default Angular behavior)</h2>

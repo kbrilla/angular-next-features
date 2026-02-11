@@ -5,8 +5,7 @@ import {Component} from '@angular/core';
   template: `
     <div class="demo-container">
       <div class="demo-header">
-        <h2>Document Symbols (Outline & Breadcrumbs)</h2>
-        <span class="badge ds-badge">feat/document-symbols-templates</span>
+        <h2>Document Symbols (Outline &amp; Breadcrumbs)</h2>
       </div>
       <p class="demo-description">
         LSP <code>textDocument/documentSymbol</code> support for Angular templates.

@@ -6,7 +6,7 @@ import {Component} from '@angular/core';
     <div class="demo-page">
       <div class="demo-header">
         <h2>Angular-Specific Inlay Hints</h2>
-        <span class="badge">feat/inlay-hints &middot; LSP 3.17</span>
+        <span class="badge">LSP 3.17</span>
       </div>
       <p class="demo-description">
         Rich, configurable inlay hints for Angular templates — showing types for control flow

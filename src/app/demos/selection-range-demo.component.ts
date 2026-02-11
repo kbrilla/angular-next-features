@@ -6,7 +6,6 @@ import {Component} from '@angular/core';
     <div class="demo-container">
       <div class="demo-header">
         <h2>Selection Range (Smart Expand Selection)</h2>
-        <span class="badge sr-badge">feat/selection-range</span>
       </div>
       <p class="demo-description">
         LSP <code>textDocument/selectionRange</code> support for Angular templates.

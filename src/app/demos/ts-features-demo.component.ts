@@ -1,7 +1,7 @@
 /**
  * TypeScript Features in Angular Templates Demo
  *
- * Demonstrates ALL features from copilot/implement-ts-features-in-angular-templates:
+ * Demonstrates features:
  *
  * 1.  @let object destructuring (with renaming, defaults, rest, nesting)
  * 2.  @let array destructuring (with holes, rest, nesting)
@@ -41,7 +41,6 @@ interface Product {
     <div class="demo-container">
       <div class="demo-header">
         <h2>TypeScript Features in Angular Templates</h2>
-        <span class="badge ts-features">copilot/implement-ts-features-in-angular-templates</span>
       </div>
       <p class="demo-description">
         13 new template expression features bringing modern TypeScript/ECMAScript syntax to Angular
