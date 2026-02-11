@@ -31,7 +31,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-
 
-      - name: Patch package.json to avoid local file: Angular tarballs on CI
+      - name: Patch package.json (CI)
         run: |
           node -e "const fs=require('fs');const p=JSON.parse(fs.readFileSync('package.json'));const names=['@angular/animations','@angular/common','@angular/compiler','@angular/core','@angular/forms','@angular/platform-browser','@angular/platform-browser-dynamic','@angular/router','@angular/compiler-cli'];for(const n of names){if(p.dependencies&&p.dependencies[n]&&p.dependencies[n].startsWith('file:'))p.dependencies[n]='21.1.3';if(p.devDependencies&&p.devDependencies[n]&&p.devDependencies[n].startsWith('file:'))p.devDependencies[n]='21.1.3'}fs.writeFileSync('package.json',JSON.stringify(p,null,2));console.log('patched package.json');"
 
