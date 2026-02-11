@@ -143,7 +143,8 @@ interface Product {
           {{ '{{ 0xFF }}' }} &rarr; 255 (hex)<br>
           {{ '{{ 0o77 }}' }} &rarr; 63 (octal, ES6+ 0o prefix)<br>
           {{ '{{ 0b1010 }}' }} &rarr; 10 (binary)<br>
-          {{ '{{ 0777 }}' }} &rarr; 777 (strict mode — NOT legacy octal)
+          {{ '{{ 0777 }}' }} &rarr; 511 (legacy octal — parsed as octal)<br>
+          {{ '{{ 0888 }}' }} &rarr; 888 (invalid octal digits &rarr; parsed as decimal)
         </p>
         <div class="code-row">
           <span class="label">Hex (0x1FF):</span>
@@ -161,6 +162,20 @@ interface Product {
           <span class="label">Hex addition (0xFF + 1):</span>
           <span class="result">{{ 0xFF + 1 }}</span>
         </div>
+        <div class="code-row">
+          <span class="label">0777 (legacy octal &rarr; 511):</span>
+          <span class="result">{{ 0777 }}</span>
+        </div>
+        <div class="code-row">
+          <span class="label">0888 (invalid octal &rarr; decimal 888):</span>
+          <span class="result">{{ 0888 }}</span>
+        </div>
+        <p class="note">
+          <strong>Special treatment:</strong> <code>0777</code> is parsed as octal (= 511 in decimal)
+          because all digits are valid octal (0–7). <code>0888</code> contains digits 8 and 9 which
+          are invalid in octal, so it falls back to decimal (= 888). This matches JavaScript's
+          legacy octal behavior.
+        </p>
       </div>
 
       <!-- 5. Numeric Separators -->
@@ -256,22 +271,17 @@ interface Product {
       <!-- 9. Arrow Function Destructuring Parameters -->
       <div class="example-section">
         <h3><span class="feat-badge">NEW</span> 9. Arrow Function Destructuring Parameters</h3>
-        <p class="syntax-block">
-          ({{ '{' }}a, b{{ '}' }}) =&gt; a + b&nbsp;&nbsp;← object destructuring<br>
-          ([a, b]) =&gt; a + b&nbsp;&nbsp;← array destructuring<br>
-          ({{ '{' }}a: x, b: y{{ '}' }}) =&gt; x + y&nbsp;&nbsp;← with renaming<br>
-          ({{ '{' }}a = 1{{ '}' }}) =&gt; a&nbsp;&nbsp;← with defaults
-        </p>
+        <pre class="syntax-block"><code [textContent]="arrowDestrSyntax"></code></pre>
         <div class="code-row">
-          <span class="label">Object destr. ({{ '{' }}a, b{{ '}' }}) =&gt; a + b:</span>
+          <span class="label">Object destr. result:</span>
           <span class="result">{{ arrowDestrObj }}</span>
         </div>
         <div class="code-row">
-          <span class="label">Array destr. ([a, b]) =&gt; a + b:</span>
+          <span class="label">Array destr. result:</span>
           <span class="result">{{ arrowDestrArr }}</span>
         </div>
         <div class="code-row">
-          <span class="label">Nested ({{ '{' }}a: {{ '{' }}x, y{{ '}' }}{{ '}' }}) =&gt; x + y:</span>
+          <span class="label">Nested destr. result:</span>
           <span class="result">{{ arrowDestrNested }}</span>
         </div>
         <p class="note">
@@ -283,45 +293,40 @@ interface Product {
       <!-- 10. Block Comments -->
       <div class="example-section">
         <h3><span class="feat-badge">NEW</span> 10. Block Comments in Expressions</h3>
-        <pre class="syntax-block"><code>{{ '{' }}{{ '{' }} a /* comment */ + b {{ '}' }}{{ '}' }} → comment stripped
-{{ '{' }}{{ '{' }} foo(/* arg */ x) {{ '}' }}{{ '}' }}
-{{ '{' }}{{ '{' }} 'a /* b */ c' {{ '}' }}{{ '}' }} → NOT stripped inside strings</code></pre>
+        <pre class="syntax-block"><code [textContent]="blockCommentSyntax"></code></pre>
         <div class="code-row">
           <span class="label">5 + 3 (with comment stripped):</span>
-          <span class="result">8</span>
+          <span class="result">{{ 5 /* this comment is stripped! */ + 3 }}</span>
         </div>
         <div class="code-row">
           <span class="label">'hello' + ' world' (with comment stripped):</span>
-          <span class="result">hello world</span>
+          <span class="result">{{ 'hello' /* mid-expression comment */ + ' world' }}</span>
         </div>
         <div class="code-row">
           <span class="label">100 / 4 (with comment stripped):</span>
-          <span class="result">25</span>
+          <span class="result">{{ 100 /* divisor */ / 4 }}</span>
         </div>
         <p class="note">
-          Block comments are stripped at parse time. The expressions <code>5 /* ignored */ + 3</code>,
-          <code>'hello' /* mid */ + ' world'</code>, and <code>100 /* divisor */ / 4</code> all evaluate
-          correctly with comments removed. (Live rendering requires rebuilt tarballs with this feature.)
+          Block comments are stripped at parse time. The expressions above use <strong>real live
+          template syntax</strong> — the comments are removed before evaluation.
         </p>
       </div>
 
       <!-- 11. Braced Unicode Escapes -->
       <div class="example-section">
         <h3><span class="feat-badge">NEW</span> 11. Braced Unicode Escapes</h3>
-        <pre class="syntax-block"><code>{{ '{' }}{{ '{' }} '\\u{{ '{' }}4f60{{ '}' }}' {{ '}' }}{{ '}' }} → 你 (CJK character)
-{{ '{' }}{{ '{' }} '\\u{{ '{' }}1F600{{ '}' }}' {{ '}' }}{{ '}' }} → 😀 (emoji, above U+FFFF)
-{{ '{' }}{{ '{' }} '\\u4f60' {{ '}' }}{{ '}' }} → still works (traditional 4-digit)</code></pre>
+        <pre class="syntax-block"><code [textContent]="unicodeSyntax"></code></pre>
         <div class="code-row">
           <span class="label">&#92;u&#123;4f60&#125;:</span>
-          <span class="result">{{ unicodeNi }}</span>
+          <span class="result">{{ '\u{4f60}' }}</span>
         </div>
         <div class="code-row">
           <span class="label">&#92;u&#123;1F600&#125;:</span>
-          <span class="result">{{ unicodeSmile }}</span>
+          <span class="result">{{ '\u{1F600}' }}</span>
         </div>
         <div class="code-row">
           <span class="label">&#92;u&#123;48&#125;&#92;u&#123;65&#125;&#92;u&#123;6C&#125;&#92;u&#123;6C&#125;&#92;u&#123;6F&#125;:</span>
-          <span class="result">{{ unicodeHello }}</span>
+          <span class="result">{{ '\u{48}\u{65}\u{6C}\u{6C}\u{6F}' }}</span>
         </div>
       </div>
 
@@ -393,16 +398,17 @@ interface Product {
 
       <!-- Interactive Product List -->
       <div class="products-section">
-        <h3>Select a Product (used by demos above)</h3>
+        <h3>Select a Product (uses &#64;for destructuring)</h3>
         <p class="products-note">
-          Click a product to see &#64;let destructuring and array access demos update above.
+          Click a product to see &#64;let destructuring demos update above.
+          This list itself uses <code>&#64;for ({{ '{' }} id, name, price, category {{ '}' }} of products(); track $implicit_ref.id)</code>.
         </p>
-        @for (product of products(); track product.id) {
-          <div class="product-card" [class.selected]="product.id === selectedProduct()?.id">
-            <span class="product-name">{{ product.name }}</span>
-            <span class="product-price">{{ product.price | currency }}</span>
-            <span class="product-category">{{ product.category }}</span>
-            <button (click)="selectProduct(product)">Select</button>
+        @for ({ id, name, price, category } of products(); track $implicit_ref.id) {
+          <div class="product-card" [class.selected]="id === selectedProduct()?.id">
+            <span class="product-name">{{ name }}</span>
+            <span class="product-price">{{ price | currency }}</span>
+            <span class="product-category">{{ category }}</span>
+            <button (click)="selectProduct(id)">Select</button>
           </div>
         }
         <button class="add-btn" (click)="addProduct()">+ Add Product</button>
@@ -528,6 +534,11 @@ export class TsFeaturesDemoComponent {
   arrowDestrArr = (([a, b]: any) => a + b)([5, 15]);           // 20
   arrowDestrNested = (({a: {x, y}}: any) => x + y)({a: {x: 3, y: 7}}); // 10
 
+  // Syntax display strings (using textContent binding to avoid ICU parser conflicts with { in text)
+  blockCommentSyntax = `{{ a /* comment */ + b }} → comment stripped\n{{ foo(/* arg */ x) }}\n{{ 'a /* b */ c' }} → NOT stripped inside strings`;
+  unicodeSyntax = `{{ '\\u{4f60}' }} → 你 (CJK character)\n{{ '\\u{1F600}' }} → 😀 (emoji, above U+FFFF)\n{{ '\\u4f60' }} → still works (traditional 4-digit)`;
+  arrowDestrSyntax = `({a, b}) => a + b   ← object destructuring\n([a, b]) => a + b   ← array destructuring\n({a: x, b: y}) => x + y   ← with renaming\n({a = 1}) => a   ← with defaults`;
+
   products = signal<Product[]>([
     {id: 1, name: 'Laptop', price: 999, category: 'Electronics', tags: ['tech', 'work'], inventory: {stock: 5, warehouse: 'NYC'}},
     {id: 2, name: 'Keyboard', price: 75, category: 'Accessories', tags: ['input', 'ergonomic'], inventory: {stock: 20, warehouse: 'LA'}},
@@ -536,7 +547,8 @@ export class TsFeaturesDemoComponent {
 
   selectedProduct = signal<Product | null>(null);
 
-  selectProduct(product: Product) {
+  selectProduct(id: number) {
+    const product = this.products().find(p => p.id === id) ?? null;
     this.selectedProduct.set(product);
   }
 

@@ -12,7 +12,14 @@
  *
  * This component uses LEGACY semantics (default Angular behavior).
  */
-import {Component, signal} from '@angular/core';
+import {Component, Pipe, signal} from '@angular/core';
+
+@Pipe({ name: 'stringifyNullish', standalone: true })
+export class StringifyNullishLegacyPipe {
+  transform(value: any): string {
+    return value === null ? 'null' : value === undefined ? 'undefined' : String(value);
+  }
+}
 
 interface User {
   id: number;
@@ -31,6 +38,7 @@ interface User {
 
 @Component({
   selector: 'app-optional-chaining-legacy-demo',
+  imports: [StringifyNullishLegacyPipe],
   optionalChainingSemantics: 'legacy',  // <-- PR 1 feature: this is the default
   template: `
     <div class="demo-container">
@@ -51,7 +59,7 @@ interface User {
         <div class="code-row">
           <code>user?.email</code>
           <span class="arrow">&rarr;</span>
-          <span class="result">{{ currentUser()?.email ?? 'null' }}</span>
+          <span class="result">{{ currentUser()?.email | stringifyNullish }}</span>
         </div>
       </div>
 
@@ -60,12 +68,12 @@ interface User {
         <div class="code-row">
           <code>user?.address?.city</code>
           <span class="arrow">&rarr;</span>
-          <span class="result">{{ currentUser()?.address?.city ?? 'null' }}</span>
+          <span class="result">{{ currentUser()?.address?.city | stringifyNullish }}</span>
         </div>
         <div class="code-row">
           <code>user?.address?.country?.name</code>
           <span class="arrow">&rarr;</span>
-          <span class="result">{{ currentUser()?.address?.country?.name ?? 'null' }}</span>
+          <span class="result">{{ currentUser()?.address?.country?.name | stringifyNullish }}</span>
         </div>
       </div>
 

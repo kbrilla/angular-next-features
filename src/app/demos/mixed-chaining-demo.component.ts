@@ -8,7 +8,7 @@
  * - NativeChainingComponent uses `optionalChainingSemantics: 'native'`
  * - Both render side-by-side showing the behavioral differences
  */
-import {Component, signal, Input} from '@angular/core';
+import {Component, signal, Input, Pipe} from '@angular/core';
 import {JsonPipe} from '@angular/common';
 
 interface Config {
@@ -23,6 +23,13 @@ interface Config {
   };
 }
 
+@Pipe({ name: 'stringifyNullish', standalone: true })
+export class StringifyNullishPipe {
+  transform(value: any): string {
+    return value === null ? 'null' : value === undefined ? 'undefined' : String(value);
+  }
+}
+
 /**
  * Legacy semantics component.
  * optionalChainingSemantics: 'legacy' (default behavior, can be omitted)
@@ -30,6 +37,7 @@ interface Config {
 @Component({
   selector: 'app-legacy-chaining',
   optionalChainingSemantics: 'legacy',
+  imports: [StringifyNullishPipe],
   template: `
     <div class="panel legacy">
       <h3>Legacy Component</h3>
@@ -38,25 +46,25 @@ interface Config {
 
       <div class="result-row">
         <code>config?.theme</code>
-        <span class="value">{{ config()?.theme ?? fallbackLabel }}</span>
+        <span class="value">{{ config()?.theme  | stringifyNullish }}</span>
       </div>
       <div class="result-row">
         <code>config?.api?.baseUrl</code>
-        <span class="value">{{ config()?.api?.baseUrl ?? fallbackLabel }}</span>
+        <span class="value">{{ config()?.api?.baseUrl | stringifyNullish }}</span>
       </div>
       <div class="result-row">
         <code>config?.api?.timeout</code>
-        <span class="value">{{ config()?.api?.timeout ?? fallbackLabel }}</span>
+        <span class="value">{{ config()?.api?.timeout | stringifyNullish }}</span>
       </div>
       <div class="result-row">
         <code>config?.api?.headers?.authorization</code>
-        <span class="value">{{ config()?.api?.headers?.authorization ?? fallbackLabel }}</span>
+        <span class="value">{{ config()?.api?.headers?.authorization | stringifyNullish }}</span>
       </div>
 
       <div class="comparison-box">
         <p><strong>Strict equality (legacy):</strong></p>
-        <code>config?.missing === null</code>
-        <span class="result-true">true (returns null)</span>
+        <code>config?.api?.timeout === null</code>
+        <span class="result-true">{{ config()?.api?.timeout === null }} (returns {{ config()?.api?.timeout | stringifyNullish }})</span>
       </div>
     </div>
   `,
@@ -90,7 +98,6 @@ interface Config {
 })
 export class LegacyChainingComponent {
   config = signal<Config | null>(null);
-  fallbackLabel = 'null';
 
   @Input() set configData(value: Config | null) {
     this.config.set(value);
@@ -104,6 +111,7 @@ export class LegacyChainingComponent {
 @Component({
   selector: 'app-native-chaining',
   optionalChainingSemantics: 'native',  // <-- PR 1 feature
+  imports: [StringifyNullishPipe],
   template: `
     <div class="panel native">
       <h3>Native Component</h3>
@@ -112,25 +120,25 @@ export class LegacyChainingComponent {
 
       <div class="result-row">
         <code>config?.theme</code>
-        <span class="value">{{ config()?.theme ?? fallbackLabel }}</span>
+        <span class="value">{{ config()?.theme | stringifyNullish }}</span>
       </div>
       <div class="result-row">
         <code>config?.api?.baseUrl</code>
-        <span class="value">{{ config()?.api?.baseUrl ?? fallbackLabel }}</span>
+        <span class="value">{{ config()?.api?.baseUrl | stringifyNullish }}</span>
       </div>
       <div class="result-row">
         <code>config?.api?.timeout</code>
-        <span class="value">{{ config()?.api?.timeout ?? fallbackLabel }}</span>
+        <span class="value">{{ config()?.api?.timeout | stringifyNullish }}</span>
       </div>
       <div class="result-row">
         <code>config?.api?.headers?.authorization</code>
-        <span class="value">{{ config()?.api?.headers?.authorization ?? fallbackLabel }}</span>
+        <span class="value">{{ config()?.api?.headers?.authorization | stringifyNullish }}</span>
       </div>
 
       <div class="comparison-box">
         <p><strong>Strict equality (native):</strong></p>
-        <code>config?.missing === null</code>
-        <span class="result-false">false (returns undefined)</span>
+        <code>config?.api?.timeout === null</code>
+        <span class="result-false">{{ config()?.api?.timeout === null }} (returns {{ config()?.api?.timeout | stringifyNullish }})</span>
       </div>
     </div>
   `,
@@ -164,7 +172,6 @@ export class LegacyChainingComponent {
 })
 export class NativeChainingComponent {
   config = signal<Config | null>(null);
-  fallbackLabel = 'undefined';
 
   @Input() set configData(value: Config | null) {
     this.config.set(value);
@@ -675,6 +682,6 @@ export class MixedChainingDemoComponent {
   }
 
   ngOnInit() {
-    this.setFullConfig();
+    this.setPartialConfig();
   }
 }
