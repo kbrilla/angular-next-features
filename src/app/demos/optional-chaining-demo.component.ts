@@ -99,6 +99,82 @@ interface User {
         </p>
       </div>
 
+      <!-- Key access -->
+      <div class="example-section">
+        <h3>Key Index Access (?.[])</h3>
+        <div class="code-row">
+          <code>user?.address?.['city']</code>
+          <span class="arrow">&rarr;</span>
+          <span class="result">{{ currentUser()?.address?.['city'] | stringifyNullish }}</span>
+        </div>
+        <p class="note">
+          <code>?.[key]</code> expressions are supported with native semantics.
+          The migration schematic auto-converts simple chains but flags <code>?.[]</code> patterns
+          for manual review.
+        </p>
+      </div>
+
+      <!-- Migration Schematic -->
+      <div class="example-section">
+        <h3>Migration Schematic</h3>
+        <p class="description">
+          The <code>optional-chaining-semantics-migration</code> schematic auto-converts
+          safe navigation chains. It uses AST-based analysis (not regex) and handles:
+        </p>
+        <div class="migration-list">
+          <div class="migration-item"><code>a?.b</code> &rarr; <code>a?.b</code> (no change needed for simple chains)</div>
+          <div class="migration-item"><code>a?.b === null</code> &rarr; <code>a?.b == null</code> (loose equality)</div>
+          <div class="migration-item"><code>a?.b !== null</code> &rarr; <code>a?.b != null</code> (loose inequality)</div>
+          <div class="migration-item"><code>a?.b ?? fallback</code> &rarr; unchanged (already nullish-safe)</div>
+        </div>
+        <p class="note">
+          Run with: <code>ng generate &#64;angular/core:optional-chaining-semantics-migration</code>.
+          The schematic modifies templates but not component class code. Supports <code>!.</code>
+          patterns and negated ternary expressions in null-safe detection.
+        </p>
+      </div>
+
+      <!-- Extended Diagnostic -->
+      <div class="example-section">
+        <h3>Extended Diagnostic: legacySafeNavigationUsage (NG8119)</h3>
+        <p class="description">
+          When <code>strictOptionalChainingSemantics</code> is NOT enabled, the language service
+          produces a warning on every <code>?.</code> usage that would behave differently with
+          native semantics.
+        </p>
+        <div class="code-row">
+          <span class="diag-msg">NG8119: This safe navigation expression uses legacy Angular semantics
+            (returns 'null' on short-circuit). With 'strictOptionalChainingSemantics' enabled,
+            it would return 'undefined' instead.</span>
+        </div>
+        <p class="note">
+          The diagnostic can be configured via <code>extendedDiagnostics</code> in tsconfig:
+          <code>"legacySafeNavigationUsage": "warning" | "error" | "suppress"</code>
+        </p>
+      </div>
+
+      <!-- Configuration Options -->
+      <div class="example-section">
+        <h3>Configuration Options</h3>
+        <div class="config-list">
+          <div class="config-row">
+            <span class="config-where">tsconfig.json</span>
+            <code>"strictOptionalChainingSemantics": true</code>
+            <span class="config-scope">Project-wide</span>
+          </div>
+          <div class="config-row">
+            <span class="config-where">&#64;Component</span>
+            <code>optionalChainingSemantics: 'native'</code>
+            <span class="config-scope">Per-component override</span>
+          </div>
+          <div class="config-row">
+            <span class="config-where">&#64;Component</span>
+            <code>optionalChainingSemantics: 'legacy'</code>
+            <span class="config-scope">Opt-back to legacy</span>
+          </div>
+        </div>
+      </div>
+
       <div class="controls">
         <button (click)="setUserWithAddress()">User with Address</button>
         <button (click)="setUserWithoutAddress()">User without Address</button>
@@ -150,6 +226,13 @@ interface User {
     }
     button:hover { opacity: 0.85; }
     .null-btn { background: var(--adev-error); }
+    .migration-list { display: flex; flex-direction: column; gap: 6px; margin: 8px 0; }
+    .migration-item { background: var(--adev-surface-2); padding: 8px 12px; border-radius: 6px; font-size: 13px; }
+    .diag-msg { color: var(--adev-warning); font-style: italic; font-size: 13px; line-height: 1.6; }
+    .config-list { display: flex; flex-direction: column; gap: 6px; }
+    .config-row { display: flex; align-items: center; gap: 12px; background: var(--adev-surface-2); padding: 8px 12px; border-radius: 6px; font-size: 13px; flex-wrap: wrap; }
+    .config-where { font-size: 11px; font-weight: 700; color: var(--adev-text-tertiary); min-width: 100px; }
+    .config-scope { font-size: 11px; color: var(--adev-text-tertiary); margin-left: auto; }
   `],
 })
 export class OptionalChainingLegacyDemoComponent {

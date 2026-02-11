@@ -10,6 +10,8 @@ import {MixedChainingDemoComponent} from './demos/mixed-chaining-demo.component'
 import {InlayHintsDemoComponent} from './demos/inlay-hints-demo.component';
 import {CssIntellisenseDemoComponent} from './demos/css-intellisense-demo.component';
 import {TemplateDebugDemoComponent} from './demos/template-debug-demo.component';
+import {SelectionRangeDemoComponent} from './demos/selection-range-demo.component';
+import {DocumentSymbolsDemoComponent} from './demos/document-symbols-demo.component';
 
 interface NavItem {
   id: string;
@@ -32,6 +34,8 @@ interface NavItem {
     InlayHintsDemoComponent,
     CssIntellisenseDemoComponent,
     TemplateDebugDemoComponent,
+    SelectionRangeDemoComponent,
+    DocumentSymbolsDemoComponent,
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss',
@@ -48,6 +52,8 @@ export class App {
     {id: 'inlay-hints', label: 'Inlay Hints', icon: 'visibility', badge: 'NEW'},
     {id: 'css-intellisense', label: 'CSS/ARIA IntelliSense', icon: 'palette', badge: 'NEW'},
     {id: 'template-debug', label: 'Template Debug Overlay', icon: 'bug_report', badge: 'NEW'},
+    {id: 'selection-range', label: 'Selection Range', icon: 'select_all', badge: 'NEW'},
+    {id: 'document-symbols', label: 'Document Symbols', icon: 'account_tree', badge: 'NEW'},
   ];
 
   navigate(sectionId: string) {

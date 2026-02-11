@@ -207,6 +207,47 @@
   margin-bottom: 48px;
 }
 
+.wip-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: rgba(251, 191, 36, 0.08);
+  border: 1px solid rgba(251, 191, 36, 0.25);
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-bottom: 32px;
+  text-align: left;
+
+  .wip-icon {
+    color: #fbbf24;
+    font-size: 24px;
+    margin-top: 2px;
+  }
+
+  strong {
+    display: block;
+    color: #fbbf24;
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+
+  p {
+    color: var(--adev-text-secondary);
+    font-size: 13px;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  code {
+    background: var(--adev-code-bg);
+    border: 1px solid var(--adev-code-border);
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 12px;
+    color: var(--adev-primary);
+  }
+}
+
 .hero-title {
   font-size: 40px;
   font-weight: 700;
@@ -301,6 +342,14 @@
   &.debug {
     background: rgba(251, 146, 60, 0.15);
     color: #fb923c;
+  }
+  &.sr {
+    background: rgba(34, 211, 238, 0.15);
+    color: #22d3ee;
+  }
+  &.ds {
+    background: rgba(232, 121, 249, 0.15);
+    color: #e879f9;
   }
 }
 

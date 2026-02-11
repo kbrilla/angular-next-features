@@ -53,6 +53,8 @@
           <span class="branch-tag">ts-features</span>
           <span class="branch-tag">css-intellisense</span>
           <span class="branch-tag">debug-overlay</span>
+          <span class="branch-tag">selection-range</span>
+          <span class="branch-tag">document-symbols</span>
         </div>
       </div>
     </div>
@@ -63,6 +65,16 @@
       @case ('overview') {
         <div class="overview-page">
           <section class="hero">
+            <div class="wip-banner">
+              <mat-icon class="wip-icon">construction</mat-icon>
+              <div>
+                <strong>Work in Progress</strong>
+                <p>Both this demo application and the features it showcases are under active
+                  development. Some features may be incomplete, experimental, or subject to change.
+                  Built from custom Angular compiler tarballs (branches combined into
+                  <code>new_angular_features_demo</code>).</p>
+              </div>
+            </div>
             <h1 class="hero-title">Angular Template Upgrades</h1>
             <p class="hero-subtitle">
               Proposed features that modernize Angular's template expression system and developer
@@ -163,11 +175,43 @@
                 <span class="tag">LSP</span>
               </div>
             </button>
+
+            <button class="feature-card" (click)="navigate('selection-range')">
+              <div class="card-icon sr">
+                <mat-icon>select_all</mat-icon>
+              </div>
+              <h3>Selection Range</h3>
+              <p>
+                Smart Expand Selection through Angular template AST —
+                identifier to expression to element to block
+              </p>
+              <div class="card-footer">
+                <span class="tag accent">NEW</span>
+                <span class="tag">LSP 3.15</span>
+                <span class="tag">Navigation</span>
+              </div>
+            </button>
+
+            <button class="feature-card" (click)="navigate('document-symbols')">
+              <div class="card-icon ds">
+                <mat-icon>account_tree</mat-icon>
+              </div>
+              <h3>Document Symbols</h3>
+              <p>
+                Outline panel, breadcrumbs, Go to Symbol for Angular template
+                elements, control flow, and declarations
+              </p>
+              <div class="card-footer">
+                <span class="tag accent">NEW</span>
+                <span class="tag">LSP</span>
+                <span class="tag">Navigation</span>
+              </div>
+            </button>
           </section>
 
           <section class="stats-row">
             <div class="stat-card">
-              <span class="stat-value">6</span>
+              <span class="stat-value">8</span>
               <span class="stat-label">Feature Branches</span>
             </div>
             <div class="stat-card">
@@ -202,6 +246,12 @@
       }
       @case ('template-debug') {
         <app-template-debug-demo />
+      }
+      @case ('selection-range') {
+        <app-selection-range-demo />
+      }
+      @case ('document-symbols') {
+        <app-document-symbols-demo />
       }
     }
   </main>
