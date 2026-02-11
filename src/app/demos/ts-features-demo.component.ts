@@ -143,8 +143,8 @@ interface Product {
           {{ '{{ 0xFF }}' }} &rarr; 255 (hex)<br>
           {{ '{{ 0o77 }}' }} &rarr; 63 (octal, ES6+ 0o prefix)<br>
           {{ '{{ 0b1010 }}' }} &rarr; 10 (binary)<br>
-          {{ '{{ 0777 }}' }} &rarr; 511 (legacy octal — parsed as octal)<br>
-          {{ '{{ 0888 }}' }} &rarr; 888 (invalid octal digits &rarr; parsed as decimal)
+          {{ '{{ 0777 }}' }} &rarr; 777 (leading zero, but parsed as decimal)<br>
+          {{ '{{ 0888 }}' }} &rarr; 888 (leading zero, parsed as decimal)
         </p>
         <div class="code-row">
           <span class="label">Hex (0x1FF):</span>
@@ -163,18 +163,19 @@ interface Product {
           <span class="result">{{ 0xFF + 1 }}</span>
         </div>
         <div class="code-row">
-          <span class="label">0777 (legacy octal &rarr; 511):</span>
+          <span class="label">0777 (leading zero &rarr; 777):</span>
           <span class="result">{{ 0777 }}</span>
         </div>
         <div class="code-row">
-          <span class="label">0888 (invalid octal &rarr; decimal 888):</span>
+          <span class="label">0888 (leading zero &rarr; 888):</span>
           <span class="result">{{ 0888 }}</span>
         </div>
         <p class="note">
-          <strong>Special treatment:</strong> <code>0777</code> is parsed as octal (= 511 in decimal)
-          because all digits are valid octal (0–7). <code>0888</code> contains digits 8 and 9 which
-          are invalid in octal, so it falls back to decimal (= 888). This matches JavaScript's
-          legacy octal behavior.
+          <strong>Note:</strong> Leading-zero numbers like <code>0777</code> are parsed as
+          <strong>decimal</strong> (= 777), not octal. To write octal, use the explicit
+          <code>0o</code> prefix: <code>0o777</code> = 511. This differs from non-strict
+          JavaScript where <code>0777</code> is octal — Angular templates use <code>parseInt()</code>
+          which treats leading zeros as decimal in ES5+ environments.
         </p>
       </div>
 
