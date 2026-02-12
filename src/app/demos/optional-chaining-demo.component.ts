@@ -129,8 +129,10 @@ interface User {
         </div>
         <p class="note">
           Run with: <code>ng generate &#64;angular/core:optional-chaining-semantics-migration</code>.
-          The schematic modifies templates but not component class code. Supports <code>!.</code>
-          patterns and negated ternary expressions in null-safe detection.
+          The schematic now covers component templates plus host binding expressions in
+          <code>&#64;Component.host</code> and <code>&#64;Directive.host</code>.
+          It still does not rewrite arbitrary class code outside Angular template/host expressions.
+          Supports <code>!.</code> patterns and negated ternary expressions in null-safe detection.
         </p>
       </div>
 

@@ -455,46 +455,38 @@ export class NativeChainingComponent {
         </div>
       </div>
 
-      <!-- HOST BINDINGS GAP -->
       <div class="host-bindings-section">
-        <h3>&#x26A0;&#xFE0F; Known Gap: Host Bindings Always Use Legacy Semantics</h3>
+        <h3>&#x2705; Host Bindings Follow Optional Chaining Semantics</h3>
         <p class="group-description">
-          Even with <code>strictOptionalChainingSemantics: true</code>, host binding expressions
-          (<code>&#64;Component.host</code>, <code>&#64;Directive.host</code>, <code>&#64;HostBinding</code>)
-          always use legacy semantics (returning <code>null</code>).
+          Optional chaining semantics now apply consistently across template expressions and host
+          binding expressions (<code>&#64;Component.host</code>, <code>&#64;Directive.host</code>,
+          host directives, and <code>&#64;HostBinding</code> generated host instructions).
         </p>
 
         <div class="example-row">
           <div class="before"><code>template: '{{ '{{ user?.name }}' }}'</code></div>
           <div class="arrow">&rarr;</div>
-          <div class="after"><code>Returns <strong>undefined</strong> (native)</code></div>
-          <div class="reason">Template expressions respect the setting</div>
+          <div class="after"><code>Respects selected semantics</code></div>
+          <div class="reason">Template expressions</div>
         </div>
         <div class="example-row">
           <div class="before"><code>host: {{ '{' }}'[style.color]': 'theme?.primaryColor'{{ '}' }}</code></div>
           <div class="arrow">&rarr;</div>
-          <div class="after"><code>Returns <strong>null</strong> (legacy!)</code></div>
-          <div class="reason">Host bindings always use HostBindingCompilationJob</div>
+          <div class="after"><code>Also respects selected semantics</code></div>
+          <div class="reason">Host property bindings</div>
         </div>
         <div class="example-row">
-          <div class="before"><code>host: {{ '{' }}'[attr.title]': '"Hello " + user?.name'{{ '}' }}</code></div>
+          <div class="before"><code>&#64;Directive({{ '{' }} optionalChainingSemantics: 'native' {{ '}' }})</code></div>
           <div class="arrow">&rarr;</div>
-          <div class="after"><code>"Hello null" (not "Hello undefined")</code></div>
-          <div class="reason">String concatenation with null vs undefined differs</div>
+          <div class="after"><code>Directive host bindings use native behavior</code></div>
+          <div class="reason">Per-directive override support</div>
         </div>
 
         <div class="note-box gap-note">
-          <div class="status-highlight">
-            <span class="status-icon">&#x1F6E0;&#xFE0F;</span>
-            <strong>Status:</strong> This gap is already in progress of being fixed and should work correctly when ready!
-          </div>
-          <p><strong>Root cause:</strong> <code>HostBindingCompilationJob</code> is NOT an instance of
-            <code>ComponentCompilationJob</code>, so <code>useJsSemantics</code> is always <code>false</code>
-            in <code>expand_safe_reads.ts</code>.</p>
-          <p><strong>Affected:</strong> Component host bindings, directive host bindings, hostDirective bindings,
-            &#64;HostBinding decorators.</p>
-          <p><strong>Migration schematic:</strong> Also misses host bindings — only visits <code>template</code>
-            and <code>templateUrl</code> properties.</p>
+          <p><strong>Migration coverage:</strong> The migration schematic now handles both component
+            templates and host binding expressions in decorator metadata.</p>
+          <p><strong>Recommendation:</strong> Enable <code>legacySafeNavigationUsage</code>, run the migration,
+            then enable <code>strictOptionalChainingSemantics</code> project-wide.</p>
         </div>
       </div>
 

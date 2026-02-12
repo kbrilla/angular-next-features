@@ -9,35 +9,35 @@ importers:
   .:
     dependencies:
       '@angular/animations':
-        specifier: file:/Users/krzbri/repos/angular/dist/new-features-tarballs/angular-animations-0.0.0.tgz
-        version: file:../angular/dist/new-features-tarballs/angular-animations-0.0.0.tgz(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))
+        specifier: file:tarballs/angular-animations-0.0.0.tgz
+        version: file:tarballs/angular-animations-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))
       '@angular/cdk':
         specifier: ~21.1.3
-        version: 21.1.3(4cf65a3193ccd179d7da317b353acc6b)
+        version: 21.1.3(@angular/common@file:tarballs/angular-common-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(@angular/platform-browser@file:tarballs/angular-platform-browser-0.0.0.tgz(@angular/animations@file:tarballs/angular-animations-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)))(@angular/common@file:tarballs/angular-common-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)))(rxjs@7.8.2)
       '@angular/common':
-        specifier: file:/Users/krzbri/repos/angular/dist/new-features-tarballs/angular-common-0.0.0.tgz
-        version: file:../angular/dist/new-features-tarballs/angular-common-0.0.0.tgz(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(rxjs@7.8.2)
+        specifier: file:tarballs/angular-common-0.0.0.tgz
+        version: file:tarballs/angular-common-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(rxjs@7.8.2)
       '@angular/compiler':
-        specifier: file:/Users/krzbri/repos/angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz
-        version: file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz
+        specifier: file:tarballs/angular-compiler-0.0.0.tgz
+        version: file:tarballs/angular-compiler-0.0.0.tgz
       '@angular/core':
-        specifier: file:/Users/krzbri/repos/angular/dist/new-features-tarballs/angular-core-0.0.0.tgz
-        version: file:../angular/dist/new-features-tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)
+        specifier: file:tarballs/angular-core-0.0.0.tgz
+        version: file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)
       '@angular/forms':
-        specifier: file:/Users/krzbri/repos/angular/dist/new-features-tarballs/angular-forms-0.0.0.tgz
-        version: file:../angular/dist/new-features-tarballs/angular-forms-0.0.0.tgz(4cf65a3193ccd179d7da317b353acc6b)
+        specifier: file:tarballs/angular-forms-0.0.0.tgz
+        version: file:tarballs/angular-forms-0.0.0.tgz(@angular/common@file:tarballs/angular-common-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(@angular/platform-browser@file:tarballs/angular-platform-browser-0.0.0.tgz(@angular/animations@file:tarballs/angular-animations-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)))(@angular/common@file:tarballs/angular-common-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)))(rxjs@7.8.2)
       '@angular/material':
         specifier: ~21.1.3
-        version: 21.1.3(87e389c806334b754817e96634b3be4d)
+        version: 21.1.3(f369393a28a2ad44948a5b271eb49810)
       '@angular/platform-browser':
-        specifier: file:/Users/krzbri/repos/angular/dist/new-features-tarballs/angular-platform-browser-0.0.0.tgz
-        version: file:../angular/dist/new-features-tarballs/angular-platform-browser-0.0.0.tgz(@angular/animations@file:../angular/dist/new-features-tarballs/angular-animations-0.0.0.tgz(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)))(@angular/common@file:../angular/dist/new-features-tarballs/angular-common-0.0.0.tgz(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))
+        specifier: file:tarballs/angular-platform-browser-0.0.0.tgz
+        version: file:tarballs/angular-platform-browser-0.0.0.tgz(@angular/animations@file:tarballs/angular-animations-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)))(@angular/common@file:tarballs/angular-common-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))
       '@angular/platform-browser-dynamic':
-        specifier: file:/Users/krzbri/repos/angular/dist/new-features-tarballs/angular-platform-browser-dynamic-0.0.0.tgz
-        version: file:../angular/dist/new-features-tarballs/angular-platform-browser-dynamic-0.0.0.tgz(68f9900789fec2cab693ab222c0bc896)
+        specifier: file:tarballs/angular-platform-browser-dynamic-0.0.0.tgz
+        version: file:tarballs/angular-platform-browser-dynamic-0.0.0.tgz(@angular/common@file:tarballs/angular-common-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(@angular/platform-browser@file:tarballs/angular-platform-browser-0.0.0.tgz(@angular/animations@file:tarballs/angular-animations-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)))(@angular/common@file:tarballs/angular-common-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)))
       '@angular/router':
-        specifier: file:/Users/krzbri/repos/angular/dist/new-features-tarballs/angular-router-0.0.0.tgz
-        version: file:../angular/dist/new-features-tarballs/angular-router-0.0.0.tgz(4cf65a3193ccd179d7da317b353acc6b)
+        specifier: file:tarballs/angular-router-0.0.0.tgz
+        version: file:tarballs/angular-router-0.0.0.tgz(@angular/common@file:tarballs/angular-common-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(@angular/platform-browser@file:tarballs/angular-platform-browser-0.0.0.tgz(@angular/animations@file:tarballs/angular-animations-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)))(@angular/common@file:tarballs/angular-common-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)))(rxjs@7.8.2)
       rxjs:
         specifier: ~7.8.0
         version: 7.8.2
@@ -47,13 +47,13 @@ importers:
     devDependencies:
       '@angular/build':
         specifier: ^21.1.3
-        version: 21.1.3(ce0dbd1df8d256be7812a0f6765c4640)
+        version: 21.1.3(ad4567cbe31806357ddbb01e61dabae0)
       '@angular/cli':
         specifier: ^21.1.3
         version: 21.1.3(chokidar@5.0.0)
       '@angular/compiler-cli':
-        specifier: file:/Users/krzbri/repos/angular/dist/new-features-tarballs/angular-compiler-cli-0.0.0.tgz
-        version: file:../angular/dist/new-features-tarballs/angular-compiler-cli-0.0.0.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz)(typescript@5.9.3)
+        specifier: file:tarballs/angular-compiler-cli-0.0.0.tgz
+        version: file:tarballs/angular-compiler-cli-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(typescript@5.9.3)
       angular-cli-ghpages:
         specifier: ^3.0.2
         version: 3.0.2(@angular/cli@21.1.3(chokidar@5.0.0))(chokidar@5.0.0)
@@ -150,8 +150,8 @@ packages:
     resolution: {integrity: sha512-Ps7bRl5uOcM7WpNJHbSls/jz5/wAI0ldkTlKyiBFA7RtNeQIABAV+hvlw5DJuEb1Lo5hnK0hXj90AyZdOxzY+w==}
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0, npm: ^6.11.0 || ^7.5.6 || >=8.0.0, yarn: '>= 1.13.0'}
 
-  '@angular/animations@file:../angular/dist/new-features-tarballs/angular-animations-0.0.0.tgz':
-    resolution: {integrity: sha512-pzlJwyoLz20nWA1Fu95vQjNOOFIdF5MWjCteSfXx5Q4w3ahBvFlTapalCWrMW7jvJ+5S1YTpQFTXyZVqUrUtXg==, tarball: file:../angular/dist/new-features-tarballs/angular-animations-0.0.0.tgz}
+  '@angular/animations@file:tarballs/angular-animations-0.0.0.tgz':
+    resolution: {integrity: sha512-pzlJwyoLz20nWA1Fu95vQjNOOFIdF5MWjCteSfXx5Q4w3ahBvFlTapalCWrMW7jvJ+5S1YTpQFTXyZVqUrUtXg==, tarball: file:tarballs/angular-animations-0.0.0.tgz}
     version: 0.0.0
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
     peerDependencies:
@@ -205,6 +205,7 @@ packages:
 
   '@angular/cdk@21.1.3':
     resolution: {integrity: sha512-jMiEKCcZMIAnyx2jxrJHmw5c7JXAiN56ErZ4X+OuQ5yFvYRocRVEs25I0OMxntcXNdPTJQvpGwGlhWhS0yDorg==}
+    version: 21.1.3
     peerDependencies:
       '@angular/common': ^21.0.0 || ^22.0.0
       '@angular/core': ^21.0.0 || ^22.0.0
@@ -216,16 +217,16 @@ packages:
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0, npm: ^6.11.0 || ^7.5.6 || >=8.0.0, yarn: '>= 1.13.0'}
     hasBin: true
 
-  '@angular/common@file:../angular/dist/new-features-tarballs/angular-common-0.0.0.tgz':
-    resolution: {integrity: sha512-fA9SIB1yFruG6Za1UsLcuQYRxt44frkUSkpcVZqyrUDrtIRUzkUGb6p4JQPdDIga3t7lGzGziSeaY6OHrSk6ZA==, tarball: file:../angular/dist/new-features-tarballs/angular-common-0.0.0.tgz}
+  '@angular/common@file:tarballs/angular-common-0.0.0.tgz':
+    resolution: {integrity: sha512-fA9SIB1yFruG6Za1UsLcuQYRxt44frkUSkpcVZqyrUDrtIRUzkUGb6p4JQPdDIga3t7lGzGziSeaY6OHrSk6ZA==, tarball: file:tarballs/angular-common-0.0.0.tgz}
     version: 0.0.0
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
     peerDependencies:
       '@angular/core': 0.0.0
       rxjs: ^6.5.3 || ^7.4.0
 
-  '@angular/compiler-cli@file:../angular/dist/new-features-tarballs/angular-compiler-cli-0.0.0.tgz':
-    resolution: {integrity: sha512-ZhWCskpnsLlN44exK6RoJ1bC+axYZzluZVYsiXmPgfjg/ADcpLGRjUc2o89d5d4zLV7PGKBjz6nMZCi1J2zQew==, tarball: file:../angular/dist/new-features-tarballs/angular-compiler-cli-0.0.0.tgz}
+  '@angular/compiler-cli@file:tarballs/angular-compiler-cli-0.0.0.tgz':
+    resolution: {integrity: sha512-oRu9rwuWrgNxzKPzEncbSVsOoAwIRWMjuMiHCeOo5l7ygdUgjzlScENx7tU+pEWLe+IaQL29z8Zg/AfRbw7eJg==, tarball: file:tarballs/angular-compiler-cli-0.0.0.tgz}
     version: 0.0.0
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
     hasBin: true
@@ -236,13 +237,13 @@ packages:
       typescript:
         optional: true
 
-  '@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz':
-    resolution: {integrity: sha512-yM2Qgp5KCWi2SzG0Syb/aLJB6MBQC8egWuAz7jJubiAmIygZDfMx9OKLMy14GSvS57Jqrc6HEukxMLVQMpfZ+A==, tarball: file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz}
+  '@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz':
+    resolution: {integrity: sha512-8ZMqZRQ5Ie09NmNLobpqHlPf2Jrxu/o/h9gpAI5NQMGTMXs4O9JpisTWtfbHHuIYI3lDvAClvrsbnCBqs6+zpQ==, tarball: file:tarballs/angular-compiler-0.0.0.tgz}
     version: 0.0.0
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
 
-  '@angular/core@file:../angular/dist/new-features-tarballs/angular-core-0.0.0.tgz':
-    resolution: {integrity: sha512-Mc8pAnuyAaijk4XOiHwOmWRuPbMMY2YUc5aMGe7fq71F97sf2ANVn7+FrWDZHSK+i5XTYa9SyZEXKh6Mu+Dr4Q==, tarball: file:../angular/dist/new-features-tarballs/angular-core-0.0.0.tgz}
+  '@angular/core@file:tarballs/angular-core-0.0.0.tgz':
+    resolution: {integrity: sha512-Csp4WOLXW+PlE+O39T8fPNjyczF8/3DL7/odJjKTTmIeck6QF9cJlzSG0AKcriaZFpJkLn8RMn44nF6nauRHmA==, tarball: file:tarballs/angular-core-0.0.0.tgz}
     version: 0.0.0
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
     peerDependencies:
@@ -255,8 +256,8 @@ packages:
       zone.js:
         optional: true
 
-  '@angular/forms@file:../angular/dist/new-features-tarballs/angular-forms-0.0.0.tgz':
-    resolution: {integrity: sha512-eaTQCrZutwf/tezA3RMl0nYkzdVckMxpouVb/Cocp/W2ytRBH7XdqxEMI8iaNZxV8ckcMd2g1nW0+mnlBpd5DA==, tarball: file:../angular/dist/new-features-tarballs/angular-forms-0.0.0.tgz}
+  '@angular/forms@file:tarballs/angular-forms-0.0.0.tgz':
+    resolution: {integrity: sha512-eaTQCrZutwf/tezA3RMl0nYkzdVckMxpouVb/Cocp/W2ytRBH7XdqxEMI8iaNZxV8ckcMd2g1nW0+mnlBpd5DA==, tarball: file:tarballs/angular-forms-0.0.0.tgz}
     version: 0.0.0
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
     peerDependencies:
@@ -275,8 +276,8 @@ packages:
       '@angular/platform-browser': ^21.0.0 || ^22.0.0
       rxjs: ^6.5.3 || ^7.4.0
 
-  '@angular/platform-browser-dynamic@file:../angular/dist/new-features-tarballs/angular-platform-browser-dynamic-0.0.0.tgz':
-    resolution: {integrity: sha512-RmY8DT47TUn8htmqDBh496oISC8ZClHqrA+zV/FjANuU6R/L6Fczo3S1g89SVeon7oLnpqNBCZqmNSoW3nsO9Q==, tarball: file:../angular/dist/new-features-tarballs/angular-platform-browser-dynamic-0.0.0.tgz}
+  '@angular/platform-browser-dynamic@file:tarballs/angular-platform-browser-dynamic-0.0.0.tgz':
+    resolution: {integrity: sha512-RmY8DT47TUn8htmqDBh496oISC8ZClHqrA+zV/FjANuU6R/L6Fczo3S1g89SVeon7oLnpqNBCZqmNSoW3nsO9Q==, tarball: file:tarballs/angular-platform-browser-dynamic-0.0.0.tgz}
     version: 0.0.0
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
     peerDependencies:
@@ -285,8 +286,8 @@ packages:
       '@angular/core': 0.0.0
       '@angular/platform-browser': 0.0.0
 
-  '@angular/platform-browser@file:../angular/dist/new-features-tarballs/angular-platform-browser-0.0.0.tgz':
-    resolution: {integrity: sha512-00VMTrjCzH65rjEYJr42y4hw1ts/c1+D61w02S57l3n2dTrSYUzye7HMO96gDfCDtAfrDyUhmFVwPdEKlHZmHA==, tarball: file:../angular/dist/new-features-tarballs/angular-platform-browser-0.0.0.tgz}
+  '@angular/platform-browser@file:tarballs/angular-platform-browser-0.0.0.tgz':
+    resolution: {integrity: sha512-00VMTrjCzH65rjEYJr42y4hw1ts/c1+D61w02S57l3n2dTrSYUzye7HMO96gDfCDtAfrDyUhmFVwPdEKlHZmHA==, tarball: file:tarballs/angular-platform-browser-0.0.0.tgz}
     version: 0.0.0
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
     peerDependencies:
@@ -297,8 +298,8 @@ packages:
       '@angular/animations':
         optional: true
 
-  '@angular/router@file:../angular/dist/new-features-tarballs/angular-router-0.0.0.tgz':
-    resolution: {integrity: sha512-tDfXa1PNsZcgCO1nRtxkZ575c5aN1o9j19mVweMhpoPZ48cyE2jDolBhMV+Sduwo8WQ3vpk/M3KsQ+3Sx062Ug==, tarball: file:../angular/dist/new-features-tarballs/angular-router-0.0.0.tgz}
+  '@angular/router@file:tarballs/angular-router-0.0.0.tgz':
+    resolution: {integrity: sha512-tDfXa1PNsZcgCO1nRtxkZ575c5aN1o9j19mVweMhpoPZ48cyE2jDolBhMV+Sduwo8WQ3vpk/M3KsQ+3Sx062Ug==, tarball: file:tarballs/angular-router-0.0.0.tgz}
     version: 0.0.0
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
     peerDependencies:
@@ -3228,17 +3229,17 @@ snapshots:
     transitivePeerDependencies:
       - chokidar
 
-  '@angular/animations@file:../angular/dist/new-features-tarballs/angular-animations-0.0.0.tgz(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))':
+  '@angular/animations@file:tarballs/angular-animations-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))':
     dependencies:
-      '@angular/core': file:../angular/dist/new-features-tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)
+      '@angular/core': file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)
       tslib: 2.8.1
 
-  '@angular/build@21.1.3(ce0dbd1df8d256be7812a0f6765c4640)':
+  '@angular/build@21.1.3(ad4567cbe31806357ddbb01e61dabae0)':
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@angular-devkit/architect': 0.2101.3(chokidar@5.0.0)
-      '@angular/compiler': file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz
-      '@angular/compiler-cli': file:../angular/dist/new-features-tarballs/angular-compiler-cli-0.0.0.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz)(typescript@5.9.3)
+      '@angular/compiler': file:tarballs/angular-compiler-0.0.0.tgz
+      '@angular/compiler-cli': file:tarballs/angular-compiler-cli-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(typescript@5.9.3)
       '@babel/core': 7.28.5
       '@babel/helper-annotate-as-pure': 7.27.3
       '@babel/helper-split-export-declaration': 7.24.7
@@ -3267,8 +3268,8 @@ snapshots:
       vite: 7.3.0(sass@1.97.1)
       watchpack: 2.5.0
     optionalDependencies:
-      '@angular/core': file:../angular/dist/new-features-tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)
-      '@angular/platform-browser': file:../angular/dist/new-features-tarballs/angular-platform-browser-0.0.0.tgz(@angular/animations@file:../angular/dist/new-features-tarballs/angular-animations-0.0.0.tgz(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)))(@angular/common@file:../angular/dist/new-features-tarballs/angular-common-0.0.0.tgz(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))
+      '@angular/core': file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)
+      '@angular/platform-browser': file:tarballs/angular-platform-browser-0.0.0.tgz(@angular/animations@file:tarballs/angular-animations-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)))(@angular/common@file:tarballs/angular-common-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))
       lmdb: 3.4.4
       postcss: 8.5.6
       vitest: 4.0.18(jsdom@27.4.0)(sass@1.97.1)
@@ -3285,11 +3286,11 @@ snapshots:
       - tsx
       - yaml
 
-  '@angular/cdk@21.1.3(4cf65a3193ccd179d7da317b353acc6b)':
+  '@angular/cdk@21.1.3(@angular/common@file:tarballs/angular-common-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(@angular/platform-browser@file:tarballs/angular-platform-browser-0.0.0.tgz(@angular/animations@file:tarballs/angular-animations-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)))(@angular/common@file:tarballs/angular-common-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)))(rxjs@7.8.2)':
     dependencies:
-      '@angular/common': file:../angular/dist/new-features-tarballs/angular-common-0.0.0.tgz(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(rxjs@7.8.2)
-      '@angular/core': file:../angular/dist/new-features-tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)
-      '@angular/platform-browser': file:../angular/dist/new-features-tarballs/angular-platform-browser-0.0.0.tgz(@angular/animations@file:../angular/dist/new-features-tarballs/angular-animations-0.0.0.tgz(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)))(@angular/common@file:../angular/dist/new-features-tarballs/angular-common-0.0.0.tgz(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))
+      '@angular/common': file:tarballs/angular-common-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(rxjs@7.8.2)
+      '@angular/core': file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)
+      '@angular/platform-browser': file:tarballs/angular-platform-browser-0.0.0.tgz(@angular/animations@file:tarballs/angular-animations-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)))(@angular/common@file:tarballs/angular-common-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))
       parse5: 8.0.0
       rxjs: 7.8.2
       tslib: 2.8.1
@@ -3321,15 +3322,15 @@ snapshots:
       - chokidar
       - supports-color
 
-  '@angular/common@file:../angular/dist/new-features-tarballs/angular-common-0.0.0.tgz(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(rxjs@7.8.2)':
+  '@angular/common@file:tarballs/angular-common-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(rxjs@7.8.2)':
     dependencies:
-      '@angular/core': file:../angular/dist/new-features-tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)
+      '@angular/core': file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)
       rxjs: 7.8.2
       tslib: 2.8.1
 
-  '@angular/compiler-cli@file:../angular/dist/new-features-tarballs/angular-compiler-cli-0.0.0.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz)(typescript@5.9.3)':
+  '@angular/compiler-cli@file:tarballs/angular-compiler-cli-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(typescript@5.9.3)':
     dependencies:
-      '@angular/compiler': file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz
+      '@angular/compiler': file:tarballs/angular-compiler-0.0.0.tgz
       '@babel/core': 7.29.0
       '@jridgewell/sourcemap-codec': 1.5.5
       chokidar: 5.0.0
@@ -3343,57 +3344,57 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz':
+  '@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz':
     dependencies:
       tslib: 2.8.1
 
-  '@angular/core@file:../angular/dist/new-features-tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)':
+  '@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)':
     dependencies:
       rxjs: 7.8.2
       tslib: 2.8.1
     optionalDependencies:
-      '@angular/compiler': file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz
+      '@angular/compiler': file:tarballs/angular-compiler-0.0.0.tgz
 
-  '@angular/forms@file:../angular/dist/new-features-tarballs/angular-forms-0.0.0.tgz(4cf65a3193ccd179d7da317b353acc6b)':
+  '@angular/forms@file:tarballs/angular-forms-0.0.0.tgz(@angular/common@file:tarballs/angular-common-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(@angular/platform-browser@file:tarballs/angular-platform-browser-0.0.0.tgz(@angular/animations@file:tarballs/angular-animations-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)))(@angular/common@file:tarballs/angular-common-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)))(rxjs@7.8.2)':
     dependencies:
-      '@angular/common': file:../angular/dist/new-features-tarballs/angular-common-0.0.0.tgz(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(rxjs@7.8.2)
-      '@angular/core': file:../angular/dist/new-features-tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)
-      '@angular/platform-browser': file:../angular/dist/new-features-tarballs/angular-platform-browser-0.0.0.tgz(@angular/animations@file:../angular/dist/new-features-tarballs/angular-animations-0.0.0.tgz(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)))(@angular/common@file:../angular/dist/new-features-tarballs/angular-common-0.0.0.tgz(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))
+      '@angular/common': file:tarballs/angular-common-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(rxjs@7.8.2)
+      '@angular/core': file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)
+      '@angular/platform-browser': file:tarballs/angular-platform-browser-0.0.0.tgz(@angular/animations@file:tarballs/angular-animations-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)))(@angular/common@file:tarballs/angular-common-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))
       '@standard-schema/spec': 1.1.0
       rxjs: 7.8.2
       tslib: 2.8.1
 
-  '@angular/material@21.1.3(87e389c806334b754817e96634b3be4d)':
+  '@angular/material@21.1.3(f369393a28a2ad44948a5b271eb49810)':
     dependencies:
-      '@angular/cdk': 21.1.3(4cf65a3193ccd179d7da317b353acc6b)
-      '@angular/common': file:../angular/dist/new-features-tarballs/angular-common-0.0.0.tgz(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(rxjs@7.8.2)
-      '@angular/core': file:../angular/dist/new-features-tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)
-      '@angular/forms': file:../angular/dist/new-features-tarballs/angular-forms-0.0.0.tgz(4cf65a3193ccd179d7da317b353acc6b)
-      '@angular/platform-browser': file:../angular/dist/new-features-tarballs/angular-platform-browser-0.0.0.tgz(@angular/animations@file:../angular/dist/new-features-tarballs/angular-animations-0.0.0.tgz(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)))(@angular/common@file:../angular/dist/new-features-tarballs/angular-common-0.0.0.tgz(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))
+      '@angular/cdk': 21.1.3(@angular/common@file:tarballs/angular-common-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(@angular/platform-browser@file:tarballs/angular-platform-browser-0.0.0.tgz(@angular/animations@file:tarballs/angular-animations-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)))(@angular/common@file:tarballs/angular-common-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)))(rxjs@7.8.2)
+      '@angular/common': file:tarballs/angular-common-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(rxjs@7.8.2)
+      '@angular/core': file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)
+      '@angular/forms': file:tarballs/angular-forms-0.0.0.tgz(@angular/common@file:tarballs/angular-common-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(@angular/platform-browser@file:tarballs/angular-platform-browser-0.0.0.tgz(@angular/animations@file:tarballs/angular-animations-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)))(@angular/common@file:tarballs/angular-common-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)))(rxjs@7.8.2)
+      '@angular/platform-browser': file:tarballs/angular-platform-browser-0.0.0.tgz(@angular/animations@file:tarballs/angular-animations-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)))(@angular/common@file:tarballs/angular-common-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))
       rxjs: 7.8.2
       tslib: 2.8.1
 
-  '@angular/platform-browser-dynamic@file:../angular/dist/new-features-tarballs/angular-platform-browser-dynamic-0.0.0.tgz(68f9900789fec2cab693ab222c0bc896)':
-    dependencies:
-      '@angular/common': file:../angular/dist/new-features-tarballs/angular-common-0.0.0.tgz(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(rxjs@7.8.2)
-      '@angular/compiler': file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz
-      '@angular/core': file:../angular/dist/new-features-tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)
-      '@angular/platform-browser': file:../angular/dist/new-features-tarballs/angular-platform-browser-0.0.0.tgz(@angular/animations@file:../angular/dist/new-features-tarballs/angular-animations-0.0.0.tgz(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)))(@angular/common@file:../angular/dist/new-features-tarballs/angular-common-0.0.0.tgz(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))
+  ? '@angular/platform-browser-dynamic@file:tarballs/angular-platform-browser-dynamic-0.0.0.tgz(@angular/common@file:tarballs/angular-common-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(@angular/platform-browser@file:tarballs/angular-platform-browser-0.0.0.tgz(@angular/animations@file:tarballs/angular-animations-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)))(@angular/common@file:tarballs/angular-common-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)))'
+  : dependencies:
+      '@angular/common': file:tarballs/angular-common-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(rxjs@7.8.2)
+      '@angular/compiler': file:tarballs/angular-compiler-0.0.0.tgz
+      '@angular/core': file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)
+      '@angular/platform-browser': file:tarballs/angular-platform-browser-0.0.0.tgz(@angular/animations@file:tarballs/angular-animations-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)))(@angular/common@file:tarballs/angular-common-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))
       tslib: 2.8.1
 
-  '@angular/platform-browser@file:../angular/dist/new-features-tarballs/angular-platform-browser-0.0.0.tgz(@angular/animations@file:../angular/dist/new-features-tarballs/angular-animations-0.0.0.tgz(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)))(@angular/common@file:../angular/dist/new-features-tarballs/angular-common-0.0.0.tgz(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))':
+  '@angular/platform-browser@file:tarballs/angular-platform-browser-0.0.0.tgz(@angular/animations@file:tarballs/angular-animations-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)))(@angular/common@file:tarballs/angular-common-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))':
     dependencies:
-      '@angular/common': file:../angular/dist/new-features-tarballs/angular-common-0.0.0.tgz(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(rxjs@7.8.2)
-      '@angular/core': file:../angular/dist/new-features-tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)
+      '@angular/common': file:tarballs/angular-common-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(rxjs@7.8.2)
+      '@angular/core': file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)
       tslib: 2.8.1
     optionalDependencies:
-      '@angular/animations': file:../angular/dist/new-features-tarballs/angular-animations-0.0.0.tgz(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))
+      '@angular/animations': file:tarballs/angular-animations-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))
 
-  '@angular/router@file:../angular/dist/new-features-tarballs/angular-router-0.0.0.tgz(4cf65a3193ccd179d7da317b353acc6b)':
+  '@angular/router@file:tarballs/angular-router-0.0.0.tgz(@angular/common@file:tarballs/angular-common-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(@angular/platform-browser@file:tarballs/angular-platform-browser-0.0.0.tgz(@angular/animations@file:tarballs/angular-animations-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)))(@angular/common@file:tarballs/angular-common-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)))(rxjs@7.8.2)':
     dependencies:
-      '@angular/common': file:../angular/dist/new-features-tarballs/angular-common-0.0.0.tgz(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(rxjs@7.8.2)
-      '@angular/core': file:../angular/dist/new-features-tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)
-      '@angular/platform-browser': file:../angular/dist/new-features-tarballs/angular-platform-browser-0.0.0.tgz(@angular/animations@file:../angular/dist/new-features-tarballs/angular-animations-0.0.0.tgz(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)))(@angular/common@file:../angular/dist/new-features-tarballs/angular-common-0.0.0.tgz(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@file:../angular/dist/new-features-tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:../angular/dist/new-features-tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))
+      '@angular/common': file:tarballs/angular-common-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(rxjs@7.8.2)
+      '@angular/core': file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)
+      '@angular/platform-browser': file:tarballs/angular-platform-browser-0.0.0.tgz(@angular/animations@file:tarballs/angular-animations-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2)))(@angular/common@file:tarballs/angular-common-0.0.0.tgz(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@file:tarballs/angular-core-0.0.0.tgz(@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz)(rxjs@7.8.2))
       rxjs: 7.8.2
       tslib: 2.8.1
 
