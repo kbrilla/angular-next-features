@@ -181,38 +181,38 @@ export class MyComp {{'{'}}&nbsp;
   styles: [`
     .demo-container { max-width: 900px; margin: 0 auto; padding: 2rem; }
     .demo-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; flex-wrap: wrap; }
-    .demo-header h2 { margin: 0; font-size: 1.8rem; }
+    .demo-header h2 { margin: 0; font-size: 1.8rem; color: var(--adev-text); }
     .badge { padding: 0.25rem 0.75rem; border-radius: 999px; font-size: 0.75rem; font-weight: 600; }
-    .vq-badge { background: #e8f5e9; color: #2e7d32; }
-    .cap-badge { background: #e3f2fd; color: #1565c0; }
-    .demo-description { color: #555; line-height: 1.6; margin-bottom: 2rem; }
-    .demo-description code { background: #f5f5f5; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.9em; }
-    .example-section { background: #fafafa; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; border: 1px solid #e0e0e0; }
-    .example-section h3 { margin-top: 0; color: #333; }
+    .vq-badge { background: rgba(76, 175, 80, 0.12); color: #4caf50; border: 1px solid rgba(76,175,80,0.12); }
+    .cap-badge { background: rgba(96, 165, 250, 0.08); color: var(--adev-info); border: 1px solid rgba(96,165,250,0.12); }
+    .demo-description { color: var(--adev-text-secondary); line-height: 1.6; margin-bottom: 2rem; }
+    .demo-description code { background: var(--adev-code-bg); padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.9em; color: var(--adev-primary); border: 1px solid var(--adev-code-border); }
+    .example-section { background: var(--adev-surface); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; border: 1px solid var(--adev-border); color: var(--adev-text); }
+    .example-section h3 { margin-top: 0; color: var(--adev-text); }
     .severity { display: inline-block; padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.75rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .severity.error { background: #ffebee; color: #c62828; }
-    .severity.warning { background: #fff8e1; color: #f57f17; }
-    .desc { color: #666; line-height: 1.6; }
-    .desc code { background: #f0f0f0; padding: 0.1rem 0.3rem; border-radius: 3px; font-size: 0.85em; }
-    .code-block { background: #263238; border-radius: 8px; padding: 1rem 1.25rem; margin: 1rem 0; overflow-x: auto; }
+    .severity.error { background: rgba(248,113,113,0.08); color: var(--adev-error); }
+    .severity.warning { background: rgba(251,191,36,0.06); color: var(--adev-warning); }
+    .desc { color: var(--adev-text-secondary); line-height: 1.6; }
+    .desc code { background: var(--adev-code-bg); padding: 0.1rem 0.3rem; border-radius: 3px; font-size: 0.85em; color: var(--adev-code-text); border: 1px solid var(--adev-code-border); }
+    .code-block { background: var(--adev-code-bg); border-radius: 8px; padding: 1rem 1.25rem; margin: 1rem 0; overflow-x: auto; border: 1px solid var(--adev-code-border); }
     .code-block pre { margin: 0; }
-    .code-block code { color: #eeffff; font-family: 'Fira Code', 'Cascadia Code', monospace; font-size: 0.85rem; line-height: 1.5; white-space: pre; }
-    .fix-block { background: #e8f5e9; border-radius: 8px; padding: 1rem 1.25rem; margin-top: 1rem; }
-    .fix-block h4 { margin: 0 0 0.5rem; color: #2e7d32; font-size: 0.9rem; }
-    .fix-block pre { margin: 0; background: #c8e6c9; border-radius: 4px; padding: 0.75rem; overflow-x: auto; }
-    .fix-block code { font-family: 'Fira Code', 'Cascadia Code', monospace; font-size: 0.85rem; color: #1b5e20; }
+    .code-block code { color: var(--adev-code-text); font-family: 'Fira Code', 'Cascadia Code', monospace; font-size: 0.85rem; line-height: 1.5; white-space: pre; }
+    .fix-block { background: rgba(74,222,128,0.04); border-radius: 8px; padding: 1rem 1.25rem; margin-top: 1rem; border-left: 3px solid var(--adev-success); }
+    .fix-block h4 { margin: 0 0 0.5rem; color: var(--adev-success); font-size: 0.9rem; }
+    .fix-block pre { margin: 0; background: rgba(74,222,128,0.06); border-radius: 4px; padding: 0.75rem; overflow-x: auto; color: var(--adev-text); }
+    .fix-block code { font-family: 'Fira Code', 'Cascadia Code', monospace; font-size: 0.85rem; color: var(--adev-text); }
     .coverage-table { width: 100%; border-collapse: collapse; margin-top: 1rem; font-size: 0.85rem; }
-    .coverage-table th, .coverage-table td { padding: 0.6rem 0.8rem; border: 1px solid #e0e0e0; text-align: center; }
-    .coverage-table th { background: #f5f5f5; font-weight: 600; }
-    .coverage-table td:first-child { text-align: left; font-weight: 500; }
-    .cell-error { background: #ffebee; color: #c62828; font-weight: 600; }
-    .cell-warning { background: #fff8e1; color: #f57f17; font-weight: 600; }
-    .cell-none { color: #999; }
-    .coming-soon { border: 2px dashed #90caf9; background: #e3f2fd; }
-    .coming-soon h3 { color: #1565c0; }
+    .coverage-table th, .coverage-table td { padding: 0.6rem 0.8rem; border: 1px solid var(--adev-border); text-align: center; }
+    .coverage-table th { background: var(--adev-surface-2); font-weight: 600; color: var(--adev-text); }
+    .coverage-table td:first-child { text-align: left; font-weight: 500; color: var(--adev-text); }
+    .cell-error { background: rgba(248,113,113,0.06); color: var(--adev-error); font-weight: 600; }
+    .cell-warning { background: rgba(251,191,36,0.04); color: var(--adev-warning); font-weight: 600; }
+    .cell-none { color: var(--adev-text-secondary); }
+    .coming-soon { border: 2px dashed rgba(96,165,250,0.2); background: rgba(96,165,250,0.03); }
+    .coming-soon h3 { color: var(--adev-info); }
     .upcoming-list { padding-left: 1.5rem; }
-    .upcoming-list li { margin-bottom: 0.75rem; color: #555; line-height: 1.5; }
-    .upcoming-list code { background: #bbdefb; padding: 0.1rem 0.3rem; border-radius: 3px; font-size: 0.85em; }
+    .upcoming-list li { margin-bottom: 0.75rem; color: var(--adev-text-secondary); line-height: 1.5; }
+    .upcoming-list code { background: rgba(96,165,250,0.06); padding: 0.1rem 0.3rem; border-radius: 3px; font-size: 0.85em; color: var(--adev-text); }
   `],
 })
 export class ViewQueryDiagnosticsDemoComponent {}
