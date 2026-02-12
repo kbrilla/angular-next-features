@@ -6,7 +6,7 @@
  * - Legacy semantics: `?.` returns `null` on short-circuit (Angular default)
  * - Native semantics: `?.` returns `undefined` on short-circuit (ECMAScript standard)
  * - Per-component override via `optionalChainingSemantics: 'native' | 'legacy'`
- * - Project-wide: `strictOptionalChainingSemantics: true` in tsconfig
+ * - Project-wide: `nativeOptionalChainingSemantics: true` in tsconfig
  * - Extended diagnostic: `legacySafeNavigationUsage`
  * - Migration schematic: `optional-chaining-semantics-migration`
  *
@@ -140,13 +140,13 @@ interface User {
       <div class="example-section">
         <h3>Extended Diagnostic: legacySafeNavigationUsage (NG8119)</h3>
         <p class="description">
-          When <code>strictOptionalChainingSemantics</code> is NOT enabled, the language service
+          When <code>nativeOptionalChainingSemantics</code> is NOT enabled, the language service
           produces a warning on every <code>?.</code> usage that would behave differently with
           native semantics.
         </p>
         <div class="code-row">
           <span class="diag-msg">NG8119: This safe navigation expression uses legacy Angular semantics
-            (returns 'null' on short-circuit). With 'strictOptionalChainingSemantics' enabled,
+            (returns 'null' on short-circuit). With 'nativeOptionalChainingSemantics' enabled,
             it would return 'undefined' instead.</span>
         </div>
         <p class="note">
@@ -161,7 +161,7 @@ interface User {
         <div class="config-list">
           <div class="config-row">
             <span class="config-where">tsconfig.json</span>
-            <code>"strictOptionalChainingSemantics": true</code>
+            <code>"nativeOptionalChainingSemantics": true</code>
             <span class="config-scope">Project-wide</span>
           </div>
           <div class="config-row">

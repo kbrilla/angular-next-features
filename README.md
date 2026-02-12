@@ -9,7 +9,7 @@ Interactive demo showcasing two proposed Angular features:
 Angular's `?.` safe navigation operator has always returned `null` on short-circuit (legacy behavior). Native ECMAScript optional chaining returns `undefined`. This PR adds:
 
 - **Per-component override**: `optionalChainingSemantics: 'legacy' | 'native'` in `@Component`
-- **Project-wide setting**: `strictOptionalChainingSemantics: true` in tsconfig `angularCompilerOptions`
+- **Project-wide setting**: `nativeOptionalChainingSemantics: true` in tsconfig `angularCompilerOptions`
 - **Extended diagnostic**: `legacySafeNavigationUsage` warns about expressions affected by the change
 - **Migration schematic**: `ng generate @angular/core:optional-chaining-semantics-migration`
 

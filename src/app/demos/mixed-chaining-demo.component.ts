@@ -198,7 +198,7 @@ export class NativeChainingComponent {
         <h3>tsconfig.json (project-wide)</h3>
         <pre class="config-code">{{ '{' }}
   "angularCompilerOptions": {{ '{' }}
-    "strictOptionalChainingSemantics": true
+    "nativeOptionalChainingSemantics": true
   {{ '}' }}
 {{ '}' }}</pre>
         <p class="config-note">
@@ -244,7 +244,7 @@ export class NativeChainingComponent {
             <span class="step-num">3</span>
             <div>
               <strong>Enable native semantics</strong>
-              <p><code>"strictOptionalChainingSemantics": true</code> in tsconfig</p>
+              <p><code>"nativeOptionalChainingSemantics": true</code> in tsconfig</p>
             </div>
           </div>
           <div class="step">
@@ -486,7 +486,7 @@ export class NativeChainingComponent {
           <p><strong>Migration coverage:</strong> The migration schematic now handles both component
             templates and host binding expressions in decorator metadata.</p>
           <p><strong>Recommendation:</strong> Enable <code>legacySafeNavigationUsage</code>, run the migration,
-            then enable <code>strictOptionalChainingSemantics</code> project-wide.</p>
+            then enable <code>nativeOptionalChainingSemantics</code> project-wide.</p>
         </div>
       </div>
 
@@ -536,7 +536,7 @@ export class NativeChainingComponent {
           </div>
           <p class="addressed">
             <strong>Addressed by:</strong> <code>optionalChainingSemantics: 'native'</code> per-component
-            and <code>strictOptionalChainingSemantics: true</code> project-wide setting.
+            and <code>nativeOptionalChainingSemantics: true</code> project-wide setting.
           </p>
         </div>
 
