@@ -136,6 +136,17 @@ import {MatIconModule} from '@angular/material/icon';
           </div>
         </a>
 
+        <a class="feature-card" routerLink="/query-diagnostics">
+          <div class="card-icon vq"><mat-icon>find_in_page</mat-icon></div>
+          <h3>View Query Diagnostics</h3>
+          <p>3 new compiler diagnostics — missing required targets (NG8023), read:TemplateRef mismatches (NG8025), conditional-only refs (NG8028)</p>
+          <div class="card-footer">
+            <span class="tag accent">NEW</span>
+            <span class="tag">Compiler</span>
+            <span class="tag">Diagnostics</span>
+          </div>
+        </a>
+
         <a class="feature-card" routerLink="/document-symbols">
           <div class="card-icon th"><mat-icon>account_tree</mat-icon></div>
           <h3>Type Hierarchy</h3>
@@ -150,7 +161,7 @@ import {MatIconModule} from '@angular/material/icon';
 
       <section class="stats-row">
         <div class="stat-card">
-          <span class="stat-value">11</span>
+          <span class="stat-value">12</span>
           <span class="stat-label">Feature Demos</span>
         </div>
         <div class="stat-card">

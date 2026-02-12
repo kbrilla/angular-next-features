@@ -45,6 +45,7 @@ export class App {
     {id: 'style-precedence', path: '/style-precedence', label: 'Style Binding Bugs', icon: 'layers', badge: 'NEW'},
     {id: 'host-element', path: '/host-element', label: 'HostElement Type Safety', icon: 'security', badge: 'NEW'},
     {id: 'linked-editing', path: '/linked-editing', label: 'Linked Editing', icon: 'edit', badge: 'NEW'},
+    {id: 'query-diagnostics', path: '/query-diagnostics', label: 'Query Diagnostics', icon: 'find_in_page', badge: 'NEW'},
   ];
 
 

@@ -484,6 +484,10 @@ export class NativeChainingComponent {
         </div>
 
         <div class="note-box gap-note">
+          <div class="status-highlight">
+            <span class="status-icon">&#x1F6E0;&#xFE0F;</span>
+            <strong>Status:</strong> This gap is already in progress of being fixed and should work correctly when ready!
+          </div>
           <p><strong>Root cause:</strong> <code>HostBindingCompilationJob</code> is NOT an instance of
             <code>ComponentCompilationJob</code>, so <code>useJsSemantics</code> is always <code>false</code>
             in <code>expand_safe_reads.ts</code>.</p>
@@ -700,6 +704,28 @@ export class NativeChainingComponent {
     .host-bindings-section h3 { color: var(--adev-warning); }
     .gap-note { margin-top: 12px; }
     .gap-note p { margin: 4px 0; font-size: 13px; }
+    .status-highlight {
+      background: linear-gradient(135deg, rgba(74, 222, 128, 0.1), rgba(34, 197, 94, 0.05));
+      border: 2px solid var(--adev-success);
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 16px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--adev-success);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 2px 8px rgba(74, 222, 128, 0.15);
+    }
+    .status-icon {
+      font-size: 18px;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
     .note-box { background: var(--adev-surface); border: 1px solid var(--adev-border); border-left: 3px solid var(--adev-info);
       border-radius: 8px; padding: 14px 16px; font-size: 14px; color: var(--adev-text-secondary); line-height: 1.6; }
     .inlay-hints-section {
