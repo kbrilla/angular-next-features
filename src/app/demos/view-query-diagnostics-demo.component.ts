@@ -181,7 +181,8 @@ export class MyComp {{'{'}}&nbsp;
               <th>viewChild.required()</th>
               <th>viewChild()</th>
               <th>viewChildren()</th>
-              <th>&#64;ViewChild</th>
+              <th>&#64;ViewChild()</th>
+              <th>&#64;ViewChild({{'{'}} required: true {{'}'}})</th>
             </tr>
           </thead>
           <tbody>
@@ -190,10 +191,12 @@ export class MyComp {{'{'}}&nbsp;
               <td class="cell-error">NG8023 Error</td>
               <td class="cell-warning">NG8024 Warning</td>
               <td class="cell-warning">NG8024 Warning</td>
-              <td class="cell-warning">NG8024 Warning<br><small>(NG8023 with required:true)</small></td>
+              <td class="cell-warning">NG8024 Warning</td>
+              <td class="cell-error">NG8023 Error</td>
             </tr>
             <tr>
               <td>read:TemplateRef on &lt;div&gt;</td>
+              <td class="cell-error">NG8025 Error</td>
               <td class="cell-error">NG8025 Error</td>
               <td class="cell-error">NG8025 Error</td>
               <td class="cell-error">NG8025 Error</td>
@@ -205,6 +208,7 @@ export class MyComp {{'{'}}&nbsp;
               <td class="cell-none">—</td>
               <td class="cell-none">—</td>
               <td class="cell-error">NG8028 Error (static: true)</td>
+              <td class="cell-error">NG8028 Error (static: true)</td>
             </tr>
             <tr>
               <td>Accessed in constructor/ngOnInit</td>
@@ -212,14 +216,15 @@ export class MyComp {{'{'}}&nbsp;
               <td class="cell-warning">NG8031 Warning (non-static)</td>
               <td class="cell-none">—</td>
               <td class="cell-warning">NG8031 Warning (non-static)</td>
+              <td class="cell-warning">NG8031 Warning (non-static)</td>
             </tr>
             <tr>
               <td>Type predicate (e.g. ElementRef)</td>
-              <td colspan="4" class="cell-none">Skipped — resolved by type, not by ref name</td>
+              <td colspan="5" class="cell-none">Skipped — resolved by type, not by ref name</td>
             </tr>
             <tr>
               <td>Empty template</td>
-              <td colspan="4" class="cell-none">Skipped — may be placeholder/WIP code</td>
+              <td colspan="5" class="cell-none">Skipped — may be placeholder/WIP code</td>
             </tr>
           </tbody>
         </table>
