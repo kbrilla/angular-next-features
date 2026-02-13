@@ -46,19 +46,27 @@ export class StringifyNullishPipe {
 
       <div class="result-row">
         <code>config?.theme</code>
-        <span class="value">{{ config()?.theme  | stringifyNullish }}</span>
+        <span class="value"
+          [class.value-null]="config()?.theme === null"
+          [class.value-undefined]="config()?.theme === undefined">{{ config()?.theme  | stringifyNullish }}</span>
       </div>
       <div class="result-row">
         <code>config?.api?.baseUrl</code>
-        <span class="value">{{ config()?.api?.baseUrl | stringifyNullish }}</span>
+        <span class="value"
+          [class.value-null]="config()?.api?.baseUrl === null"
+          [class.value-undefined]="config()?.api?.baseUrl === undefined">{{ config()?.api?.baseUrl | stringifyNullish }}</span>
       </div>
       <div class="result-row">
         <code>config?.api?.timeout</code>
-        <span class="value">{{ config()?.api?.timeout | stringifyNullish }}</span>
+        <span class="value"
+          [class.value-null]="config()?.api?.timeout === null"
+          [class.value-undefined]="config()?.api?.timeout === undefined">{{ config()?.api?.timeout | stringifyNullish }}</span>
       </div>
       <div class="result-row">
         <code>config?.api?.headers?.authorization</code>
-        <span class="value">{{ config()?.api?.headers?.authorization | stringifyNullish }}</span>
+        <span class="value"
+          [class.value-null]="config()?.api?.headers?.authorization === null"
+          [class.value-undefined]="config()?.api?.headers?.authorization === undefined">{{ config()?.api?.headers?.authorization | stringifyNullish }}</span>
       </div>
 
       <div class="comparison-box">
@@ -86,7 +94,18 @@ export class StringifyNullishPipe {
       display: flex; justify-content: space-between; align-items: center;
       padding: 8px 12px; margin: 6px 0; background: var(--adev-surface-2); border-radius: 6px;
     }
-    .value { font-weight: 600; color: var(--adev-warning); }
+    .value { font-weight: 700; color: var(--adev-warning); padding: 2px 8px; border-radius: 6px; }
+    .value-null {
+      background: rgba(251, 191, 36, 0.14);
+      border: 1px solid rgba(251, 191, 36, 0.35);
+      box-shadow: 0 0 0 1px rgba(251, 191, 36, 0.18) inset;
+    }
+    .value-undefined {
+      background: rgba(96, 165, 250, 0.12);
+      border: 1px solid rgba(96, 165, 250, 0.35);
+      color: #60a5fa;
+      box-shadow: 0 0 0 1px rgba(96, 165, 250, 0.18) inset;
+    }
     .comparison-box {
       margin-top: 12px; padding: 10px 14px; background: rgba(248, 113, 113, 0.08);
       border-radius: 6px; border-left: 3px solid var(--adev-error);
@@ -120,19 +139,27 @@ export class LegacyChainingComponent {
 
       <div class="result-row">
         <code>config?.theme</code>
-        <span class="value">{{ config()?.theme | stringifyNullish }}</span>
+        <span class="value"
+          [class.value-null]="config()?.theme === null"
+          [class.value-undefined]="config()?.theme === undefined">{{ config()?.theme | stringifyNullish }}</span>
       </div>
       <div class="result-row">
         <code>config?.api?.baseUrl</code>
-        <span class="value">{{ config()?.api?.baseUrl | stringifyNullish }}</span>
+        <span class="value"
+          [class.value-null]="config()?.api?.baseUrl === null"
+          [class.value-undefined]="config()?.api?.baseUrl === undefined">{{ config()?.api?.baseUrl | stringifyNullish }}</span>
       </div>
       <div class="result-row">
         <code>config?.api?.timeout</code>
-        <span class="value">{{ config()?.api?.timeout | stringifyNullish }}</span>
+        <span class="value"
+          [class.value-null]="config()?.api?.timeout === null"
+          [class.value-undefined]="config()?.api?.timeout === undefined">{{ config()?.api?.timeout | stringifyNullish }}</span>
       </div>
       <div class="result-row">
         <code>config?.api?.headers?.authorization</code>
-        <span class="value">{{ config()?.api?.headers?.authorization | stringifyNullish }}</span>
+        <span class="value"
+          [class.value-null]="config()?.api?.headers?.authorization === null"
+          [class.value-undefined]="config()?.api?.headers?.authorization === undefined">{{ config()?.api?.headers?.authorization | stringifyNullish }}</span>
       </div>
 
       <div class="comparison-box">
@@ -160,7 +187,18 @@ export class LegacyChainingComponent {
       display: flex; justify-content: space-between; align-items: center;
       padding: 8px 12px; margin: 6px 0; background: var(--adev-surface-2); border-radius: 6px;
     }
-    .value { font-weight: 600; color: var(--adev-info); }
+    .value { font-weight: 700; color: var(--adev-info); padding: 2px 8px; border-radius: 6px; }
+    .value-null {
+      background: rgba(251, 191, 36, 0.14);
+      border: 1px solid rgba(251, 191, 36, 0.35);
+      color: #fbbf24;
+      box-shadow: 0 0 0 1px rgba(251, 191, 36, 0.18) inset;
+    }
+    .value-undefined {
+      background: rgba(96, 165, 250, 0.14);
+      border: 1px solid rgba(96, 165, 250, 0.4);
+      box-shadow: 0 0 0 1px rgba(96, 165, 250, 0.2) inset;
+    }
     .comparison-box {
       margin-top: 12px; padding: 10px 14px; background: rgba(248, 113, 113, 0.08);
       border-radius: 6px; border-left: 3px solid var(--adev-error);
@@ -210,6 +248,29 @@ export class NativeChainingComponent {
       <div class="side-by-side">
         <app-legacy-chaining [configData]="currentConfig()"></app-legacy-chaining>
         <app-native-chaining [configData]="currentConfig()"></app-native-chaining>
+      </div>
+
+      <div class="mix-match-section">
+        <h3>Mix &amp; Match: Component + Directive + hostDirectives</h3>
+        <p class="group-description">
+          Semantics can be set independently per declaration. A component can stay legacy while an attached
+          directive (or a hostDirective composed into it) uses native semantics.
+        </p>
+        <div class="example-row">
+          <div class="before"><code>&#64;Component({{ '{' }} optionalChainingSemantics: 'legacy' {{ '}' }})</code></div>
+          <div class="arrow">+</div>
+          <div class="after"><code>&#64;Directive({{ '{' }} optionalChainingSemantics: 'native' {{ '}' }})</code></div>
+          <div class="reason">Template stays legacy, directive host bindings use native</div>
+        </div>
+        <div class="example-row">
+          <div class="before"><code>hostDirectives: [NativeHostDir]</code></div>
+          <div class="arrow">+</div>
+          <div class="after"><code>optionalChainingSemantics: 'legacy'</code></div>
+          <div class="reason">Parent/child host behavior can differ intentionally</div>
+        </div>
+        <div class="note-box">
+          Recommendation: keep mixed mode temporary during rollout, then converge to native semantics project-wide.
+        </div>
       </div>
 
       <div class="data-controls">

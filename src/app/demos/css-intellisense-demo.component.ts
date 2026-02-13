@@ -91,13 +91,14 @@ import {Component} from '@angular/core';
           <div class="diag-row err"><span>99012</span><span>INVALID_UNIT_VALUE_IN_HOST</span><span>Invalid unit value in host binding</span><span class="place-tag type-tag">Types / Compiler</span></div>
           <div class="diag-row warn"><span>99014</span><span>SHORTHAND_OVERRIDE</span><span>CSS shorthand overrides longhand set elsewhere</span><span class="place-tag lsp-tag">LSP only</span></div>
           <div class="diag-row hint"><span>99015</span><span>PREFER_NUMERIC_UNIT_VALUE</span><span>Use number instead of string for unit suffix</span><span class="place-tag eslint-tag">ESLint</span></div>
-          <div class="diag-row hint"><span>99017</span><span>PREFER_CLASS_OVER_NGCLASS</span><span>Migrate [ngClass] to [class]</span><span class="place-tag eslint-tag">ESLint</span></div>
+          <div class="diag-row hint"><span>99017</span><span>PREFER_CLASS_OVER_NGCLASS</span><span>Migrate [ngClass] to [class] (template-only; host columns are N/A)</span><span class="place-tag eslint-tag">ESLint</span></div>
           <div class="diag-row hint"><span>99018</span><span>PREFER_INDIVIDUAL_STYLE_BINDINGS</span><span>Convert [style]="&#123;...&#125;" to individual [style.x]</span><span class="place-tag eslint-tag">ESLint</span></div>
           <div class="diag-row hint"><span>99019</span><span>PREFER_STYLE_OBJECT_BINDING</span><span>Consolidate multiple [style.x] into [style]="&#123;...&#125;"</span><span class="place-tag eslint-tag">ESLint</span></div>
           <div class="diag-row err"><span>99020</span><span>DUPLICATE_STYLE_BINDING</span><span>Duplicate CSS property across individual bindings</span><span class="place-tag lsp-tag">LSP only</span></div>
           <div class="diag-row warn"><span>99411</span><span>CLASS_BINDING_SHADOWS_INPUT</span><span>[class] binding shadows &#64;Input('class')</span><span class="place-tag lsp-tag">LSP only</span></div>
           <div class="diag-row warn"><span>99412</span><span>STYLE_BINDING_SHADOWS_INPUT</span><span>[style] binding shadows &#64;Input('style')</span><span class="place-tag lsp-tag">LSP only</span></div>
         </div>
+        <p class="note">For migration-suggestion diagnostics (like 99017), host contexts are <strong>not applicable</strong> rather than "missing".</p>
 
         <h4 style="margin-top: 16px;">ARIA Diagnostic Codes</h4>
         <div class="diag-table wide">
