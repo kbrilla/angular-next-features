@@ -218,7 +218,7 @@ packages:
     hasBin: true
 
   '@angular/common@file:tarballs/angular-common-0.0.0.tgz':
-    resolution: {integrity: sha512-fA9SIB1yFruG6Za1UsLcuQYRxt44frkUSkpcVZqyrUDrtIRUzkUGb6p4JQPdDIga3t7lGzGziSeaY6OHrSk6ZA==, tarball: file:tarballs/angular-common-0.0.0.tgz}
+    resolution: {integrity: sha512-YB/JceuDKEgq6NFpMwovvOB91crLxLmCgrIpoGvFVUCfTSu870PVZsSE2KXDwt5zhLakIl3tG5DseloNPyVpwA==, tarball: file:tarballs/angular-common-0.0.0.tgz}
     version: 0.0.0
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
     peerDependencies:
@@ -226,7 +226,7 @@ packages:
       rxjs: ^6.5.3 || ^7.4.0
 
   '@angular/compiler-cli@file:tarballs/angular-compiler-cli-0.0.0.tgz':
-    resolution: {integrity: sha512-aNcVM3/UOX1ocKiQdPRWKZbGTPBPnZoSJny4UgUqt3DucFYEIUWndN6tmhIzD6hhp1NbaDm2WO0+j+NrKD2etQ==, tarball: file:tarballs/angular-compiler-cli-0.0.0.tgz}
+    resolution: {integrity: sha512-NbGa5q3O7ZGk39e/qpFtRqvNkm+nNBGKvRdEkDGOQStxPZcFeeHL9yaQ3W+BflFoMr4bqHkr161lil15eYRXHg==, tarball: file:tarballs/angular-compiler-cli-0.0.0.tgz}
     version: 0.0.0
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
     hasBin: true
@@ -238,12 +238,12 @@ packages:
         optional: true
 
   '@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz':
-    resolution: {integrity: sha512-afz6Yn9HNjQwobV25oXceGGMw+Zi1UK4JPlAXxqLkCSlVoVx61+rT8vcMFjbuXWsgXZ0HhOxJIpEM4YkNcbPCA==, tarball: file:tarballs/angular-compiler-0.0.0.tgz}
+    resolution: {integrity: sha512-OulDFUDsSzRD1eXqJ/e0nTLzhCkmheIWvUuZ23BaWsCnoPh+lpL77Xx18bi7qvT+uDQ+tK1p39d/UVBpXmc55A==, tarball: file:tarballs/angular-compiler-0.0.0.tgz}
     version: 0.0.0
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
 
   '@angular/core@file:tarballs/angular-core-0.0.0.tgz':
-    resolution: {integrity: sha512-o9wl1vk0ouu2MHtCHbm/Gz0vCRsDzpfZZxtUHlFc9RXxWRmAwzLFg62iBG4utaKeQwcizWr+Dq1pL51vfyzwvQ==, tarball: file:tarballs/angular-core-0.0.0.tgz}
+    resolution: {integrity: sha512-THGrVZ5dId5fYVKOp+yK4dkve0CutjL0iUuttG/+66bzEo7qrVDOI9xRy0Swa5IlTUqai/ZLWcCkaTVHQz30iw==, tarball: file:tarballs/angular-core-0.0.0.tgz}
     version: 0.0.0
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
     peerDependencies:
