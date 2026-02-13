@@ -395,6 +395,24 @@ host: {{'{'}} '[&#64;someAnimation]': 'animationState' {{'}'}}
           <div class="test-item"><code>host_binding_spec.ts</code><span>Runtime host binding acceptance tests</span></div>
         </div>
       </div>
+
+      <div class="issues-section">
+        <h3>Community Issues Addressed</h3>
+        <div class="issue-card">
+          <div class="issue-header">
+            <a class="issue-link" href="https://github.com/angular/angular/issues/47082" target="_blank">#47082</a>
+            <span class="issue-title">Host element dimension binding validation</span>
+          </div>
+          <p class="issue-desc">Setting bound width and height onto host elements lacked type-checking.</p>
+        </div>
+        <div class="issue-card">
+          <div class="issue-header">
+            <a class="issue-link" href="https://github.com/angular/angular/issues/48147" target="_blank">#48147</a>
+            <span class="issue-title">Correctly handle host directive inputs/outputs</span>
+          </div>
+          <p class="issue-desc">Host directives' inputs and outputs were not properly type-checked or validated against the template.</p>
+        </div>
+      </div>
     </div>
   `,
   styles: [`
@@ -458,6 +476,13 @@ host: {{'{'}} '[&#64;someAnimation]': 'animationState' {{'}'}}
     .test-item { display: flex; align-items: center; gap: 12px; padding: 6px 10px; background: var(--adev-surface-2); border-radius: 4px; font-size: 12px; }
     .test-item span { color: var(--adev-text-secondary); font-size: 12px; }
     @media (max-width: 768px) { .comparison-grid { grid-template-columns: 1fr; } }
+    .issues-section { background: rgba(167, 139, 250, 0.06); border: 1px solid rgba(167, 139, 250, 0.2); padding: 20px; border-radius: 8px; margin: 20px 0; }
+    .issues-section h3 { color: var(--adev-accent); border-bottom: 1px solid var(--adev-border); padding-bottom: 8px; }
+    .issue-card { background: var(--adev-surface); border: 1px solid var(--adev-border); padding: 16px; border-radius: 8px; margin: 12px 0; }
+    .issue-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+    .issue-link { background: var(--adev-accent); color: #0f0f11; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 700; text-decoration: none; }
+    .issue-title { font-weight: 600; color: var(--adev-text); font-size: 14px; }
+    .issue-desc { font-size: 13px; color: var(--adev-text-secondary); line-height: 1.6; }
   `],
 })
 export class HostElementDemoComponent {}

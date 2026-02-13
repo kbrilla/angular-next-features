@@ -8,7 +8,7 @@
  * - NativeChainingComponent uses `optionalChainingSemantics: 'native'`
  * - Both render side-by-side showing the behavioral differences
  */
-import {Component, signal, Input, Pipe} from '@angular/core';
+import {Component, signal, Input, Pipe, Directive, HostBinding} from '@angular/core';
 import {JsonPipe} from '@angular/common';
 
 interface Config {
@@ -96,9 +96,14 @@ export class StringifyNullishPipe {
     }
     .value { font-weight: 700; color: var(--adev-warning); padding: 2px 8px; border-radius: 6px; }
     .value-null {
-      background: rgba(251, 191, 36, 0.14);
-      border: 1px solid rgba(251, 191, 36, 0.35);
-      box-shadow: 0 0 0 1px rgba(251, 191, 36, 0.18) inset;
+      background: rgba(239, 68, 68, 0.18);
+      border: 1px solid rgba(239, 68, 68, 0.5);
+      color: #ef4444;
+      box-shadow: 0 0 6px rgba(239, 68, 68, 0.25);
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
     }
     .value-undefined {
       background: rgba(96, 165, 250, 0.12);
@@ -189,15 +194,24 @@ export class LegacyChainingComponent {
     }
     .value { font-weight: 700; color: var(--adev-info); padding: 2px 8px; border-radius: 6px; }
     .value-null {
-      background: rgba(251, 191, 36, 0.14);
-      border: 1px solid rgba(251, 191, 36, 0.35);
-      color: #fbbf24;
-      box-shadow: 0 0 0 1px rgba(251, 191, 36, 0.18) inset;
+      background: rgba(239, 68, 68, 0.18);
+      border: 1px solid rgba(239, 68, 68, 0.5);
+      color: #ef4444;
+      box-shadow: 0 0 6px rgba(239, 68, 68, 0.25);
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
     }
     .value-undefined {
-      background: rgba(96, 165, 250, 0.14);
-      border: 1px solid rgba(96, 165, 250, 0.4);
-      box-shadow: 0 0 0 1px rgba(96, 165, 250, 0.2) inset;
+      background: rgba(239, 68, 68, 0.18);
+      border: 1px solid rgba(239, 68, 68, 0.5);
+      color: #ef4444;
+      box-shadow: 0 0 6px rgba(239, 68, 68, 0.25);
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
     }
     .comparison-box {
       margin-top: 12px; padding: 10px 14px; background: rgba(248, 113, 113, 0.08);
@@ -217,12 +231,92 @@ export class NativeChainingComponent {
 }
 
 /**
+ * A directive that uses NATIVE optional chaining semantics in its host bindings.
+ * When applied to a component that uses LEGACY semantics, the directive's
+ * host bindings still use native behavior independently.
+ */
+@Directive({
+  selector: '[appNativeHostDir]',
+  standalone: true,
+  optionalChainingSemantics: 'native',
+  host: {
+    '[attr.data-native-title]': 'labelData?.title',
+    '[class.native-active]': '!!labelData?.active',
+  },
+})
+export class NativeHostDirective {
+  @Input() labelData: { title?: string; active?: boolean } | null = null;
+}
+
+/**
+ * A component that uses LEGACY semantics but includes NativeHostDirective
+ * via hostDirectives — demonstrating that each declaration keeps its own semantics.
+ */
+@Component({
+  selector: 'app-mixed-example',
+  standalone: true,
+  imports: [StringifyNullishPipe, NativeHostDirective],
+  optionalChainingSemantics: 'legacy',
+  template: `
+    <div class="mixed-live-panel">
+      <div class="mixed-header">
+        <span class="badge legacy-badge">Component: legacy</span>
+        <span class="badge native-badge">Directive host bindings: native</span>
+      </div>
+      <div class="mixed-row">
+        <span class="mixed-label">Template <code>item?.value</code> (legacy)</span>
+        <span class="mixed-value"
+          [class.val-null]="item()?.value === null"
+          [class.val-undefined]="item()?.value === undefined">{{ item()?.value | stringifyNullish }}</span>
+      </div>
+      <div class="mixed-row">
+        <span class="mixed-label">Host attr <code>[attr.data-native-title]</code> (native)</span>
+        <span class="mixed-value"
+          [class.val-null]="nativeTitle === 'null'"
+          [class.val-undefined]="nativeTitle === 'undefined'">{{ nativeTitle }}</span>
+      </div>
+      <div class="mixed-explanation">
+        The template expression uses <strong>legacy</strong> (returns <span class="highlight-null">null</span>)
+        while the directive host binding uses <strong>native</strong> (returns <span class="highlight-undefined">undefined</span>)
+        — each declaration owns its semantics independently.
+      </div>
+    </div>
+  `,
+  styles: [`
+    .mixed-live-panel { padding: 16px; background: var(--adev-surface-2); border-radius: 8px; }
+    .mixed-header { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+    .badge { display: inline-block; padding: 3px 10px; border-radius: 6px; font-size: 11px; font-weight: 600; font-family: 'JetBrains Mono', monospace; }
+    .legacy-badge { background: rgba(251, 191, 36, 0.12); color: #fbbf24; }
+    .native-badge { background: rgba(96, 165, 250, 0.12); color: #60a5fa; }
+    .mixed-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; margin: 4px 0; background: var(--adev-surface); border-radius: 6px; }
+    .mixed-label { font-size: 13px; color: var(--adev-text-secondary); }
+    .mixed-label code { background: var(--adev-code-bg); border: 1px solid var(--adev-code-border); padding: 1px 4px; border-radius: 3px; font-size: 12px; }
+    .mixed-value { font-weight: 700; padding: 2px 8px; border-radius: 6px; }
+    .val-null { background: rgba(239, 68, 68, 0.18); border: 1px solid rgba(239, 68, 68, 0.5); color: #ef4444; font-weight: 800; text-transform: uppercase; }
+    .val-undefined { background: rgba(239, 68, 68, 0.18); border: 1px solid rgba(239, 68, 68, 0.5); color: #ef4444; font-weight: 800; text-transform: uppercase; }
+    .mixed-explanation { margin-top: 10px; padding: 10px; background: rgba(96, 165, 250, 0.08); border-left: 3px solid var(--adev-info); border-radius: 6px; font-size: 13px; color: var(--adev-text-secondary); }
+    .highlight-null { color: #ef4444; font-weight: 700; }
+    .highlight-undefined { color: #ef4444; font-weight: 700; }
+  `],
+})
+export class MixedExampleComponent {
+  item = signal<{ value?: string } | null>(null);
+
+  get nativeTitle(): string {
+    // This would be set by the host directive — for demo purposes show the concept
+    const el = typeof document !== 'undefined' ? document.querySelector('[appNativeHostDir]') : null;
+    const attr = el?.getAttribute('data-native-title');
+    return attr === null ? 'null' : attr === undefined ? 'undefined' : attr;
+  }
+}
+
+/**
  * Parent container: shows both legacy and native components side by side
  * with the same data, proving they can be mixed and matched.
  */
 @Component({
   selector: 'app-mixed-chaining-demo',
-  imports: [LegacyChainingComponent, NativeChainingComponent, JsonPipe],
+  imports: [LegacyChainingComponent, NativeChainingComponent, MixedExampleComponent, NativeHostDirective, JsonPipe],
   template: `
     <div class="demo-container">
       <h2>Mix and Match: Legacy + Native Optional Chaining</h2>
@@ -255,7 +349,21 @@ export class NativeChainingComponent {
         <p class="group-description">
           Semantics can be set independently per declaration. A component can stay legacy while an attached
           directive (or a hostDirective composed into it) uses native semantics.
+          <strong>Below is a live example:</strong>
         </p>
+
+        <div class="live-mix-match">
+          <h4>Live Demo: Legacy Component + Native Host Directive</h4>
+          <div appNativeHostDir [labelData]="mixedLabelData()">
+            <app-mixed-example></app-mixed-example>
+          </div>
+          <div class="mix-match-controls">
+            <button (click)="setMixedWithData()">Set Data</button>
+            <button class="null-btn" (click)="setMixedNull()">Set Null</button>
+          </div>
+        </div>
+
+        <h4>How It Works</h4>
         <div class="example-row">
           <div class="before"><code>&#64;Component({{ '{' }} optionalChainingSemantics: 'legacy' {{ '}' }})</code></div>
           <div class="arrow">+</div>
@@ -269,7 +377,10 @@ export class NativeChainingComponent {
           <div class="reason">Parent/child host behavior can differ intentionally</div>
         </div>
         <div class="note-box">
-          Recommendation: keep mixed mode temporary during rollout, then converge to native semantics project-wide.
+          <strong>Key insight:</strong> Each &#64;Component and &#64;Directive maintains its own semantics.
+          A legacy component's template returns <span style="color:#ef4444;font-weight:700">null</span>, 
+          while a native directive's host bindings return <span style="color:#ef4444;font-weight:700">undefined</span> —
+          both on the same DOM element! Keep mixed mode temporary during rollout, then converge to native semantics project-wide.
         </div>
       </div>
 
@@ -327,7 +438,7 @@ export class NativeChainingComponent {
 
       <!-- Migration Examples -->
       <div class="examples-section">
-        <h3>Migration Examples (from actual schematic tests)</h3>
+        <h3>Migration Examples (34 schematic tests + quick fixes)</h3>
 
         <div class="example-group safe">
           <h4>Safe Contexts (no change needed)</h4>
@@ -440,6 +551,20 @@ export class NativeChainingComponent {
             <div class="after"><code>[hidden]="!user?.isVisible"</code></div>
             <div class="reason">Property binding with negation: safe</div>
           </div>
+
+          <div class="example-row">
+            <div class="before"><code>{{ '{{ !!a?.b }}' }}</code></div>
+            <div class="arrow">&rarr;</div>
+            <div class="after"><code>{{ '{{ !!a?.b }}' }}</code></div>
+            <div class="reason">Double negation: coerces to boolean, safe</div>
+          </div>
+
+          <div class="example-row">
+            <div class="before"><code>{{ '{{ !a?.b?.c ? x : y }}' }}</code></div>
+            <div class="arrow">&rarr;</div>
+            <div class="after"><code>{{ '{{ !a?.b?.c ? x : y }}' }}</code></div>
+            <div class="reason">Negated ternary condition: truthiness check, safe</div>
+          </div>
         </div>
 
         <div class="example-group sensitive">
@@ -521,6 +646,65 @@ export class NativeChainingComponent {
             <div class="arrow">&rarr;</div>
             <div class="after"><code>{{ 'a?.b?.method()?.c ?? null' }}</code></div>
             <div class="reason">Mixed chain with method: can't fully decompose</div>
+          </div>
+        </div>
+
+        <div class="example-group host-expr">
+          <h4>Host Expression Migration (decorator metadata)</h4>
+          <p class="group-description">
+            The migration schematic now also converts host binding expressions in
+            <code>&#64;Component.host</code> and <code>&#64;Directive.host</code> decorator metadata,
+            respecting TS string quoting (single, double, backtick).
+          </p>
+
+          <div class="example-row">
+            <div class="before"><code>host: {{ '{' }}'[title]': 'user?.name'{{ '}' }}</code></div>
+            <div class="arrow">&rarr;</div>
+            <div class="after"><code>host: {{ '{' }}'[title]': 'user != null ? user.name : null'{{ '}' }}</code></div>
+            <div class="reason">Simple host expression — safe ternary conversion</div>
+          </div>
+
+          <div class="example-row">
+            <div class="before"><code>host: {{ '{' }}'[title]': 'a?.method()'{{ '}' }}</code></div>
+            <div class="arrow">&rarr;</div>
+            <div class="after"><code>host: {{ '{' }}'[title]': 'a?.method() ?? null'{{ '}' }}</code></div>
+            <div class="reason">Call pattern — best-effort ?? null fallback</div>
+          </div>
+
+          <div class="example-row">
+            <div class="before"><code>host: {{ '{' }}"[title]": "it\\'s a?.b"{{ '}' }}</code></div>
+            <div class="arrow">&rarr;</div>
+            <div class="after"><code>Preserved quote escaping in output</code></div>
+            <div class="reason">TS string quoting is respected for safe insertion</div>
+          </div>
+        </div>
+
+        <div class="example-group quickfix">
+          <h4>NG8119 Quick Fixes (Language Service Code Actions)</h4>
+          <p class="group-description">
+            The language service offers inline code actions when <code>legacySafeNavigationUsage</code>
+            is enabled. Two fix modes are available per-expression and as fix-all:
+          </p>
+
+          <div class="example-row">
+            <div class="before"><code>{{ '{{ user?.name }}' }} <span class="diag-inline">⚠ NG8119</span></code></div>
+            <div class="arrow">&rarr;</div>
+            <div class="after"><code>{{ '{{ user != null ? user.name : null }}' }}</code></div>
+            <div class="reason"><strong>Safe fix:</strong> ternary guard preserves null return</div>
+          </div>
+
+          <div class="example-row">
+            <div class="before"><code>{{ '{{ user?.name }}' }} <span class="diag-inline">⚠ NG8119</span></code></div>
+            <div class="arrow">&rarr;</div>
+            <div class="after"><code>{{ '{{ user?.name ?? null }}' }}</code></div>
+            <div class="reason"><strong>Best-effort fix:</strong> appends ?? null fallback</div>
+          </div>
+
+          <div class="example-row">
+            <div class="before"><code>Fix all in file</code></div>
+            <div class="arrow">&rarr;</div>
+            <div class="after"><code>Applies safe or best-effort to all NG8119 diagnostics</code></div>
+            <div class="reason"><strong>Fix-all:</strong> batch conversion across entire file</div>
           </div>
         </div>
       </div>
@@ -715,10 +899,15 @@ export class NativeChainingComponent {
     .example-group.safe { background: rgba(74, 222, 128, 0.06); border: 1px solid rgba(74, 222, 128, 0.2); }
     .example-group.sensitive { background: rgba(248, 113, 113, 0.06); border: 1px solid rgba(248, 113, 113, 0.2); }
     .example-group.best-effort { background: rgba(251, 191, 36, 0.06); border: 1px solid rgba(251, 191, 36, 0.2); }
+    .example-group.host-expr { background: rgba(167, 139, 250, 0.06); border: 1px solid rgba(167, 139, 250, 0.2); }
+    .example-group.quickfix { background: rgba(56, 189, 248, 0.06); border: 1px solid rgba(56, 189, 248, 0.2); }
     .example-group h4 { margin-top: 0; }
     .safe h4 { color: var(--adev-success); }
     .sensitive h4 { color: var(--adev-error); }
     .best-effort h4 { color: var(--adev-warning); }
+    .host-expr h4 { color: var(--adev-accent); }
+    .quickfix h4 { color: #38bdf8; }
+    .diag-inline { color: var(--adev-warning); font-size: 11px; font-weight: 700; }
     .group-description { font-size: 13px; color: var(--adev-text-secondary); margin-bottom: 12px; }
     .example-row {
       display: grid; grid-template-columns: 1fr auto 1fr 1fr;
@@ -790,6 +979,13 @@ export class NativeChainingComponent {
     }
     .note-box { background: var(--adev-surface); border: 1px solid var(--adev-border); border-left: 3px solid var(--adev-info);
       border-radius: 8px; padding: 14px 16px; font-size: 14px; color: var(--adev-text-secondary); line-height: 1.6; }
+    .live-mix-match {
+      background: linear-gradient(135deg, rgba(251, 191, 36, 0.06), rgba(96, 165, 250, 0.06));
+      border: 2px dashed rgba(167, 139, 250, 0.35);
+      border-radius: 8px; padding: 16px; margin: 12px 0;
+    }
+    .live-mix-match h4 { margin-top: 0; color: var(--adev-accent); font-size: 14px; }
+    .mix-match-controls { display: flex; gap: 8px; margin-top: 12px; }
     .inlay-hints-section {
       background: rgba(240, 160, 200, 0.06); border: 1px solid rgba(240, 160, 200, 0.2);
       padding: 20px; border-radius: 8px; margin: 20px 0;
@@ -806,6 +1002,7 @@ export class NativeChainingComponent {
 })
 export class MixedChainingDemoComponent {
   currentConfig = signal<Config | null>(null);
+  mixedLabelData = signal<{ title?: string; active?: boolean } | null>(null);
 
   private fullConfig: Config = {
     theme: 'dark',
@@ -846,7 +1043,16 @@ export class MixedChainingDemoComponent {
     this.currentConfig.set(null);
   }
 
+  setMixedWithData() {
+    this.mixedLabelData.set({ title: 'Dashboard', active: true });
+  }
+
+  setMixedNull() {
+    this.mixedLabelData.set(null);
+  }
+
   ngOnInit() {
     this.setPartialConfig();
+    this.setMixedNull();
   }
 }

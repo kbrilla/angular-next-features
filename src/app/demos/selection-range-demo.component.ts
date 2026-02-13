@@ -185,6 +185,19 @@ import {Component} from '@angular/core';
           TypeScript file. The expansion chain is identical in both modes.
         </p>
       </div>
+
+      <div class="issues-section">
+        <h3>Community Issues Addressed</h3>
+        <div class="issue-card">
+          <div class="issue-header">
+            <span class="new-feature-badge">NEW CAPABILITY</span>
+            <span class="issue-title">Smart selection (Expand/Shrink) for Angular templates</span>
+          </div>
+          <p class="issue-desc">Expand/Shrink Selection previously treated Angular templates as raw text.
+            Now it follows the Angular AST — interpolations, bound attributes, control flow, pipes, and safe navigation
+            all expand correctly with semantic grouping.</p>
+        </div>
+      </div>
     </div>
   `,
   styles: [`
@@ -222,6 +235,13 @@ import {Component} from '@angular/core';
     .mode-icon { font-size: 28px; margin-bottom: 8px; }
     .mode-card h4 { margin-top: 0; }
     .mode-card p { font-size: 13px; color: var(--adev-text-secondary); margin: 4px 0 0; }
+    .issues-section { background: rgba(167, 139, 250, 0.06); border: 1px solid rgba(167, 139, 250, 0.2); padding: 20px; border-radius: 8px; margin: 20px 0; }
+    .issues-section h3 { color: var(--adev-accent); border-bottom: 1px solid var(--adev-border); padding-bottom: 8px; }
+    .issue-card { background: var(--adev-surface); border: 1px solid var(--adev-border); padding: 16px; border-radius: 8px; margin: 12px 0; }
+    .issue-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+    .issue-title { font-weight: 600; color: var(--adev-text); font-size: 14px; }
+    .issue-desc { font-size: 13px; color: var(--adev-text-secondary); line-height: 1.6; }
+    .new-feature-badge { background: linear-gradient(135deg, var(--adev-success), #059669); color: white; padding: 2px 10px; border-radius: 4px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; }
   `],
 })
 export class SelectionRangeDemoComponent {}

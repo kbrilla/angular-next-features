@@ -230,6 +230,21 @@ export class MyComp {{'{'}}&nbsp;
         </table>
       </div>
 
+      <div class="issues-section">
+        <h3>Community Issues Addressed</h3>
+        <div class="issue-card">
+          <div class="issue-header">
+            <span class="new-feature-badge">NEW CAPABILITY</span>
+            <span class="issue-title">View query target validation diagnostics</span>
+          </div>
+          <p class="issue-desc">
+            Required and optional <code>viewChild</code>/<code>viewChildren</code> queries had no compile-time
+            validation that their targets actually existed in the template. NG8023–NG8031 diagnostics now catch
+            missing targets, incorrect <code>read</code> types, and static/required query conflicts.
+          </p>
+        </div>
+      </div>
+
     </div>
   `,
   styles: [`
@@ -262,6 +277,13 @@ export class MyComp {{'{'}}&nbsp;
     .cell-error { background: rgba(248,113,113,0.06); color: var(--adev-error); font-weight: 600; }
     .cell-warning { background: rgba(251,191,36,0.04); color: var(--adev-warning); font-weight: 600; }
     .cell-none { color: var(--adev-text-secondary); }
+    .issues-section { background: rgba(167, 139, 250, 0.06); border: 1px solid rgba(167, 139, 250, 0.2); padding: 20px; border-radius: 8px; margin: 20px 0; }
+    .issues-section h3 { color: var(--adev-accent); border-bottom: 1px solid var(--adev-border); padding-bottom: 8px; }
+    .issue-card { background: var(--adev-surface); border: 1px solid var(--adev-border); padding: 16px; border-radius: 8px; margin: 12px 0; }
+    .issue-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+    .issue-title { font-weight: 600; color: var(--adev-text); font-size: 14px; }
+    .issue-desc { font-size: 13px; color: var(--adev-text-secondary); line-height: 1.6; }
+    .new-feature-badge { background: linear-gradient(135deg, var(--adev-success), #059669); color: white; padding: 2px 10px; border-radius: 4px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; }
   `],
 })
 export class ViewQueryDiagnosticsDemoComponent {}
