@@ -7,7 +7,7 @@ import {Component} from '@angular/core';
       <div class="demo-header">
         <h2>View Query Target Validation</h2>
         <span class="badge vq-badge">Compiler</span>
-        <span class="badge cap-badge">3 diagnostics</span>
+        <span class="badge cap-badge">6 diagnostics</span>
       </div>
       <p class="demo-description">
         New compile-time diagnostics that catch view query misuse <strong>before</strong> runtime.
@@ -47,6 +47,27 @@ export class MyComp {{'{'}}&nbsp;
         </div>
       </div>
 
+      <!-- NG8024: Missing Optional View Query Target -->
+      <div class="example-section">
+        <h3>NG8024 — Missing Optional View Query Target</h3>
+        <span class="severity warning">Warning</span>
+        <p class="desc">
+          Optional queries such as <code>viewChild('ref')</code>, <code>viewChildren('ref')</code>,
+          and default <code>&#64;ViewChild('ref')</code> produce a warning when the target doesn't
+          exist. These queries resolve to <code>undefined</code> at runtime.
+        </p>
+        <div class="code-block">
+          <pre><code>&#64;Component({{'{'}}&nbsp;
+  template: '&lt;div&gt;no refs here&lt;/div&gt;'
+{{'}'}}&#41;
+export class MyComp {{'{'}}&nbsp;
+  // NG8024 (warning): target 'missing' does not exist
+  el = viewChild('missing');
+{{'}'}}
+</code></pre>
+        </div>
+      </div>
+
       <!-- NG8025: read:TemplateRef Mismatch -->
       <div class="example-section">
         <h3>NG8025 — read:TemplateRef on Non-Template Element</h3>
@@ -74,6 +95,47 @@ export class MyComp {{'{'}}&nbsp;
 {{'}'}}&#41;
 export class MyComp {{'{'}}&nbsp;
   tpl = viewChild.required('myTpl', {{'{'}}&nbsp;read: TemplateRef {{'}'}});  // ✓ OK
+{{'}'}}
+</code></pre>
+        </div>
+      </div>
+
+      <!-- NG8031: Query Lifecycle Access -->
+      <div class="example-section">
+        <h3>NG8031 — Non-static Query Accessed Too Early</h3>
+        <span class="severity warning">Warning</span>
+        <p class="desc">
+          Non-static view queries are not available in <code>constructor</code> or
+          <code>ngOnInit</code>. Access them in <code>ngAfterViewInit</code>, or use
+          <code>static: true</code> if appropriate.
+        </p>
+        <div class="code-block">
+          <pre><code>&#64;Component({{'{'}} template: '&lt;div #el&gt;&lt;/div&gt;' {{'}'}}&#41;
+export class MyComp {{'{'}}
+  el = viewChild('el');
+
+  constructor() {{'{'}}
+    this.el(); // NG8031 warning
+  {{'}'}}
+{{'}'}}
+</code></pre>
+        </div>
+      </div>
+
+      <!-- NG8028 static conditional -->
+      <div class="example-section">
+        <h3>NG8028 — Static Query Target Inside Conditional</h3>
+        <span class="severity error">Error</span>
+        <p class="desc">
+          Static queries resolve before conditional blocks render. If the target exists only inside
+          <code>&#64;if</code>/<code>*ngIf</code>, it can never be resolved correctly.
+        </p>
+        <div class="code-block">
+          <pre><code>&#64;Component({{'{'}}
+  template: '&#64;if (show) {{'{'}} &lt;div #panel&gt;&lt;/div&gt; {{'}'}}'
+{{'}'}}&#41;
+export class MyComp {{'{'}}
+  &#64;ViewChild('panel', {{'{'}} static: true {{'}'}}) panel!: unknown; // NG8028
 {{'}'}}
 </code></pre>
         </div>
@@ -126,9 +188,9 @@ export class MyComp {{'{'}}&nbsp;
             <tr>
               <td>Missing target</td>
               <td class="cell-error">NG8023 Error</td>
-              <td class="cell-none">—</td>
-              <td class="cell-none">—</td>
-              <td class="cell-none">—</td>
+              <td class="cell-warning">NG8024 Warning</td>
+              <td class="cell-warning">NG8024 Warning</td>
+              <td class="cell-warning">NG8024 Warning<br><small>(NG8023 with required:true)</small></td>
             </tr>
             <tr>
               <td>read:TemplateRef on &lt;div&gt;</td>
@@ -142,7 +204,14 @@ export class MyComp {{'{'}}&nbsp;
               <td class="cell-error">NG8028 Error</td>
               <td class="cell-none">—</td>
               <td class="cell-none">—</td>
+              <td class="cell-error">NG8028 Error (static: true)</td>
+            </tr>
+            <tr>
+              <td>Accessed in constructor/ngOnInit</td>
+              <td class="cell-warning">NG8031 Warning (non-static)</td>
+              <td class="cell-warning">NG8031 Warning (non-static)</td>
               <td class="cell-none">—</td>
+              <td class="cell-warning">NG8031 Warning (non-static)</td>
             </tr>
             <tr>
               <td>Type predicate (e.g. ElementRef)</td>
@@ -156,26 +225,6 @@ export class MyComp {{'{'}}&nbsp;
         </table>
       </div>
 
-      <!-- Coming Soon -->
-      <div class="example-section coming-soon">
-        <h3>Coming Soon</h3>
-        <ul class="upcoming-list">
-          <li>
-            <strong>NG8024 (Warning)</strong> — Optional queries (<code>viewChild('ref')</code>,
-            <code>viewChildren('ref')</code>) targeting non-existent refs. Will be implemented as an
-            Extended Template Check for proper warning-level diagnostics.
-          </li>
-          <li>
-            <strong>Query Lifecycle Detection</strong> — Detect when queries are accessed in
-            lifecycle hooks where they're not yet available (e.g., <code>viewChild</code> in
-            <code>constructor</code> or <code>ngOnInit</code> for non-static queries).
-          </li>
-          <li>
-            <strong>Static Query in Conditional</strong> — <code>&#64;ViewChild('ref', {{'{'}}&nbsp;static: true {{'}'}}</code>)
-            inside <code>&#64;if</code>/<code>*ngIf</code> is always a bug.
-          </li>
-        </ul>
-      </div>
     </div>
   `,
   styles: [`
@@ -208,11 +257,6 @@ export class MyComp {{'{'}}&nbsp;
     .cell-error { background: rgba(248,113,113,0.06); color: var(--adev-error); font-weight: 600; }
     .cell-warning { background: rgba(251,191,36,0.04); color: var(--adev-warning); font-weight: 600; }
     .cell-none { color: var(--adev-text-secondary); }
-    .coming-soon { border: 2px dashed rgba(96,165,250,0.2); background: rgba(96,165,250,0.03); }
-    .coming-soon h3 { color: var(--adev-info); }
-    .upcoming-list { padding-left: 1.5rem; }
-    .upcoming-list li { margin-bottom: 0.75rem; color: var(--adev-text-secondary); line-height: 1.5; }
-    .upcoming-list code { background: rgba(96,165,250,0.06); padding: 0.1rem 0.3rem; border-radius: 3px; font-size: 0.85em; color: var(--adev-text); }
   `],
 })
 export class ViewQueryDiagnosticsDemoComponent {}

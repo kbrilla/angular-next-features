@@ -226,7 +226,7 @@ packages:
       rxjs: ^6.5.3 || ^7.4.0
 
   '@angular/compiler-cli@file:tarballs/angular-compiler-cli-0.0.0.tgz':
-    resolution: {integrity: sha512-oRu9rwuWrgNxzKPzEncbSVsOoAwIRWMjuMiHCeOo5l7ygdUgjzlScENx7tU+pEWLe+IaQL29z8Zg/AfRbw7eJg==, tarball: file:tarballs/angular-compiler-cli-0.0.0.tgz}
+    resolution: {integrity: sha512-aNcVM3/UOX1ocKiQdPRWKZbGTPBPnZoSJny4UgUqt3DucFYEIUWndN6tmhIzD6hhp1NbaDm2WO0+j+NrKD2etQ==, tarball: file:tarballs/angular-compiler-cli-0.0.0.tgz}
     version: 0.0.0
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
     hasBin: true
@@ -238,12 +238,12 @@ packages:
         optional: true
 
   '@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz':
-    resolution: {integrity: sha512-8ZMqZRQ5Ie09NmNLobpqHlPf2Jrxu/o/h9gpAI5NQMGTMXs4O9JpisTWtfbHHuIYI3lDvAClvrsbnCBqs6+zpQ==, tarball: file:tarballs/angular-compiler-0.0.0.tgz}
+    resolution: {integrity: sha512-afz6Yn9HNjQwobV25oXceGGMw+Zi1UK4JPlAXxqLkCSlVoVx61+rT8vcMFjbuXWsgXZ0HhOxJIpEM4YkNcbPCA==, tarball: file:tarballs/angular-compiler-0.0.0.tgz}
     version: 0.0.0
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
 
   '@angular/core@file:tarballs/angular-core-0.0.0.tgz':
-    resolution: {integrity: sha512-Csp4WOLXW+PlE+O39T8fPNjyczF8/3DL7/odJjKTTmIeck6QF9cJlzSG0AKcriaZFpJkLn8RMn44nF6nauRHmA==, tarball: file:tarballs/angular-core-0.0.0.tgz}
+    resolution: {integrity: sha512-o9wl1vk0ouu2MHtCHbm/Gz0vCRsDzpfZZxtUHlFc9RXxWRmAwzLFg62iBG4utaKeQwcizWr+Dq1pL51vfyzwvQ==, tarball: file:tarballs/angular-core-0.0.0.tgz}
     version: 0.0.0
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
     peerDependencies:

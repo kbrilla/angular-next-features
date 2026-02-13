@@ -236,19 +236,26 @@ export class NativeChainingComponent {
           <div class="step">
             <span class="step-num">2</span>
             <div>
-              <strong>Run migration schematic</strong>
+              <strong>Run migration (safe mode)</strong>
               <p><code>ng generate &#64;angular/core:optional-chaining-semantics-migration</code></p>
             </div>
           </div>
           <div class="step">
             <span class="step-num">3</span>
             <div>
+              <strong>Optional: interactive approval</strong>
+              <p><code>--interactive</code> to review/approve each migrated template/host expression</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step-num">4</span>
+            <div>
               <strong>Enable native semantics</strong>
               <p><code>"nativeOptionalChainingSemantics": true</code> in tsconfig</p>
             </div>
           </div>
           <div class="step">
-            <span class="step-num">4</span>
+            <span class="step-num">5</span>
             <div>
               <strong>Per-component override</strong>
               <p>Override individual components that need legacy behavior</p>
@@ -423,13 +430,15 @@ export class NativeChainingComponent {
             When a <code>?.</code> expression can't be converted to a ternary
             (method calls, keyed access, pipes), best-effort mode appends <code>?? null</code>.
             This ensures the return value remains null instead of undefined.
+            <strong>Safety exception:</strong> call-receiver patterns like <code>a?.method()</code>
+            are intentionally skipped to avoid generating invalid code.
           </p>
 
           <div class="example-row">
             <div class="before"><code>{{ 'a?.method()' }}</code></div>
             <div class="arrow">&rarr;</div>
-            <div class="after"><code>{{ 'a?.method() ?? null' }}</code></div>
-            <div class="reason">Method calls: can't build ternary (side effects)</div>
+            <div class="after"><code>{{ 'a?.method()' }}</code></div>
+            <div class="reason">Skipped for manual review (receiver-call rewrite is unsafe)</div>
           </div>
 
           <div class="example-row">

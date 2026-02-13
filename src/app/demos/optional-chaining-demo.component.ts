@@ -131,6 +131,9 @@ interface User {
           Run with: <code>ng generate &#64;angular/core:optional-chaining-semantics-migration</code>.
           The schematic now covers component templates plus host binding expressions in
           <code>&#64;Component.host</code> and <code>&#64;Directive.host</code>.
+          Use <code>--interactive</code> to review each change and <code>--best-effort-mode</code>
+          for broader conversion when manual verification is acceptable.
+          For safety, call-receiver patterns like <code>a?.method()</code> are skipped for manual review.
           It still does not rewrite arbitrary class code outside Angular template/host expressions.
           Supports <code>!.</code> patterns and negated ternary expressions in null-safe detection.
         </p>
