@@ -151,7 +151,7 @@ packages:
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0, npm: ^6.11.0 || ^7.5.6 || >=8.0.0, yarn: '>= 1.13.0'}
 
   '@angular/animations@file:tarballs/angular-animations-0.0.0.tgz':
-    resolution: {integrity: sha512-pzlJwyoLz20nWA1Fu95vQjNOOFIdF5MWjCteSfXx5Q4w3ahBvFlTapalCWrMW7jvJ+5S1YTpQFTXyZVqUrUtXg==, tarball: file:tarballs/angular-animations-0.0.0.tgz}
+    resolution: {integrity: sha512-GuQ5q+SViqR9J9+BibBFSOSyMpqcp2bMCNQF7C2IgumsR6wqLyoRaM+s5m0gjQOBnWoFNIl9IlJCiIgdLARqsQ==, tarball: file:tarballs/angular-animations-0.0.0.tgz}
     version: 0.0.0
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
     peerDependencies:
@@ -218,7 +218,7 @@ packages:
     hasBin: true
 
   '@angular/common@file:tarballs/angular-common-0.0.0.tgz':
-    resolution: {integrity: sha512-YB/JceuDKEgq6NFpMwovvOB91crLxLmCgrIpoGvFVUCfTSu870PVZsSE2KXDwt5zhLakIl3tG5DseloNPyVpwA==, tarball: file:tarballs/angular-common-0.0.0.tgz}
+    resolution: {integrity: sha512-Q+ZDin69GqSIi3FIfj+rWW1XFAMNiAYcfF8HVz/EVnvhEjXas3wnX8I/zgJMg9XxbEGGv0EWexvC6/7eE7Uguw==, tarball: file:tarballs/angular-common-0.0.0.tgz}
     version: 0.0.0
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
     peerDependencies:
@@ -226,7 +226,7 @@ packages:
       rxjs: ^6.5.3 || ^7.4.0
 
   '@angular/compiler-cli@file:tarballs/angular-compiler-cli-0.0.0.tgz':
-    resolution: {integrity: sha512-NbGa5q3O7ZGk39e/qpFtRqvNkm+nNBGKvRdEkDGOQStxPZcFeeHL9yaQ3W+BflFoMr4bqHkr161lil15eYRXHg==, tarball: file:tarballs/angular-compiler-cli-0.0.0.tgz}
+    resolution: {integrity: sha512-8i9xvWY9ytIA04umaDW160WNv3jUmfCCED9AJt6Qpz6CIyIPZJnnbLcyBoig5ItqrDJxl3xD9GMdC/c0X94ygw==, tarball: file:tarballs/angular-compiler-cli-0.0.0.tgz}
     version: 0.0.0
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
     hasBin: true
@@ -238,12 +238,12 @@ packages:
         optional: true
 
   '@angular/compiler@file:tarballs/angular-compiler-0.0.0.tgz':
-    resolution: {integrity: sha512-OulDFUDsSzRD1eXqJ/e0nTLzhCkmheIWvUuZ23BaWsCnoPh+lpL77Xx18bi7qvT+uDQ+tK1p39d/UVBpXmc55A==, tarball: file:tarballs/angular-compiler-0.0.0.tgz}
+    resolution: {integrity: sha512-E3G82JI80R6PdY1HtxY4LjcaIXcydFWFRC/SY2muuXey9PgPs72XN53eiGFv67NReQECqPgoINr1DQBeWAo7LA==, tarball: file:tarballs/angular-compiler-0.0.0.tgz}
     version: 0.0.0
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
 
   '@angular/core@file:tarballs/angular-core-0.0.0.tgz':
-    resolution: {integrity: sha512-THGrVZ5dId5fYVKOp+yK4dkve0CutjL0iUuttG/+66bzEo7qrVDOI9xRy0Swa5IlTUqai/ZLWcCkaTVHQz30iw==, tarball: file:tarballs/angular-core-0.0.0.tgz}
+    resolution: {integrity: sha512-dAO8BX26d6k27BmSDcOtPtQe4rN9W5mrh3i+i7Qid0NO/8GUPYbWRIDHssYI/xKdIp8DkRdJ6U55KAf7KR14Wg==, tarball: file:tarballs/angular-core-0.0.0.tgz}
     version: 0.0.0
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
     peerDependencies:
@@ -257,7 +257,7 @@ packages:
         optional: true
 
   '@angular/forms@file:tarballs/angular-forms-0.0.0.tgz':
-    resolution: {integrity: sha512-eaTQCrZutwf/tezA3RMl0nYkzdVckMxpouVb/Cocp/W2ytRBH7XdqxEMI8iaNZxV8ckcMd2g1nW0+mnlBpd5DA==, tarball: file:tarballs/angular-forms-0.0.0.tgz}
+    resolution: {integrity: sha512-Zy609YkLsYYUeJQKjK7rkE39G4ox7O6WvHQF8Ja2bdY5N/RAMR4rZw1g8Nk3cKLy3VDPBA5Y0nsyTRgMfDJICg==, tarball: file:tarballs/angular-forms-0.0.0.tgz}
     version: 0.0.0
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
     peerDependencies:
@@ -277,7 +277,7 @@ packages:
       rxjs: ^6.5.3 || ^7.4.0
 
   '@angular/platform-browser-dynamic@file:tarballs/angular-platform-browser-dynamic-0.0.0.tgz':
-    resolution: {integrity: sha512-RmY8DT47TUn8htmqDBh496oISC8ZClHqrA+zV/FjANuU6R/L6Fczo3S1g89SVeon7oLnpqNBCZqmNSoW3nsO9Q==, tarball: file:tarballs/angular-platform-browser-dynamic-0.0.0.tgz}
+    resolution: {integrity: sha512-w4CV/InL/nbbp9HLVBBPMZ4hwMC/p4tB3D8a/DsluL4eE7VIjylgVXuIO7mx2FVDBWOhq9YNWfFw38Vlr/awvQ==, tarball: file:tarballs/angular-platform-browser-dynamic-0.0.0.tgz}
     version: 0.0.0
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
     peerDependencies:
@@ -287,7 +287,7 @@ packages:
       '@angular/platform-browser': 0.0.0
 
   '@angular/platform-browser@file:tarballs/angular-platform-browser-0.0.0.tgz':
-    resolution: {integrity: sha512-00VMTrjCzH65rjEYJr42y4hw1ts/c1+D61w02S57l3n2dTrSYUzye7HMO96gDfCDtAfrDyUhmFVwPdEKlHZmHA==, tarball: file:tarballs/angular-platform-browser-0.0.0.tgz}
+    resolution: {integrity: sha512-P4L9CcBFzawSaSYr6EQPxV8pvcPV9BOEq+fUz2uuE8Wlze8CrcV2WZ2QJXpO7e9+sBeAN9Cib/Mk0LYAUl2/qg==, tarball: file:tarballs/angular-platform-browser-0.0.0.tgz}
     version: 0.0.0
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
     peerDependencies:
@@ -299,7 +299,7 @@ packages:
         optional: true
 
   '@angular/router@file:tarballs/angular-router-0.0.0.tgz':
-    resolution: {integrity: sha512-tDfXa1PNsZcgCO1nRtxkZ575c5aN1o9j19mVweMhpoPZ48cyE2jDolBhMV+Sduwo8WQ3vpk/M3KsQ+3Sx062Ug==, tarball: file:tarballs/angular-router-0.0.0.tgz}
+    resolution: {integrity: sha512-Yqih7ENkRzpYOtdvStCnFiocKkLP6X6hk17JVfu4IClf0YtcfI1kQrsvIZWr5b6rJSiItpWcq9nYmaIwBUpvDA==, tarball: file:tarballs/angular-router-0.0.0.tgz}
     version: 0.0.0
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
     peerDependencies:
