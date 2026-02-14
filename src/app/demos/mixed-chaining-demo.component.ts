@@ -358,16 +358,25 @@ export class MixedExampleComponent {
         <app-native-chaining [configData]="currentConfig()"></app-native-chaining>
       </div>
 
+      <div class="data-controls">
+        <h3>Test Data</h3>
+        <div class="control-buttons">
+          <button (click)="setFullConfig()">Full Config</button>
+          <button (click)="setPartialConfig()">Partial Config</button>
+          <button (click)="setMinimalConfig()">Minimal Config</button>
+          <button class="null-btn" (click)="setNullConfig()">Null Config</button>
+        </div>
+        <pre class="data-preview">{{ currentConfig() | json }}</pre>
+      </div>
+
       <div class="mix-match-section">
-        <h3>Mix &amp; Match: Component + Directive + hostDirectives</h3>
+        <h3>Live Demo: Legacy Component + Native Host Directive</h3>
         <p class="group-description">
           Semantics can be set independently per declaration. A component can stay legacy while an attached
           directive (or a hostDirective composed into it) uses native semantics.
-          <strong>Below is a live example:</strong>
         </p>
 
         <div class="live-mix-match">
-          <h4>Live Demo: Legacy Component + Native Host Directive</h4>
           <div appNativeHostDir #nativeDir="appNativeHostDir" [labelData]="mixedLabelData()">
             <app-mixed-example [nativeTitleRaw]="nativeDir.nativeTitleValue"></app-mixed-example>
           </div>
@@ -396,17 +405,6 @@ export class MixedExampleComponent {
           while a native directive's host bindings return <span style="color:#ef4444;font-weight:700">undefined</span> —
           both on the same DOM element! Keep mixed mode temporary during rollout, then converge to native semantics project-wide.
         </div>
-      </div>
-
-      <div class="data-controls">
-        <h3>Test Data</h3>
-        <div class="control-buttons">
-          <button (click)="setFullConfig()">Full Config</button>
-          <button (click)="setPartialConfig()">Partial Config</button>
-          <button (click)="setMinimalConfig()">Minimal Config</button>
-          <button class="null-btn" (click)="setNullConfig()">Null Config</button>
-        </div>
-        <pre class="data-preview">{{ currentConfig() | json }}</pre>
       </div>
 
       <div class="migration-section">
