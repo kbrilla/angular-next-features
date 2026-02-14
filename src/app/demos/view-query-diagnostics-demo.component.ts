@@ -232,6 +232,14 @@ export class MyComp {{'{'}}&nbsp;
 
       <div class="issues-section">
         <h3>Community Issues Addressed</h3>
+
+        <div class="pr-banner">
+          <span class="pr-label">PR</span>
+          <a href="https://github.com/angular/angular/pull/67074" target="_blank">
+            angular/angular#67074 — feat(compiler-cli): add view query target validation diagnostics
+          </a>
+        </div>
+
         <div class="issue-card">
           <div class="issue-header">
             <a class="issue-link" href="https://github.com/angular/angular/issues/57879" target="_blank">#57879</a>
@@ -289,6 +297,10 @@ export class MyComp {{'{'}}&nbsp;
     .cell-none { color: var(--adev-text-secondary); }
     .issues-section { background: rgba(167, 139, 250, 0.06); border: 1px solid rgba(167, 139, 250, 0.2); padding: 20px; border-radius: 8px; margin: 20px 0; }
     .issues-section h3 { color: var(--adev-accent); border-bottom: 1px solid var(--adev-border); padding-bottom: 8px; }
+    .pr-banner { display: flex; align-items: center; gap: 10px; margin: 12px 0; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.3); padding: 10px 16px; border-radius: 8px; }
+    .pr-label { background: #38bdf8; color: #0f0f11; padding: 2px 10px; border-radius: 4px; font-size: 12px; font-weight: 700; white-space: nowrap; }
+    .pr-banner a { color: #38bdf8; text-decoration: none; font-size: 13px; font-weight: 600; }
+    .pr-banner a:hover { text-decoration: underline; }
     .issue-card { background: var(--adev-surface); border: 1px solid var(--adev-border); padding: 16px; border-radius: 8px; margin: 12px 0; }
     .issue-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
     .issue-title { font-weight: 600; color: var(--adev-text); font-size: 14px; }
