@@ -4,6 +4,10 @@ on:
   push:
     branches: [ main ]
 
+# Allow the workflow to push to gh-pages
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,12 +19,11 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
 
       - name: Setup pnpm
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v4
         with:
-          # use pnpm v10 (current stable major series)
           version: '10'
 
       - name: Cache pnpm store
@@ -31,9 +34,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-
 
-      - name: Patch package.json (CI)
-        run: |
-          node -e "const fs=require('fs');const p=JSON.parse(fs.readFileSync('package.json'));const names=['@angular/animations','@angular/common','@angular/compiler','@angular/core','@angular/forms','@angular/platform-browser','@angular/platform-browser-dynamic','@angular/router','@angular/compiler-cli'];for(const n of names){if(p.dependencies&&p.dependencies[n]&&p.dependencies[n].startsWith('file:'))p.dependencies[n]='21.1.3';if(p.devDependencies&&p.devDependencies[n]&&p.devDependencies[n].startsWith('file:'))p.devDependencies[n]='21.1.3'}fs.writeFileSync('package.json',JSON.stringify(p,null,2));console.log('patched package.json');"
+      # No patching needed — tarballs/ contains custom Angular builds
+      # with optional chaining + TS template features. package.json
+      # references them via file: protocol and they're committed to git.
 
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
@@ -42,7 +45,7 @@ jobs:
         run: pnpm run build:prod
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist/new_angular_features_demo/browser
