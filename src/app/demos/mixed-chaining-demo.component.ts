@@ -878,8 +878,13 @@ export class MixedExampleComponent {
     .config-note { font-size: 13px; color: var(--adev-text-secondary); margin-bottom: 0; }
     .side-by-side {
       display: grid; grid-template-columns: 1fr 1fr;
-      gap: 16px; margin: 20px 0;
+      gap: 16px; margin: 20px 0; overflow: visible;
     }
+    .mix-match-section {
+      background: rgba(167, 139, 250, 0.06); border: 1px solid rgba(167, 139, 250, 0.2);
+      padding: 24px; border-radius: 8px; margin: 32px 0 20px;
+    }
+    .mix-match-section h3 { margin-top: 0; color: var(--adev-primary); }
     .data-controls {
       background: var(--adev-surface); border: 1px solid var(--adev-border);
       padding: 20px; border-radius: 8px; margin: 20px 0;
@@ -1029,7 +1034,7 @@ export class MixedExampleComponent {
     .native-hint { color: #22c55e; font-style: italic; opacity: 0.7; }
     .legacy-hint { color: #fb923c; font-style: italic; opacity: 0.7; }
     @media (max-width: 768px) {
-      .side-by-side { grid-template-columns: 1fr; }
+      .side-by-side { grid-template-columns: 1fr; overflow-x: auto; }
       .example-row { grid-template-columns: 1fr; gap: 4px; }
       .example-row .arrow { display: none; }
     }

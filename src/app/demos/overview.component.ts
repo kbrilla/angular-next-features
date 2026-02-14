@@ -118,16 +118,7 @@ import {MatIconModule} from '@angular/material/icon';
           </div>
         </a>
 
-        <a class="feature-card" routerLink="/host-element">
-          <div class="card-icon he"><mat-icon>security</mat-icon></div>
-          <h3>HostElement Type Safety</h3>
-          <p>14 capabilities unlocked by the HostElement AST — type-checked host bindings, pipe tracking, scope isolation, &#64;HostListener syntax catalog</p>
-          <div class="card-footer">
-            <span class="tag accent">NEW</span>
-            <span class="tag">Compiler</span>
-            <span class="tag">v21</span>
-          </div>
-        </a>
+
 
         <a class="feature-card" routerLink="/linked-editing">
           <div class="card-icon le"><mat-icon>edit</mat-icon></div>
