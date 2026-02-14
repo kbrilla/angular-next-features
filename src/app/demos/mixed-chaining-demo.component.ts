@@ -783,6 +783,14 @@ export class MixedExampleComponent {
       <!-- Community Issues Section -->
       <div class="issues-section">
         <h3>Community Issues Addressed</h3>
+
+        <div class="pr-banner">
+          <span class="pr-label">PR</span>
+          <a href="https://github.com/angular/angular/pull/67068" target="_blank">
+            angular/angular#67068 — feat(compiler): add nativeOptionalChainingSemantics option
+          </a>
+        </div>
+
         <p class="issues-intro">
           These changes address longstanding community requests dating back to 2019:
         </p>
@@ -938,6 +946,19 @@ export class MixedExampleComponent {
       padding: 20px; border-radius: 8px; margin: 20px 0;
     }
     .issues-section h3 { color: var(--adev-accent); border-bottom: 1px solid var(--adev-border); padding-bottom: 8px; }
+    .pr-banner {
+      display: flex; align-items: center; gap: 10px; margin: 12px 0;
+      background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 10px 16px; border-radius: 8px;
+    }
+    .pr-label {
+      background: #38bdf8; color: #0f0f11; padding: 2px 10px;
+      border-radius: 4px; font-size: 12px; font-weight: 700; white-space: nowrap;
+    }
+    .pr-banner a {
+      color: #38bdf8; text-decoration: none; font-size: 13px; font-weight: 600;
+    }
+    .pr-banner a:hover { text-decoration: underline; }
     .issues-intro { font-size: 13px; color: var(--adev-text-secondary); }
     .issue-card {
       background: var(--adev-surface); border: 1px solid var(--adev-border);

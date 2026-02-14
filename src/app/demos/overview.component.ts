@@ -21,6 +21,10 @@ import {MatIconModule} from '@angular/material/icon';
           Proposed features that modernize Angular's template expression system and developer
           experience
         </p>
+        <a class="pr-link" href="https://github.com/angular/angular/pull/67068" target="_blank">
+          <mat-icon>code</mat-icon>
+          PR #67068 — feat(compiler): add nativeOptionalChainingSemantics option
+        </a>
       </section>
 
       <section class="feature-grid">
