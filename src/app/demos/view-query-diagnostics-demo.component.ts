@@ -234,13 +234,23 @@ export class MyComp {{'{'}}&nbsp;
         <h3>Community Issues Addressed</h3>
         <div class="issue-card">
           <div class="issue-header">
-            <span class="new-feature-badge">NEW CAPABILITY</span>
-            <span class="issue-title">View query target validation diagnostics</span>
+            <a class="issue-link" href="https://github.com/angular/angular/issues/57879" target="_blank">#57879</a>
+            <span class="issue-title">viewChild.required() is lying about its type</span>
           </div>
           <p class="issue-desc">
             Required and optional <code>viewChild</code>/<code>viewChildren</code> queries had no compile-time
             validation that their targets actually existed in the template. NG8023–NG8031 diagnostics now catch
             missing targets, incorrect <code>read</code> types, and static/required query conflicts.
+          </p>
+        </div>
+        <div class="issue-card">
+          <div class="issue-header">
+            <a class="issue-link" href="https://github.com/angular/angular/issues/59717" target="_blank">#59717</a>
+            <span class="issue-title">Provide better type safety for viewChild</span>
+          </div>
+          <p class="issue-desc">
+            Compile-time validation that view query targets exist in the template, with diagnostics for
+            required queries targeting missing or conditionally-rendered elements.
           </p>
         </div>
       </div>
@@ -284,6 +294,8 @@ export class MyComp {{'{'}}&nbsp;
     .issue-title { font-weight: 600; color: var(--adev-text); font-size: 14px; }
     .issue-desc { font-size: 13px; color: var(--adev-text-secondary); line-height: 1.6; }
     .new-feature-badge { background: linear-gradient(135deg, var(--adev-success), #059669); color: white; padding: 2px 10px; border-radius: 4px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; }
+    .issue-link { background: var(--adev-accent); color: #0f0f11; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 700; text-decoration: none; }
+    .issue-link:hover { opacity: 0.85; }
   `],
 })
 export class ViewQueryDiagnosticsDemoComponent {}

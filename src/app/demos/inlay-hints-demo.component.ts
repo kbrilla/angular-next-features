@@ -488,7 +488,7 @@ obj?.method?.(42)         <span class="hl-comment">// safe call</span>
         <h3>Community Issues Addressed</h3>
         <div class="issue-card">
           <div class="issue-header">
-            <span class="new-feature-badge">NEW CAPABILITY</span>
+            <a class="issue-link" href="https://github.com/angular/angular/issues/66730" target="_blank">#66730</a>
             <span class="issue-title">Inlay hints for Angular templates</span>
           </div>
           <p class="issue-desc">
@@ -536,6 +536,8 @@ obj?.method?.(42)         <span class="hl-comment">// safe call</span>
     .issue-title { font-weight: 600; color: var(--adev-text); font-size: 14px; }
     .issue-desc { font-size: 13px; color: var(--adev-text-secondary); line-height: 1.6; }
     .new-feature-badge { background: linear-gradient(135deg, var(--adev-success), #059669); color: white; padding: 2px 10px; border-radius: 4px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; }
+    .issue-link { background: var(--adev-accent); color: #0f0f11; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 700; text-decoration: none; }
+    .issue-link:hover { opacity: 0.85; }
   `],
 })
 export class InlayHintsDemoComponent {}

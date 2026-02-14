@@ -823,13 +823,23 @@ export class AppComponent &#123;
         <p class="issues-intro">CSS and style validation in Angular templates has been a longstanding gap:</p>
         <div class="issue-card">
           <div class="issue-header">
-            <span class="new-feature-badge">NEW CAPABILITY</span>
+            <a class="issue-link" href="https://github.com/angular/angular/issues/58127" target="_blank">#58127</a>
             <span class="issue-title">CSS property validation in template bindings</span>
           </div>
           <p class="issue-desc">
             Angular templates previously had no CSS validation — invalid property names, wrong units, and
             shorthand/longhand conflicts were silent. This feature adds 25+ diagnostic codes covering
             CSS properties, ARIA attributes, and DOM events with fuzzy-matching suggestions and quick fixes.
+          </p>
+        </div>
+        <div class="issue-card">
+          <div class="issue-header">
+            <a class="issue-link" href="https://github.com/angular/angular/issues/61381" target="_blank">#61381</a>
+            <span class="issue-title">Emit Error When Binding Numbers to non-Numeric CSS properties</span>
+          </div>
+          <p class="issue-desc">
+            Validates that style bindings with unit suffixes (e.g. <code>[style.width.px]</code>) receive
+            numeric values. Catches type mismatches like binding strings or booleans where numbers are expected.
           </p>
         </div>
       </div>
@@ -987,6 +997,8 @@ export class AppComponent &#123;
     .issue-title { font-weight: 600; color: var(--adev-text); font-size: 14px; }
     .issue-desc { font-size: 13px; color: var(--adev-text-secondary); line-height: 1.6; }
     .new-feature-badge { background: linear-gradient(135deg, var(--adev-success), #059669); color: white; padding: 2px 10px; border-radius: 4px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; }
+    .issue-link { background: var(--adev-accent); color: #0f0f11; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 700; text-decoration: none; }
+    .issue-link:hover { opacity: 0.85; }
   `],
 })
 export class CssIntellisenseDemoComponent {}

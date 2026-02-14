@@ -106,10 +106,14 @@ export class StringifyNullishPipe {
       text-transform: uppercase;
     }
     .value-undefined {
-      background: rgba(96, 165, 250, 0.12);
-      border: 1px solid rgba(96, 165, 250, 0.35);
-      color: #60a5fa;
-      box-shadow: 0 0 0 1px rgba(96, 165, 250, 0.18) inset;
+      background: rgba(239, 68, 68, 0.18);
+      border: 1px solid rgba(239, 68, 68, 0.5);
+      color: #ef4444;
+      box-shadow: 0 0 6px rgba(239, 68, 68, 0.25);
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
     }
     .comparison-box {
       margin-top: 12px; padding: 10px 14px; background: rgba(248, 113, 113, 0.08);
@@ -1052,7 +1056,7 @@ export class MixedChainingDemoComponent {
   }
 
   ngOnInit() {
-    this.setPartialConfig();
+    this.setMinimalConfig();
     this.setMixedNull();
   }
 }
