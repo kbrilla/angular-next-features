@@ -242,6 +242,7 @@ export class NativeChainingComponent {
 @Directive({
   selector: '[appNativeHostDir]',
   standalone: true,
+  exportAs: 'appNativeHostDir',
   optionalChainingSemantics: 'native',
   host: {
     '[attr.data-native-title]': 'labelData?.title',
@@ -250,6 +251,15 @@ export class NativeChainingComponent {
 })
 export class NativeHostDirective {
   @Input() labelData: { title?: string; active?: boolean } | null = null;
+
+  /**
+   * Expose the computed value so the host component can read it directly,
+   * avoiding the DOM getAttribute() limitation (which always returns null
+   * for missing attributes, losing the null vs undefined distinction).
+   */
+  get nativeTitleValue(): string | null | undefined {
+    return this.labelData?.title;
+  }
 }
 
 /**
@@ -305,12 +315,12 @@ export class NativeHostDirective {
 })
 export class MixedExampleComponent {
   item = signal<{ value?: string } | null>(null);
+  /** Injected from parent — the raw value from the native directive's ?.title evaluation */
+  @Input() nativeTitleRaw: string | null | undefined = null;
 
   get nativeTitle(): string {
-    // This would be set by the host directive — for demo purposes show the concept
-    const el = typeof document !== 'undefined' ? document.querySelector('[appNativeHostDir]') : null;
-    const attr = el?.getAttribute('data-native-title');
-    return attr === null ? 'null' : attr === undefined ? 'undefined' : attr;
+    const val = this.nativeTitleRaw;
+    return val === null ? 'null' : val === undefined ? 'undefined' : val;
   }
 }
 
@@ -358,8 +368,8 @@ export class MixedExampleComponent {
 
         <div class="live-mix-match">
           <h4>Live Demo: Legacy Component + Native Host Directive</h4>
-          <div appNativeHostDir [labelData]="mixedLabelData()">
-            <app-mixed-example></app-mixed-example>
+          <div appNativeHostDir #nativeDir="appNativeHostDir" [labelData]="mixedLabelData()">
+            <app-mixed-example [nativeTitleRaw]="nativeDir.nativeTitleValue"></app-mixed-example>
           </div>
           <div class="mix-match-controls">
             <button (click)="setMixedWithData()">Set Data</button>
