@@ -48,7 +48,7 @@
                 }
               ],
               "outputHashing": "all",
-              "baseHref": "/nativeoptional_chaning_and_template_features_upgrade/"
+              "baseHref": "/angular-next-features/"
             },
             "development": {
               "optimization": false,
