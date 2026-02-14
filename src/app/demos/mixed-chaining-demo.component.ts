@@ -77,7 +77,7 @@ export class StringifyNullishPipe {
     </div>
   `,
   styles: [`
-    .panel { padding: 20px; border-radius: 8px; height: 100%; }
+    .panel { padding: 20px; border-radius: 8px; height: 100%; min-width: 0; overflow: hidden; }
     .legacy { background: var(--adev-surface); border: 1px solid var(--adev-warning); }
     h3 { margin-top: 0; color: var(--adev-text); font-weight: 600; }
     .badge {
@@ -94,7 +94,7 @@ export class StringifyNullishPipe {
       display: flex; justify-content: space-between; align-items: center;
       padding: 8px 12px; margin: 6px 0; background: var(--adev-surface-2); border-radius: 6px;
     }
-    .value { font-weight: 700; color: var(--adev-warning); padding: 2px 8px; border-radius: 6px; }
+    .value { font-weight: 700; color: var(--adev-warning); padding: 2px 8px; border-radius: 6px; white-space: nowrap; flex-shrink: 0; }
     .value-null {
       background: rgba(239, 68, 68, 0.18);
       border: 1px solid rgba(239, 68, 68, 0.5);
@@ -179,7 +179,7 @@ export class LegacyChainingComponent {
     </div>
   `,
   styles: [`
-    .panel { padding: 20px; border-radius: 8px; height: 100%; }
+    .panel { padding: 20px; border-radius: 8px; height: 100%; min-width: 0; overflow: hidden; }
     .native { background: var(--adev-surface); border: 1px solid var(--adev-info); }
     h3 { margin-top: 0; color: var(--adev-text); font-weight: 600; }
     .badge {
@@ -196,7 +196,7 @@ export class LegacyChainingComponent {
       display: flex; justify-content: space-between; align-items: center;
       padding: 8px 12px; margin: 6px 0; background: var(--adev-surface-2); border-radius: 6px;
     }
-    .value { font-weight: 700; color: var(--adev-info); padding: 2px 8px; border-radius: 6px; }
+    .value { font-weight: 700; color: var(--adev-info); padding: 2px 8px; border-radius: 6px; white-space: nowrap; flex-shrink: 0; }
     .value-null {
       background: rgba(239, 68, 68, 0.18);
       border: 1px solid rgba(239, 68, 68, 0.5);
@@ -876,7 +876,7 @@ export class MixedExampleComponent {
     .config-note { font-size: 13px; color: var(--adev-text-secondary); margin-bottom: 0; }
     .side-by-side {
       display: grid; grid-template-columns: 1fr 1fr;
-      gap: 16px; margin: 20px 0; overflow: visible;
+      gap: 16px; margin: 20px 0; overflow: hidden;
     }
     .mix-match-section {
       background: rgba(167, 139, 250, 0.06); border: 1px solid rgba(167, 139, 250, 0.2);
@@ -1031,7 +1031,7 @@ export class MixedExampleComponent {
     .inlay-hints-section h3 { color: var(--adev-primary); }
     .native-hint { color: #22c55e; font-style: italic; opacity: 0.7; }
     .legacy-hint { color: #fb923c; font-style: italic; opacity: 0.7; }
-    @media (max-width: 768px) {
+    @media (max-width: 1024px) {
       .side-by-side { grid-template-columns: 1fr; overflow-x: auto; }
       .example-row { grid-template-columns: 1fr; gap: 4px; }
       .example-row .arrow { display: none; }
