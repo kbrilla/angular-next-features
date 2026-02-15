@@ -235,8 +235,8 @@ export class MyComp {{'{'}}&nbsp;
 
         <div class="pr-banner">
           <span class="pr-label">PR</span>
-          <a href="https://github.com/angular/angular/pull/67074" target="_blank">
-            angular/angular#67074 — feat(compiler-cli): add view query target validation diagnostics
+          <a href="https://github.com/angular/angular/pull/67078" target="_blank">
+            angular/angular#67078 — fix(core): defer signal query results from first-pass embedded views
           </a>
         </div>
 
